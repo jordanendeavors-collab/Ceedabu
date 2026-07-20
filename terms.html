@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terms of Use — The Humming of God</title>
+<meta name="robots" content="index,follow">
+<style>
+html[data-theme="dark"]{--ground:#12191A;--card:#1B2426;--edge:#2C3A3C;--bone:#E8E1D2;--dim:#9AA6A4;--brass:#C9A227;--patina:#5FA894}
+html[data-theme="mid"]{--ground:#41504F;--card:#4E5F5D;--edge:#647775;--bone:#F2EDE1;--dim:#C3CCC9;--brass:#E0BE4A;--patina:#8FD4BF}
+html[data-theme="light"]{--ground:#EFEADD;--card:#FFFFFF;--edge:#D3C9B2;--bone:#1E2726;--dim:#5C6A68;--brass:#8A6D10;--patina:#2E6E5E}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+body{margin:0;background:var(--ground);color:var(--bone);font:400 17px/1.7 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+h1,h2{font-family:"Trajan Pro",Optima,"Gill Sans",Georgia,serif;font-weight:600;letter-spacing:.02em}
+h1{font-size:clamp(28px,5vw,42px);margin:0 0 6px}
+h2{font-size:19px;margin:36px 0 10px;color:var(--brass)}
+a{color:var(--patina)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+.bar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--ground) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--edge)}
+.bar .wrap{display:flex;align-items:center;gap:18px;height:58px;max-width:1080px}
+.brand{font-family:"Trajan Pro",Optima,Georgia,serif;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);text-decoration:none}
+.bar nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+.bar nav a{color:var(--dim);text-decoration:none}
+.bar nav a:hover{color:var(--bone)}
+main{padding:52px 0 70px}
+.upd{color:var(--dim);font-size:14px;margin:0 0 8px}
+p,li{color:var(--dim)}
+strong{color:var(--bone)}
+.box{border:1px solid var(--brass);border-radius:4px;padding:20px;background:var(--card);margin:26px 0}
+.box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--edge);padding:26px 0 50px;color:var(--dim);font-size:13.5px}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap">
+  <a class="brand" href="index.html">The Humming of God</a>
+  <nav><a href="index.html">Home</a><a href="meditations.html">Meditations</a>
+  <a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></nav>
+</div></div>
+<main><div class="wrap">
+<h1>Terms of Use</h1>
+<p class="upd">Last updated <span id="d"></span></p>
+
+<div class="box">
+<p><strong>This site teaches a breathing practice. It is not medical care.</strong>
+Nothing here diagnoses, treats, cures, or prevents any disease. It is not a substitute for
+advice from a qualified clinician. If you have a health concern, talk to your doctor.</p>
+</div>
+
+<h2>Practice safely</h2>
+<p>The practice on this site involves slow breathing and holding your breath. That can make
+you lightheaded, sometimes without warning.</p>
+<ul>
+<li><strong>Never practice while driving, operating machinery, or in or near water.</strong></li>
+<li>Sit or lie down before you begin. Do not stand.</li>
+<li>If you feel dizzy, stop the hold. Breathe normally and stop for the day.</li>
+<li>Talk to your doctor first if you are pregnant, or if you have a cardiovascular condition,
+a respiratory condition, epilepsy, or high blood pressure.</li>
+<li>This practice is for adults. If you are under 18, use it only with a parent or guardian.</li>
+</ul>
+
+<h2>You use this at your own risk</h2>
+<p>You decide whether this practice is right for you. To the fullest extent the law allows,
+we are not liable for any injury, loss, or damage arising from your use of this site or the
+practice it describes. The site is provided as is, without warranty of any kind.</p>
+
+<h2>What you can and cannot do with the content</h2>
+<p>The recordings, films, artwork, text, and the guided sessions on this site are our
+copyrighted work. You may watch, listen, and share links freely. You may practice along
+personally and with family and friends.</p>
+<p>You may not re-upload, re-publish, sell, or redistribute the recordings, films, or
+artwork, or use them in a paid or commercial offering, without written permission. Ask us —
+the answer is often yes.</p>
+
+<h2>Links and embedded video</h2>
+<p>Videos on this site are hosted on YouTube and play through an embedded player. When you
+press play, YouTube receives your request and its own terms and privacy policy apply to that
+playback. We do not control YouTube.</p>
+
+<h2>Changes</h2>
+<p>We may update these terms. The date at the top shows the current version. Continuing to
+use the site after a change means you accept it.</p>
+
+<h2>Contact</h2>
+<p>Questions about these terms: <a href="mailto:REPLACE@YOURDOMAIN.COM">REPLACE@YOURDOMAIN.COM</a></p>
+
+<script>document.getElementById("d").textContent=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});</script>
+</div></main>
+<footer><div class="wrap">© <span id="yr"></span> The Humming of God. All rights reserved.</div></footer>
+<script>
+var r=document.documentElement;try{var s=localStorage.getItem("hum:theme");if(s)r.dataset.theme=s;}catch(e){}
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script></body></html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guided Meditations — The Humming of God</title>
+<meta name="description" content="Guided 4-7-8 humming meditations. Watch, follow the cadence, breathe.">
+<meta property="og:title" content="Guided Meditations — The Humming of God">
+<meta property="og:description" content="Guided 4-7-8 humming meditations.">
+<meta property="og:type" content="website">
+<style>
+/* ── tokens: same three-theme system as index ───────────────── */
+html[data-theme="dark"]{
+  --ground:#12191A; --card:#1B2426; --edge:#2C3A3C;
+  --bone:#E8E1D2; --dim:#9AA6A4; --brass:#C9A227; --patina:#5FA894;
+}
+html[data-theme="mid"]{
+  --ground:#41504F; --card:#4E5F5D; --edge:#647775;
+  --bone:#F2EDE1; --dim:#C3CCC9; --brass:#E0BE4A; --patina:#8FD4BF;
+}
+html[data-theme="light"]{
+  --ground:#EFEADD; --card:#FFFFFF; --edge:#D3C9B2;
+  --bone:#1E2726; --dim:#5C6A68; --brass:#8A6D10; --patina:#2E6E5E;
+}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+body{
+  margin:0; background:var(--ground); color:var(--bone);
+  font:400 17px/1.65 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Trajan Pro","Optima","Gill Sans",Georgia,serif;font-weight:600;letter-spacing:.02em;margin:0}
+a{color:var(--patina)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* ── header ─────────────────────────────────────────────────── */
+.bar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--ground) 92%,transparent);
+     backdrop-filter:blur(10px);border-bottom:1px solid var(--edge)}
+.bar .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.brand{font-family:"Trajan Pro",Optima,Georgia,serif;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);text-decoration:none}
+.bar nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+.bar nav a{color:var(--dim);text-decoration:none}
+.bar nav a:hover,.bar nav a:focus-visible{color:var(--bone)}
+.themes{display:flex;gap:4px;border:1px solid var(--edge);border-radius:20px;padding:3px}
+.themes button{font-size:11px;letter-spacing:.08em;padding:4px 9px;border-radius:14px;color:var(--dim)}
+.themes button[aria-pressed="true"]{background:var(--brass);color:var(--ground)}
+
+/* ── hero ───────────────────────────────────────────────────── */
+.hero{padding:64px 0 40px;border-bottom:1px solid var(--edge)}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
+.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.08}
+.hero p{color:var(--dim);max-width:56ch;margin:18px 0 0}
+
+/* ── the gauge: signature element ───────────────────────────── */
+.gauge{width:64px;height:64px;flex:0 0 64px;position:relative}
+.gauge svg{transform:rotate(-135deg)}
+.gauge .track{stroke:var(--edge);stroke-width:5;fill:none}
+.gauge .fill{stroke:var(--brass);stroke-width:5;fill:none;stroke-linecap:round}
+.gauge .read{position:absolute;inset:0;display:grid;place-items:center;
+  font:600 13px/1 "Gill Sans",system-ui,sans-serif;letter-spacing:.02em}
+
+/* ── cards ──────────────────────────────────────────────────── */
+.grid{display:grid;gap:22px;padding:40px 0 60px}
+@media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--edge);border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.card h3{font-size:21px;margin-bottom:6px}
+.card .meta{display:flex;align-items:center;gap:16px;padding:20px}
+.card .meta p{margin:0;color:var(--dim);font-size:15px}
+.card .body{padding:0 20px 20px;color:var(--dim);font-size:15px;flex:1}
+
+/* youtube facade — nothing from YouTube loads until tapped */
+.player{position:relative;aspect-ratio:16/9;background:#000;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.player img{width:100%;height:100%;object-fit:cover;display:block;opacity:.72}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;inset:0;display:grid;place-items:center}
+.play span{width:66px;height:46px;border-radius:9px;background:rgba(10,12,12,.72);
+  border:1px solid var(--brass);display:grid;place-items:center;color:var(--brass);font-size:19px;
+  transition:transform .18s ease}
+.play:hover span,.play:focus-visible span{transform:scale(1.08)}
+.loadnote{padding:9px 20px;font-size:12.5px;color:var(--dim);border-bottom:1px solid var(--edge)}
+
+/* ── safety ─────────────────────────────────────────────────── */
+.safety{border:1px solid var(--brass);border-radius:4px;padding:22px;margin:0 0 56px;background:var(--card)}
+.safety h2{font-size:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);margin-bottom:12px}
+.safety ul{margin:0;padding-left:20px;color:var(--dim);font-size:15px}
+.safety li{margin:7px 0}
+.safety strong{color:var(--bone)}
+footer{border-top:1px solid var(--edge);padding:26px 0 50px;color:var(--dim);font-size:13.5px}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="wrap">
+  <a class="brand" href="index.html">The Humming of God</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#gallery">Gallery</a>
+    <a href="meditations.html" aria-current="page" style="color:var(--bone)">Meditations</a>
+  </nav>
+  <div class="themes" role="group" aria-label="Light level">
+    <button data-t="dark"  aria-pressed="true">DARK</button>
+    <button data-t="mid"   aria-pressed="false">MED</button>
+    <button data-t="light" aria-pressed="false">LIGHT</button>
+  </div>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Guided sessions</div>
+  <h1>Sit down. Breathe with it.</h1>
+  <p>Each session runs the same cadence — four in through the nose, seven held, eight out
+     as a hum. Follow the picture and the voice. Nothing to count on your own.</p>
+</div></header>
+
+<main class="wrap">
+
+  <div class="grid" id="sessions"></div>
+
+  <section class="safety">
+    <h2>Before you start</h2>
+    <ul>
+      <li><strong>Never practice while driving, operating machinery, or in or near water.</strong>
+          Breath-holding can cause lightheadedness without warning.</li>
+      <li>Sit or lie down. Don't stand.</li>
+      <li>If you feel dizzy, drop the hold — breathe four in, four out, and stop for the day.</li>
+      <li>Talk to your doctor first if you are pregnant, or if you have a cardiovascular
+          condition, a respiratory condition, epilepsy, or high blood pressure.</li>
+      <li>This is a wellness practice, not medical treatment. It does not diagnose, treat,
+          or cure anything, and it is not a substitute for care from a qualified clinician.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+  © <span id="yr"></span> The Humming of God. All rights reserved.
+  <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a>
+</div></footer>
+
+<script>
+/* ── sessions: add an entry per video. id = the YouTube video id ── */
+const SESSIONS = [
+  { id:"REPLACE_ID_1", title:"The Convergence", mins:3,
+    note:"Where the practice shows up on its own, in places that never met." },
+  { id:"REPLACE_ID_2", title:"The Invocation", mins:2,
+    note:"The opening. What the nerve is, and why the hum reaches it." },
+  { id:"REPLACE_ID_3", title:"Finding Your Pitch", mins:2,
+    note:"Your chest tells you when it's right. Not your throat." },
+  { id:"REPLACE_ID_4", title:"The Cadence", mins:4,
+    note:"Four, seven, eight. Ten rounds, guided the whole way." }
+];
+
+const dial = (m) => {
+  const pct = Math.min(m/12,1), C = 2*Math.PI*26, len = C*0.75;
+  return `<div class="gauge"><svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+    <circle class="track" cx="32" cy="32" r="26" stroke-dasharray="${len} ${C}"/>
+    <circle class="fill"  cx="32" cy="32" r="26" stroke-dasharray="${len*pct} ${C}"/>
+  </svg><div class="read">${m}<span style="font-size:9px">m</span></div></div>`;
+};
+
+document.getElementById("sessions").innerHTML = SESSIONS.map((s,i)=>`
+  <article class="card">
+    <div class="meta">${dial(s.mins)}
+      <div><h3>${s.title}</h3><p>${s.mins} minutes</p></div>
+    </div>
+    <div class="player" data-id="${s.id}">
+      <img src="m${i+1}.jpg" alt="" loading="lazy">
+      <button class="play" aria-label="Play ${s.title}"><span>▶</span></button>
+    </div>
+    <p class="loadnote">Tap to play. YouTube loads only after you tap.</p>
+    <div class="body">${s.note}</div>
+  </article>`).join("");
+
+/* facade: swap in the iframe on click, privacy-enhanced domain */
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".play"); if(!btn) return;
+  const box = btn.closest(".player"), id = box.dataset.id;
+  box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1"
+    title="Guided meditation" allow="accelerometer;autoplay;encrypted-media;picture-in-picture"
+    allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+});
+
+/* themes — shared key with index so the choice carries across pages */
+const root = document.documentElement, btns = document.querySelectorAll(".themes button");
+const setT = t => { root.dataset.theme = t;
+  btns.forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.t===t)));
+  try{ localStorage.setItem("hum:theme", t); }catch(e){} };
+btns.forEach(b=>b.addEventListener("click",()=>setT(b.dataset.t)));
+try{ const s=localStorage.getItem("hum:theme"); if(s) setT(s); }catch(e){}
+document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

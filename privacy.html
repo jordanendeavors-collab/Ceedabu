@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy — The Humming of God</title>
+<style>
+html[data-theme="dark"]{--ground:#12191A;--card:#1B2426;--edge:#2C3A3C;--bone:#E8E1D2;--dim:#9AA6A4;--brass:#C9A227;--patina:#5FA894}
+html[data-theme="mid"]{--ground:#41504F;--card:#4E5F5D;--edge:#647775;--bone:#F2EDE1;--dim:#C3CCC9;--brass:#E0BE4A;--patina:#8FD4BF}
+html[data-theme="light"]{--ground:#EFEADD;--card:#FFFFFF;--edge:#D3C9B2;--bone:#1E2726;--dim:#5C6A68;--brass:#8A6D10;--patina:#2E6E5E}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+body{margin:0;background:var(--ground);color:var(--bone);font:400 17px/1.7 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+h1,h2{font-family:"Trajan Pro",Optima,"Gill Sans",Georgia,serif;font-weight:600;letter-spacing:.02em}
+h1{font-size:clamp(28px,5vw,42px);margin:0 0 6px}
+h2{font-size:19px;margin:36px 0 10px;color:var(--brass)}
+a{color:var(--patina)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+.bar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--ground) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--edge)}
+.bar .wrap{display:flex;align-items:center;gap:18px;height:58px;max-width:1080px}
+.brand{font-family:"Trajan Pro",Optima,Georgia,serif;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);text-decoration:none}
+.bar nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+.bar nav a{color:var(--dim);text-decoration:none}
+.bar nav a:hover{color:var(--bone)}
+main{padding:52px 0 70px}
+.upd{color:var(--dim);font-size:14px;margin:0 0 8px}
+p,li{color:var(--dim)}
+strong{color:var(--bone)}
+.box{border:1px solid var(--brass);border-radius:4px;padding:20px;background:var(--card);margin:26px 0}
+.box p:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--edge);padding:26px 0 50px;color:var(--dim);font-size:13.5px}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap">
+  <a class="brand" href="index.html">The Humming of God</a>
+  <nav><a href="index.html">Home</a><a href="meditations.html">Meditations</a>
+  <a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></nav>
+</div></div>
+<main><div class="wrap">
+<h1>Privacy</h1>
+<p class="upd">Last updated <span id="d"></span></p>
+
+<div class="box">
+<p><strong>We have no accounts, no sign-ups, and no database.</strong> We do not collect your
+name, your email, or your location. What the site saves, it saves on your own device — we
+never receive it and cannot see it.</p>
+</div>
+
+<h2>What stays on your device</h2>
+<p>The meditation tools save a few things in your browser's local storage so the site
+remembers you between visits:</p>
+<ul>
+<li>Your light level (Dark, Med, or Light) and language choice.</li>
+<li>Your answer to the "how are you feeling" question that sets a starting frequency.</li>
+<li>Frequencies you lock during a session, and a running session profile built from them.</li>
+</ul>
+<p>All of it lives in your browser only. It is never uploaded, never sent to us, and never
+shared. We have no way to read it.</p>
+
+<h2>Clearing it</h2>
+<p>Clear your browser's site data for this site and everything above is gone permanently.
+In most mobile browsers: Settings → Privacy → Clear browsing data → Cookies and site data.
+There is nothing to request from us, because we hold nothing.</p>
+
+<h2>Video</h2>
+<p>Videos are hosted on YouTube. <strong>Nothing loads from YouTube until you tap play.</strong>
+Until then, no YouTube cookie is set and no request is made. When you do press play, we use
+YouTube's privacy-enhanced player (<code>youtube-nocookie.com</code>), which does not set
+tracking cookies for building an ad profile. Once playback starts, YouTube receives your IP
+address and player interactions under Google's privacy policy, which we do not control.</p>
+
+<h2>Analytics and advertising</h2>
+<p>We run no analytics, no tracking pixels, and no advertising. There is no third-party
+script on this site other than the YouTube player you choose to load.</p>
+
+<h2>Children</h2>
+<p>This site is intended for adults and we do not knowingly collect anything from children.
+Since we collect nothing from anyone, there is nothing held about a child to delete.</p>
+
+<h2>Your rights</h2>
+<p>If you are in the EU, UK, or California, laws there give you rights to access, correct,
+delete, or port personal data a site holds about you. We hold none, so there is nothing to
+retrieve or erase on our side. The data described above is under your control on your own
+device and you can clear it yourself at any time.</p>
+
+<h2>Changes</h2>
+<p>If this ever changes — if we add a newsletter, an account, or analytics — we will update
+this page and the date above before it takes effect.</p>
+
+<h2>Contact</h2>
+<p><a href="mailto:REPLACE@YOURDOMAIN.COM">REPLACE@YOURDOMAIN.COM</a></p>
+
+<script>document.getElementById("d").textContent=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});</script>
+</div></main>
+<footer><div class="wrap">© <span id="yr"></span> The Humming of God. All rights reserved.</div></footer>
+<script>
+var r=document.documentElement;try{var s=localStorage.getItem("hum:theme");if(s)r.dataset.theme=s;}catch(e){}
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script></body></html>
