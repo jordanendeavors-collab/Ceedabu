@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From the Book — The Humming of God</title>
+<meta name="description" content="For readers of 4 In, 7 Hold, 8 Hum. Walk the five chapters, follow the tone, or breathe along with a guided session.">
+<style>
+:root{--bg:#f5f0e6;--panel:#fffaf0;--ink:#1d2326;--muted:#5b6266;--line:#ddd3bf;--brass:#8a5a12;--btn:#2b4a3a;--btn-ink:#fff;
+ --serif:Georgia,"Iowan Old Style","Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1416;--panel:#142022;--ink:#eee2c8;--muted:#a3a99f;--line:#2a3a3c;--brass:#cda052;--btn:#cda052;--btn-ink:#0c1416;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c1416;--panel:#142022;--ink:#eee2c8;--muted:#a3a99f;--line:#2a3a3c;--brass:#cda052;--btn:#cda052;--btn-ink:#0c1416;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--sans);padding:28px 16px 60px}
+main{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.top{display:flex;justify-content:space-between;align-items:center}
+.eyebrow{font:600 .75rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+h1{font:700 2rem/1.1 var(--serif);margin:4px 0 0;color:var(--brass)}
+p{margin:0}.muted{color:var(--muted)}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+a.card:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+a.card b{display:block;font:700 1.15rem var(--serif);color:var(--ink);margin-bottom:2px}
+a.card span{color:var(--muted);font-size:.95rem}
+a.card.main{background:var(--btn);border-color:var(--btn)}a.card.main b,a.card.main span{color:var(--btn-ink)}
+button{font:600 .8rem var(--sans);background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+.safe{font-size:.88rem;color:var(--muted);border-left:3px solid var(--brass);padding-left:10px}
+</style></head><body>
+<main>
+  <div class="top"><span class="eyebrow">From the book</span><button id="t" type="button">Dark</button></div>
+  <div><h1>4 In, 7 Hold, 8 Hum</h1><p class="muted" style="margin-top:6px">You found your way here from the page. Pick where you want to start.</p></div>
+  <a class="card main" href="/"><b>Walk it with me</b><span>The five chapters, read aloud, with the tone underneath. About ten minutes from the top.</span></a>
+  <a class="card" href="/"><b>Just the tone</b><span>No talking. Tell it where you are today, and it carries you back to centre.</span></a>
+  <a class="card" href="/meditations.html"><b>Guided sessions</b><span>Watch, follow the count, breathe along.</span></a>
+  <p class="safe">Sit or lie down. Shorten any count you need to, or skip the hold and just hum. If a doctor has given you breathing guidance, follow that first.</p>
+</main>
+<script>
+const r=document.documentElement,b=document.getElementById("t");
+const dark=()=>r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+const lab=()=>b.textContent=dark()?"Light":"Dark";
+try{const s=localStorage.getItem("hum-theme");if(s)r.dataset.theme=s}catch(e){}
+lab();b.onclick=()=>{const n=dark()?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("hum-theme",n)}catch(e){}lab()};
+</script>
+</body></html>
