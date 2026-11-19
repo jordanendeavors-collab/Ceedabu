@@ -321,31 +321,31 @@
     .chap-len{grid-column:2;font-size:10px}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
-  /* ===== Tone Lab (folded-in frequency generator) ===== */
-  #tonelab{position:fixed;inset:0;z-index:95;background:var(--ink);display:none;overflow-y:auto;
-    -webkit-overflow-scrolling:touch}
+  /* ===== Tone Lab (folded-in frequency generator + night voices) ===== */
+  #tonelab{position:fixed;inset:0;z-index:95;background:var(--ink);display:none;overflow-y:auto;-webkit-overflow-scrolling:touch}
   #tonelab.show{display:block}
   #tlViz{position:fixed;inset:0;width:100%;height:100%;z-index:0}
-  .tl-wrap{position:relative;z-index:2;width:min(94vw,520px);margin:0 auto;padding:18px 20px 44px}
+  .tl-wrap{position:relative;z-index:2;width:min(94vw,520px);margin:0 auto;padding:18px 20px 46px}
   .tl-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
   .tl-top b{font-size:17px;font-weight:400;display:block;line-height:1}
-  .tl-top span{font-family:var(--ut);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--brass)}
-  .tl-x{padding:9px 14px;background:transparent;color:var(--dim);border:1px solid var(--edge);border-radius:1px;
-    font-family:var(--ut);font-size:10px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
-  .tl-modes{display:flex;gap:8px;margin-bottom:22px}
-  .tl-mode{flex:1;padding:15px 10px;text-align:center;background:var(--panel);border:1px solid var(--line);
-    border-radius:2px;color:var(--bone);cursor:pointer;transition:all .22s}
+  .tl-top span{font-family:var(--ut);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+  .tl-x{padding:9px 14px;background:transparent;color:var(--dim);border:1px solid var(--edge);border-radius:1px;font-family:var(--ut);font-size:10px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+  .tl-modes{display:flex;gap:8px;margin-bottom:20px}
+  .tl-mode{flex:1;padding:15px 10px;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:2px;color:var(--bone);cursor:pointer;transition:all .22s}
   .tl-mode b{display:block;font-size:17px;margin-bottom:3px}
   .tl-mode span{font-family:var(--ut);font-size:9px;letter-spacing:.1em;color:var(--dim)}
-  .tl-mode[aria-pressed=true]{border-color:var(--brass)}
-  .tl-mode[aria-pressed=true] b{color:var(--brass)}
-  .tl-mode.night[aria-pressed=true]{border-color:var(--low)}
-  .tl-mode.night[aria-pressed=true] b{color:var(--low)}
-  .tl-read{text-align:center;margin-bottom:24px}
-  .tl-read .big{font-family:var(--ut);font-size:50px;line-height:1;color:var(--brass)}
-  #tonelab.night-on .tl-read .big{color:var(--low)}
+  .tl-mode[aria-pressed=true]{border-color:var(--brass)} .tl-mode[aria-pressed=true] b{color:var(--brass)}
+  .tl-mode.night[aria-pressed=true]{border-color:var(--low)} .tl-mode.night[aria-pressed=true] b{color:var(--low)}
+  .tl-read{text-align:center;margin-bottom:20px}
+  .tl-read .big{font-family:var(--ut);font-size:46px;line-height:1;color:var(--brass)}
+  #tonelab.night-on .tl-read .big{color:var(--low);font-family:var(--dsp);font-size:36px}
   .tl-read .big small{font-size:16px;color:var(--dim)}
-  .tl-read .sub{font-family:var(--ut);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:7px}
+  .tl-read .sub{font-family:var(--ut);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:7px}
+  .tl-voices{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:18px}
+  .tl-voice{padding:12px 12px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:2px;color:var(--bone);cursor:pointer;transition:all .2s}
+  .tl-voice b{display:block;font-size:15px;margin-bottom:2px}
+  .tl-voice span{font-family:var(--ut);font-size:9.5px;color:var(--dim)}
+  .tl-voice[aria-pressed=true]{border-color:var(--low);background:rgba(76,127,166,.14)} .tl-voice[aria-pressed=true] b{color:var(--low)}
   .tl-f{margin-bottom:15px}
   .tl-fh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
   .tl-fn{font-family:var(--ut);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
@@ -355,24 +355,22 @@
   #tonelab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;margin-top:-7px;border-radius:50%;background:var(--brass)}
   #tonelab input[type=range]::-moz-range-track{height:2px;background:var(--line)}
   #tonelab input[type=range]::-moz-range-thumb{width:15px;height:15px;border:0;border-radius:50%;background:var(--brass)}
-  .tl-mixer{padding:15px 0;margin:4px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .tl-mixlab{font-family:var(--ut);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dimmer);margin-bottom:13px}
+  .tl-box{padding:15px 0;margin:4px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .tl-boxlab{font-family:var(--ut);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dimmer);margin-bottom:13px}
   .tl-tog{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
-  .tl-tog b{display:block;font-size:14px;font-weight:400}
-  .tl-tog span{font-family:var(--ut);font-size:10px;color:var(--dim)}
+  .tl-tog b{display:block;font-size:14px;font-weight:400} .tl-tog span{font-family:var(--ut);font-size:10px;color:var(--dim)}
   .tl-sw{width:46px;height:26px;border-radius:14px;background:var(--line);border:0;position:relative;flex:none;cursor:pointer}
   .tl-sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--bone);transition:left .2s}
-  .tl-sw[aria-pressed=true]{background:var(--brass)}
-  .tl-sw[aria-pressed=true]::after{left:23px;background:var(--ink)}
+  .tl-sw[aria-pressed=true]{background:var(--brass)} .tl-sw[aria-pressed=true]::after{left:23px;background:var(--ink)}
   .tl-segs{display:flex;gap:6px;margin-top:4px}
-  .tl-seg{flex:1;padding:9px 2px;text-align:center;font-family:var(--ut);font-size:10px;color:var(--dim);
-    background:var(--panel);border:1px solid var(--line);border-radius:1px;cursor:pointer}
+  .tl-seg{flex:1;padding:9px 2px;text-align:center;font-family:var(--ut);font-size:10px;color:var(--dim);background:var(--panel);border:1px solid var(--line);border-radius:1px;cursor:pointer}
   .tl-seg[aria-pressed=true]{background:rgba(201,162,39,.16);border-color:var(--brass);color:var(--brass)}
-  .tl-play{width:100%;margin-top:20px;padding:18px 0;color:var(--ink);background:var(--brass);border:0;border-radius:2px;
-    font-family:var(--ut);font-size:13px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer}
+  .tl-play{width:100%;margin-top:20px;padding:18px 0;color:var(--ink);background:var(--brass);border:0;border-radius:2px;font-family:var(--ut);font-size:13px;letter-spacing:.3em;text-transform:uppercase;cursor:pointer}
   #tonelab.night-on .tl-play{background:var(--low)}
   .tl-play.on{background:transparent;border:1px solid var(--edge);color:var(--bone)}
   .tl-foot{margin-top:20px;font-size:11.5px;line-height:1.5;color:var(--dimmer)}
+  .tl-foot b{color:var(--dim);font-weight:400}
+  .tl-hide{display:none}
 </style>
 
 </head>
@@ -1488,49 +1486,57 @@
   setVoiceSeg(cfg.voice); setVisSeg(cfg.vis); applyLang(lang); syncBrief();
 })();
 </script>
-<!-- ===== Tone Lab overlay (folded-in frequency generator) ===== -->
+<!-- ===== Tone Lab overlay (frequency generator + night voices) ===== -->
 <div id="tonelab" aria-hidden="true">
   <canvas id="tlViz" aria-hidden="true"></canvas>
   <div class="tl-wrap">
     <div class="tl-top">
-      <div><b>Tone Lab</b><span>40 Hz Gamma · Humming</span></div>
+      <div><b>Tone Lab</b><span>40 Hz Gamma · Night Voices</span></div>
       <button class="tl-x" id="tlClose">Back</button>
     </div>
     <div class="tl-modes" id="tlModes">
       <button class="tl-mode focus" data-mode="focus" aria-pressed="true"><b>Focus</b><span>40 Hz gamma</span></button>
-      <button class="tl-mode night" data-mode="night" aria-pressed="false"><b>Night</b><span>3 Hz delta</span></button>
+      <button class="tl-mode night" data-mode="night" aria-pressed="false"><b>Night</b><span>voices for sleep</span></button>
     </div>
-    <div class="tl-read">
-      <div class="big"><span id="tlBeat">40</span><small> Hz</small></div>
-      <div class="sub" id="tlNote">Gamma — focus &amp; study · no ads, no cut-outs</div>
+    <div class="tl-read"><div class="big" id="tlBigRead">40<small> Hz</small></div><div class="sub" id="tlNoteRead">Gamma — focus &amp; study · no ads, no cut-outs</div></div>
+
+    <div id="tlNightPanel" class="tl-hide">
+      <div class="tl-voices" id="tlVoices">
+        <button class="tl-voice" data-voice="bowls" aria-pressed="true"><b>Himalayan Bowls</b><span>struck metal, long shimmer</span></button>
+        <button class="tl-voice" data-voice="monk"><b>Monk's Drone</b><span>Tibetan throat hum</span></button>
+        <button class="tl-voice" data-voice="nature"><b>Night Nature</b><span>wind &amp; soft noise</span></button>
+        <button class="tl-voice" data-voice="tribal"><b>Tribal Drone</b><span>didgeridoo pulse</span></button>
+        <button class="tl-voice" data-voice="tone"><b>Pure Tone</b><span>the plain sine</span></button>
+      </div>
+      <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Root pitch (held — no sweep)</span><span class="tl-fv" id="tlRootVal">110 Hz</span></div><input type="range" id="tlRoot" min="55" max="220" step="1" value="110" aria-label="Root pitch"></div>
+      <div class="tl-box"><div class="tl-boxlab">Mix</div>
+        <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Nature bed (under any voice)</span><span class="tl-fv" id="tlNatVal">25%</span></div><input type="range" id="tlNat" min="0" max="100" step="1" value="25" aria-label="Nature bed"></div>
+        <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Sub bass — you feel it</span><span class="tl-fv" id="tlNsubVal">20%</span></div><input type="range" id="tlNsub" min="0" max="100" step="1" value="20" aria-label="Sub bass"></div>
+        <div class="tl-f" style="margin-bottom:0"><div class="tl-fh"><span class="tl-fn">Master</span><span class="tl-fv" id="tlNmasterVal">65%</span></div><input type="range" id="tlNmaster" min="0" max="100" step="1" value="65" aria-label="Master"></div>
+      </div>
     </div>
-    <div class="tl-f">
-      <div class="tl-fh"><span class="tl-fn">Carrier pitch</span><span class="tl-fv" id="tlCarrVal">220 Hz</span></div>
-      <input type="range" id="tlCarrier" min="90" max="440" step="2" value="220" aria-label="Carrier pitch">
+
+    <div id="tlFocusPanel">
+      <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Carrier pitch</span><span class="tl-fv" id="tlCarrVal">220 Hz</span></div><input type="range" id="tlCarrier" min="90" max="440" step="2" value="220" aria-label="Carrier pitch"></div>
+      <div class="tl-box"><div class="tl-boxlab">Mixer</div>
+        <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Gamma pulse</span><span class="tl-fv" id="tlGammaVal">70%</span></div><input type="range" id="tlGamma" min="0" max="100" step="1" value="70" aria-label="Gamma pulse"></div>
+        <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Sub bass — you feel it</span><span class="tl-fv" id="tlSubVal">35%</span></div><input type="range" id="tlSub" min="0" max="100" step="1" value="35" aria-label="Sub bass"></div>
+        <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Hum</span><span class="tl-fv" id="tlHumVal">45%</span></div><input type="range" id="tlHum" min="0" max="100" step="1" value="45" aria-label="Hum"></div>
+        <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Echo</span><span class="tl-fv" id="tlEchoVal">30%</span></div><input type="range" id="tlEcho" min="0" max="85" step="1" value="30" aria-label="Echo"></div>
+        <div class="tl-f" style="margin-bottom:0"><div class="tl-fh"><span class="tl-fn">Master</span><span class="tl-fv" id="tlMasterVal">70%</span></div><input type="range" id="tlMaster" min="0" max="100" step="1" value="70" aria-label="Master"></div>
+      </div>
+      <div class="tl-tog"><div><b>Binaural beat</b><span>needs headphones</span></div><button class="tl-sw" id="tlBin" aria-pressed="false" aria-label="Binaural"></button></div>
     </div>
-    <div class="tl-mixer">
-      <div class="tl-mixlab">Mixer</div>
-      <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Gamma pulse</span><span class="tl-fv" id="tlGammaVal">70%</span></div><input type="range" id="tlGamma" min="0" max="100" step="1" value="70" aria-label="Gamma pulse"></div>
-      <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Sub bass — you feel it</span><span class="tl-fv" id="tlSubVal">35%</span></div><input type="range" id="tlSub" min="0" max="100" step="1" value="35" aria-label="Sub bass"></div>
-      <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Hum</span><span class="tl-fv" id="tlHumVal">45%</span></div><input type="range" id="tlHum" min="0" max="100" step="1" value="45" aria-label="Hum"></div>
-      <div class="tl-f"><div class="tl-fh"><span class="tl-fn">Echo</span><span class="tl-fv" id="tlEchoVal">30%</span></div><input type="range" id="tlEcho" min="0" max="85" step="1" value="30" aria-label="Echo"></div>
-      <div class="tl-f" style="margin-bottom:0"><div class="tl-fh"><span class="tl-fn">Master</span><span class="tl-fv" id="tlMasterVal">70%</span></div><input type="range" id="tlMaster" min="0" max="100" step="1" value="70" aria-label="Master"></div>
-    </div>
-    <div class="tl-tog">
-      <div><b>Binaural beat</b><span>needs headphones</span></div>
-      <button class="tl-sw" id="tlBin" aria-pressed="false" aria-label="Binaural beat"></button>
-    </div>
-    <div style="margin-top:15px">
-      <div class="tl-fn" style="margin-bottom:8px">Session length</div>
-      <div class="tl-segs" id="tlLen">
+
+    <div style="margin-top:4px"><div class="tl-fn" style="margin-bottom:8px">Session length</div>
+      <div class="tl-segs" id="tlLenSegs">
         <button class="tl-seg" data-min="0" aria-pressed="true">Open</button>
         <button class="tl-seg" data-min="25" aria-pressed="false">25 min</button>
         <button class="tl-seg" data-min="50" aria-pressed="false">50 min</button>
         <button class="tl-seg" data-min="480" aria-pressed="false">8 hr</button>
-      </div>
-    </div>
+      </div></div>
     <button class="tl-play" id="tlPlay">Begin</button>
-    <p class="tl-foot"><b>Focus</b> pulses a tone 40 times a second — the gamma rhythm from attention and memory research. <b>Night</b> drops to a 3&nbsp;Hz delta sway and fades itself out. Turn Sub bass up on a speaker or bass shaker and you'll feel it in your chest. Nothing interrupts it.</p>
+    <p class="tl-foot" id="tlFoot"></p>
   </div>
 </div>
 
@@ -1538,144 +1544,186 @@
 (function(){
   "use strict";
   var D=document, g=function(i){return D.getElementById(i)};
-  var PRE={
-    focus:{beat:40,carrier:220,subHz:40,note:'Gamma — focus & study · no ads, no cut-outs',humLP:1600,humRate:26,binL:200,binR:240},
-    night:{beat:3, carrier:110,subHz:55,note:'Delta — wind down & sleep · plays all night',humLP:700, humRate:48,binL:100,binR:103}
-  };
-  var mode='focus';
-  var cfg={carrier:220,gamma:70,sub:35,hum:45,echo:30,master:70,binaural:false,minutes:0};
-  function save(){try{localStorage.setItem('tonelab',JSON.stringify({cfg:cfg,mode:mode}))}catch(e){}}
-  function load(){try{var r=localStorage.getItem('tonelab');if(!r)return;var p=JSON.parse(r);if(p.cfg){for(var k in cfg)if(k in p.cfg)cfg[k]=p.cfg[k]}if(p.mode)mode=p.mode}catch(e){}}
-
   var AC=window.AudioContext||window.webkitAudioContext;
-  var fac=null,mas=null,nodes=[],carO,carG,modO,modG,subO,subG,humO,humF,humG,dly,dlyFb,bL,bR,bG,mrg;
-  var running=false,endT=null,glideT=null;
-  function pc(id){return cfg[id]/100}
+  var cfg={mode:'focus',carrier:220,gamma:70,sub:35,hum:45,echo:30,master:70,binaural:false,
+    voice:'bowls',root:110,nat:25,nsub:20,nmaster:65,minutes:0};
+  var FOOT={
+    focus:'<b>Focus</b> pulses a tone 40 times a second — the gamma rhythm from attention and memory research. Turn Sub bass up on a speaker or bass shaker and you feel it.',
+    night:'<b>Night</b> holds one steady root — no sweep, nothing changes mid-sleep. Pick a voice; add the Nature bed under it. One frequency, carried the way different traditions carried it.'
+  };
+  function save(){try{localStorage.setItem('tonelab2',JSON.stringify(cfg))}catch(e){}}
+  function load(){try{var r=localStorage.getItem('tonelab2');if(!r)return;var p=JSON.parse(r);for(var k in cfg)if(k in p)cfg[k]=p[k]}catch(e){}}
 
-  function build(){
-    fac=new AC(); var p=PRE[mode];
-    mas=fac.createGain(); mas.gain.value=0.0001; mas.connect(fac.destination);
-    carO=fac.createOscillator(); carO.type='sine'; carO.frequency.value=cfg.carrier;
-    carG=fac.createGain(); carG.gain.value=0.16; carO.connect(carG); carG.connect(mas);
-    modO=fac.createOscillator(); modO.type='sine'; modO.frequency.value=p.beat;
-    modG=fac.createGain(); modO.connect(modG); modG.connect(carG.gain);
-    subO=fac.createOscillator(); subO.type='sine'; subO.frequency.value=p.subHz;
-    subG=fac.createGain(); subG.gain.value=0.0001; subO.connect(subG); subG.connect(mas);
-    humO=fac.createOscillator(); humO.type='triangle'; humO.frequency.value=cfg.carrier/2;
-    humF=fac.createBiquadFilter(); humF.type='lowpass'; humF.frequency.value=p.humLP; humF.Q.value=0.7;
-    humG=fac.createGain(); humG.gain.value=0.0001;
-    dly=fac.createDelay(1.2); dly.delayTime.value=0.42; dlyFb=fac.createGain(); dlyFb.gain.value=0.0001;
-    humO.connect(humF); humF.connect(humG); humG.connect(mas);
-    humG.connect(dly); dly.connect(dlyFb); dlyFb.connect(dly); dlyFb.connect(mas);
-    mrg=fac.createChannelMerger(2);
-    bL=fac.createOscillator(); bL.type='sine'; bL.frequency.value=p.binL;
-    bR=fac.createOscillator(); bR.type='sine'; bR.frequency.value=p.binR;
-    bG=fac.createGain(); bG.gain.value=0.0001;
-    var gl=fac.createGain(),gr=fac.createGain();
-    bL.connect(gl); gl.connect(mrg,0,0); bR.connect(gr); gr.connect(mrg,0,1); mrg.connect(bG); bG.connect(mas);
-    [carO,modO,subO,humO,bL,bR].forEach(function(o){o.start()});
-    nodes=[carO,modO,subO,humO,bL,bR];
-    mix(true);
-    mas.gain.setValueAtTime(0.0001,fac.currentTime); mas.gain.exponentialRampToValueAtTime(1,fac.currentTime+2.5);
+  var ac=null,master=null,running=false,endT=null,bowlT=null,nodes=[],killers=[];
+  function pc(v){return v/100}
+  function brownBuffer(){
+    var len=ac.sampleRate*4,buf=ac.createBuffer(1,len,ac.sampleRate),d=buf.getChannelData(0),last=0;
+    for(var i=0;i<len;i++){var w=Math.random()*2-1;last=(last+0.02*w)/1.02;d[i]=last*3.2;}
+    var f=Math.floor(ac.sampleRate*0.05);
+    for(var j=0;j<f;j++){var gg=j/f;d[j]*=gg;d[len-1-j]*=gg;}
+    return buf;
   }
-  function mix(init){
-    if(!fac)return; var t=fac.currentTime,r=init?0.05:0.15,cb=0.16;
-    carG.gain.setTargetAtTime(cb,t,r);
-    modG.gain.setTargetAtTime(cb*pc('gamma'),t,r);
-    subG.gain.setTargetAtTime(0.5*pc('sub'),t,r);
-    humG.gain.setTargetAtTime(0.22*pc('hum'),t,r);
-    dlyFb.gain.setTargetAtTime(Math.min(cfg.echo/100,0.82),t,r);
-    bG.gain.setTargetAtTime(cfg.binaural?0.14:0.0001,t,r);
-    mas.gain.setTargetAtTime(Math.max(pc('master'),0.0001),t,r);
-    carO.frequency.setTargetAtTime(cfg.carrier,t,r);
-    humO.frequency.setTargetAtTime(cfg.carrier/2,t,0.3);
+  /* FOCUS */
+  var carO,carG,modO,modG,subO,subG,humO,humF,humG,dly,dlyFb,bL,bR,bG;
+  function buildFocus(){
+    carO=ac.createOscillator();carO.type='sine';carO.frequency.value=cfg.carrier;
+    carG=ac.createGain();carG.gain.value=0.16;carO.connect(carG);carG.connect(master);
+    modO=ac.createOscillator();modO.type='sine';modO.frequency.value=40;
+    modG=ac.createGain();modO.connect(modG);modG.connect(carG.gain);
+    subO=ac.createOscillator();subO.type='sine';subO.frequency.value=40;
+    subG=ac.createGain();subG.gain.value=0.0001;subO.connect(subG);subG.connect(master);
+    humO=ac.createOscillator();humO.type='triangle';humO.frequency.value=cfg.carrier/2;
+    humF=ac.createBiquadFilter();humF.type='lowpass';humF.frequency.value=1600;humF.Q.value=0.7;
+    humG=ac.createGain();humG.gain.value=0.0001;
+    dly=ac.createDelay(1.2);dly.delayTime.value=0.42;dlyFb=ac.createGain();dlyFb.gain.value=0.0001;
+    humO.connect(humF);humF.connect(humG);humG.connect(master);
+    humG.connect(dly);dly.connect(dlyFb);dlyFb.connect(dly);dlyFb.connect(master);
+    var mrg=ac.createChannelMerger(2);
+    bL=ac.createOscillator();bL.type='sine';bL.frequency.value=200;
+    bR=ac.createOscillator();bR.type='sine';bR.frequency.value=240;
+    bG=ac.createGain();bG.gain.value=0.0001;
+    var gl=ac.createGain(),gr=ac.createGain();
+    bL.connect(gl);gl.connect(mrg,0,0);bR.connect(gr);gr.connect(mrg,0,1);mrg.connect(bG);bG.connect(master);
+    [carO,modO,subO,humO,bL,bR].forEach(function(o){o.start()});nodes.push(carO,modO,subO,humO,bL,bR);
+    mixFocus(true);
   }
-  var scale=[0,2,4,7,9,12];
-  function glide(){
-    if(!running||!fac||!humO)return;
-    var base=cfg.carrier/2, semi=scale[Math.floor(Math.random()*scale.length)], f=base*Math.pow(2,semi/12), dur=PRE[mode].humRate;
-    try{humO.frequency.setTargetAtTime(f,fac.currentTime,dur/6)}catch(e){}
-    glideT=setTimeout(glide,dur*500);
+  function mixFocus(init){if(!ac)return;var t=ac.currentTime,r=init?0.05:0.15;
+    carG.gain.setTargetAtTime(0.16,t,r);modG.gain.setTargetAtTime(0.16*pc(cfg.gamma),t,r);
+    subG.gain.setTargetAtTime(0.5*pc(cfg.sub),t,r);humG.gain.setTargetAtTime(0.22*pc(cfg.hum),t,r);
+    dlyFb.gain.setTargetAtTime(Math.min(cfg.echo/100,0.82),t,r);bG.gain.setTargetAtTime(cfg.binaural?0.14:0.0001,t,r);
+    master.gain.setTargetAtTime(Math.max(pc(cfg.master),0.0001),t,r);
+    carO.frequency.setTargetAtTime(cfg.carrier,t,r);humO.frequency.setTargetAtTime(cfg.carrier/2,t,0.3);}
+  /* NIGHT */
+  var voiceGain,natGain,nsubO,nsubG;
+  function buildNight(){
+    natGain=ac.createGain();natGain.gain.value=0.0001;natGain.connect(master);
+    var natSrc=ac.createBufferSource();natSrc.buffer=brownBuffer();natSrc.loop=true;
+    var natLP=ac.createBiquadFilter();natLP.type='lowpass';natLP.frequency.value=600;natLP.Q.value=0.4;
+    var wlfo=ac.createOscillator();wlfo.type='sine';wlfo.frequency.value=0.05;
+    var wlfoG=ac.createGain();wlfoG.gain.value=240;wlfo.connect(wlfoG);wlfoG.connect(natLP.frequency);
+    natSrc.connect(natLP);natLP.connect(natGain);natSrc.start();wlfo.start();nodes.push(natSrc,wlfo);
+    nsubO=ac.createOscillator();nsubO.type='sine';nsubO.frequency.value=cfg.root/2;
+    nsubG=ac.createGain();nsubG.gain.value=0.0001;nsubO.connect(nsubG);nsubG.connect(master);nsubO.start();nodes.push(nsubO);
+    voiceGain=ac.createGain();voiceGain.gain.value=0.0001;voiceGain.connect(master);
+    setVoice(cfg.voice,true);mixNight(true);
   }
-  function start(){
-    if(running)return; build(); if(fac.state==='suspended')fac.resume();
-    running=true; g('tonelab').classList.toggle('night-on',mode==='night'); glide();
-    g('tlPlay').classList.add('on'); g('tlPlay').textContent='Stop';
-    if(cfg.minutes>0){clearTimeout(endT); endT=setTimeout(fadeStop,cfg.minutes*60000)}
-    save();
+  function mixNight(init){if(!ac)return;var t=ac.currentTime,r=init?0.3:0.6;
+    natGain.gain.setTargetAtTime(0.12*pc(cfg.nat),t,r);nsubG.gain.setTargetAtTime(0.45*pc(cfg.nsub),t,r);
+    nsubO.frequency.setTargetAtTime(cfg.root/2,t,0.5);master.gain.setTargetAtTime(Math.max(pc(cfg.nmaster),0.0001),t,r);}
+  function voiceName(v){return {bowls:'Himalayan Bowls',monk:"Monk's Drone",nature:'Night Nature',tribal:'Tribal Drone',tone:'Pure Tone'}[v]||v;}
+  function setVoice(v,init){if(!ac)return;cfg.voice=v;
+    [].forEach.call(D.querySelectorAll('#tlVoices .tl-voice'),function(b){b.setAttribute('aria-pressed',String(b.dataset.voice===v))});
+    g('tlBigRead').textContent=voiceName(v);
+    var oldGain=voiceGain,oldKill=killers.slice();killers=[];
+    var ng=ac.createGain();ng.gain.value=0.0001;ng.connect(master);buildVoice(v,ng);voiceGain=ng;
+    var t=ac.currentTime,fade=init?2:2.5;ng.gain.setTargetAtTime(0.5,t,fade/3);
+    if(!init&&oldGain){oldGain.gain.setTargetAtTime(0.0001,t,fade/3);
+      setTimeout(function(){oldKill.forEach(function(f){try{f()}catch(e){}});try{oldGain.disconnect()}catch(e){}},(fade+1)*1000);}
   }
-  function fadeStop(){
-    if(!running)return;
-    try{mas.gain.cancelScheduledValues(fac.currentTime);mas.gain.setValueAtTime(mas.gain.value,fac.currentTime);
-      mas.gain.exponentialRampToValueAtTime(0.0001,fac.currentTime+(cfg.minutes>0?6:1.6))}catch(e){}
-    setTimeout(hardStop,cfg.minutes>0?6400:1900);
+  function buildVoice(v,out){var root=cfg.root;
+    if(v==='tone'){var o=ac.createOscillator();o.type='sine';o.frequency.value=root;
+      var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=900;o.connect(lp);lp.connect(out);o.start();killers.push(function(){o.stop()});}
+    else if(v==='monk'){var gm=ac.createGain();gm.gain.value=0.5;gm.connect(out);
+      var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=380;lp.Q.value=0.6;lp.connect(gm);
+      [-4,0,5].forEach(function(c){var o=ac.createOscillator();o.type='sawtooth';o.frequency.value=root*Math.pow(2,c/1200);
+        var og=ac.createGain();og.gain.value=0.33;o.connect(og);og.connect(lp);
+        var vib=ac.createOscillator();vib.type='sine';vib.frequency.value=4.5+Math.random();
+        var vibG=ac.createGain();vibG.gain.value=root*0.004;vib.connect(vibG);vibG.connect(o.frequency);
+        o.start();vib.start();killers.push(function(){o.stop();vib.stop()});});
+      var bp=ac.createBiquadFilter();bp.type='bandpass';bp.frequency.value=root*12;bp.Q.value=8;
+      var ot=ac.createOscillator();ot.type='sawtooth';ot.frequency.value=root;
+      var otG=ac.createGain();otG.gain.value=0.06;ot.connect(bp);bp.connect(otG);otG.connect(out);ot.start();killers.push(function(){ot.stop()});
+      var br=ac.createOscillator();br.type='sine';br.frequency.value=0.12;var brG=ac.createGain();brG.gain.value=0.22;br.connect(brG);brG.connect(gm.gain);br.start();killers.push(function(){br.stop()});}
+    else if(v==='tribal'){var g2=ac.createGain();g2.gain.value=0.45;g2.connect(out);
+      var o2=ac.createOscillator();o2.type='sawtooth';o2.frequency.value=root*0.75;
+      var wah=ac.createBiquadFilter();wah.type='bandpass';wah.frequency.value=root*3;wah.Q.value=4;o2.connect(wah);wah.connect(g2);o2.start();
+      var wlfo=ac.createOscillator();wlfo.type='sine';wlfo.frequency.value=0.18;var wlfoG=ac.createGain();wlfoG.gain.value=root*2;wlfo.connect(wlfoG);wlfoG.connect(wah.frequency);wlfo.start();
+      var pulse=ac.createOscillator();pulse.type='sine';pulse.frequency.value=0.42;var pulseG=ac.createGain();pulseG.gain.value=0.18;pulse.connect(pulseG);pulseG.connect(g2.gain);pulse.start();
+      killers.push(function(){o2.stop();wlfo.stop();pulse.stop()});}
+    else if(v==='nature'){var ng2=ac.createGain();ng2.gain.value=0.5;ng2.connect(out);
+      var src=ac.createBufferSource();src.buffer=brownBuffer();src.loop=true;
+      var lp2=ac.createBiquadFilter();lp2.type='lowpass';lp2.frequency.value=900;
+      var l2=ac.createOscillator();l2.type='sine';l2.frequency.value=0.07;var l2g=ac.createGain();l2g.gain.value=360;l2.connect(l2g);l2g.connect(lp2.frequency);
+      src.connect(lp2);lp2.connect(ng2);src.start();l2.start();killers.push(function(){src.stop();l2.stop()});}
+    else{var pad=ac.createGain();pad.gain.value=0.18;pad.connect(out);
+      [1,2.0].forEach(function(m){var o=ac.createOscillator();o.type='sine';o.frequency.value=root*m;
+        var o2=ac.createOscillator();o2.type='sine';o2.frequency.value=root*m*1.004;o.connect(pad);o2.connect(pad);o.start();o2.start();killers.push(function(){o.stop();o2.stop()});});
+      scheduleBowl(out,root);}
   }
-  function hardStop(){
-    running=false; clearTimeout(glideT); clearTimeout(endT);
-    nodes.forEach(function(n){try{n.stop()}catch(e){}}); nodes=[];
-    try{fac.close()}catch(e){} fac=null;
-    var pb=g('tlPlay'); if(pb){pb.classList.remove('on'); pb.textContent='Begin'}
-  }
+  var BOWL=[1,2.75,5.38,8.94];
+  function strike(out,root){if(!running||cfg.voice!=='bowls'||!ac)return;var t=ac.currentTime;
+    BOWL.forEach(function(ratio,i){var f=root*ratio;[f,f*1.003].forEach(function(ff){
+      var o=ac.createOscillator();o.type='sine';o.frequency.value=ff;var gnd=ac.createGain();gnd.gain.setValueAtTime(0.0001,t);
+      var lvl=0.16/(i+1);gnd.gain.exponentialRampToValueAtTime(lvl,t+0.08);gnd.gain.exponentialRampToValueAtTime(0.0001,t+6+Math.random()*5);
+      o.connect(gnd);gnd.connect(out);o.start(t);o.stop(t+12);});});}
+  function scheduleBowl(out,root){strike(out,root);bowlT=setTimeout(function(){scheduleBowl(out,cfg.root)},(11+Math.random()*9)*1000);}
 
-  function setMode(m){
-    mode=m; var p=PRE[m];
+  function start(){if(running)return;ac=new AC();if(ac.state==='suspended')ac.resume();
+    master=ac.createGain();master.gain.value=0.0001;master.connect(ac.destination);
+    running=true;g('tonelab').classList.toggle('night-on',cfg.mode==='night');
+    if(cfg.mode==='focus')buildFocus();else buildNight();
+    master.gain.setValueAtTime(0.0001,ac.currentTime);master.gain.exponentialRampToValueAtTime(cfg.mode==='focus'?pc(cfg.master):pc(cfg.nmaster),ac.currentTime+3);
+    g('tlPlay').classList.add('on');g('tlPlay').textContent='Stop';
+    if(cfg.minutes>0){clearTimeout(endT);endT=setTimeout(fadeStop,cfg.minutes*60000)}save();}
+  function fadeStop(){if(!running)return;
+    try{master.gain.cancelScheduledValues(ac.currentTime);master.gain.setValueAtTime(master.gain.value,ac.currentTime);
+      master.gain.exponentialRampToValueAtTime(0.0001,ac.currentTime+(cfg.minutes>0?8:2))}catch(e){}
+    setTimeout(hardStop,(cfg.minutes>0?8400:2300));}
+  function hardStop(){running=false;clearTimeout(endT);clearTimeout(bowlT);
+    killers.forEach(function(f){try{f()}catch(e){}});killers=[];nodes.forEach(function(n){try{n.stop()}catch(e){}});nodes=[];
+    try{ac.close()}catch(e){}ac=null;var pb=g('tlPlay');if(pb){pb.classList.remove('on');pb.textContent='Begin'}}
+
+  function setMode(m){cfg.mode=m;
     [].forEach.call(D.querySelectorAll('#tlModes .tl-mode'),function(b){b.setAttribute('aria-pressed',String(b.dataset.mode===m))});
-    cfg.carrier=p.carrier; g('tlCarrier').value=p.carrier; g('tlCarrVal').textContent=p.carrier+' Hz';
-    g('tlBeat').textContent=p.beat; g('tlNote').textContent=p.note;
     g('tonelab').classList.toggle('night-on',m==='night');
-    if(fac)mix(false); save();
-  }
-  function bind(id,unit){
-    g(id).addEventListener('input',function(e){
-      cfg[id.replace('tl','').toLowerCase()]=+e.target.value;
-      g(id+'Val').textContent=(+e.target.value)+unit;
-      if(fac)mix(false); save();
-    });
-  }
-  // map tlGamma->gamma etc.
-  function bindMix(id,key){
-    g(id).addEventListener('input',function(e){cfg[key]=+e.target.value; g(id+'Val').textContent=(+e.target.value)+'%'; if(fac)mix(false); save();});
-  }
-  g('tlCarrier').addEventListener('input',function(e){cfg.carrier=+e.target.value; g('tlCarrVal').textContent=cfg.carrier+' Hz'; if(fac)mix(false); save();});
-  bindMix('tlGamma','gamma'); bindMix('tlSub','sub'); bindMix('tlHum','hum'); bindMix('tlEcho','echo'); bindMix('tlMaster','master');
-  g('tlModes').addEventListener('click',function(e){var b=e.target.closest('.tl-mode'); if(b)setMode(b.dataset.mode)});
-  g('tlBin').addEventListener('click',function(){cfg.binaural=!cfg.binaural; this.setAttribute('aria-pressed',String(cfg.binaural)); if(fac)mix(false); save()});
-  g('tlLen').addEventListener('click',function(e){var b=e.target.closest('.tl-seg'); if(!b)return; cfg.minutes=+b.dataset.min;
-    [].forEach.call(D.querySelectorAll('#tlLen .tl-seg'),function(x){x.setAttribute('aria-pressed',String(+x.dataset.min===cfg.minutes))}); save()});
+    g('tlFocusPanel').classList.toggle('tl-hide',m!=='focus');g('tlNightPanel').classList.toggle('tl-hide',m!=='night');
+    if(m==='focus'){g('tlBigRead').innerHTML='40<small> Hz</small>';g('tlNoteRead').textContent='Gamma — focus & study · no ads, no cut-outs';}
+    else{g('tlBigRead').textContent=voiceName(cfg.voice);g('tlNoteRead').textContent='Same frequency · many traditions · plays all night';}
+    g('tlFoot').innerHTML=FOOT[m];
+    if(running){fadeStop();setTimeout(start,cfg.minutes>0?0:2500);}save();}
+  g('tlModes').addEventListener('click',function(e){var b=e.target.closest('.tl-mode');if(b&&b.dataset.mode!==cfg.mode)setMode(b.dataset.mode)});
+  g('tlVoices').addEventListener('click',function(e){var b=e.target.closest('.tl-voice');if(!b)return;
+    if(running)setVoice(b.dataset.voice);else{cfg.voice=b.dataset.voice;
+      [].forEach.call(D.querySelectorAll('#tlVoices .tl-voice'),function(x){x.setAttribute('aria-pressed',String(x.dataset.voice===cfg.voice))});
+      g('tlBigRead').textContent=voiceName(cfg.voice);}save();});
+  function bF(id,key){g(id).addEventListener('input',function(e){cfg[key]=+e.target.value;g(id+'Val').textContent=(+e.target.value)+'%';if(running&&cfg.mode==='focus')mixFocus(false);save()})}
+  g('tlCarrier').addEventListener('input',function(e){cfg.carrier=+e.target.value;g('tlCarrVal').textContent=cfg.carrier+' Hz';if(running&&cfg.mode==='focus')mixFocus(false);save()});
+  bF('tlGamma','gamma');bF('tlSub','sub');bF('tlHum','hum');bF('tlEcho','echo');bF('tlMaster','master');
+  g('tlBin').addEventListener('click',function(){cfg.binaural=!cfg.binaural;this.setAttribute('aria-pressed',String(cfg.binaural));if(running&&cfg.mode==='focus')mixFocus(false);save()});
+  function bN(id,key){g(id).addEventListener('input',function(e){cfg[key]=+e.target.value;g(id+'Val').textContent=(+e.target.value)+'%';if(running&&cfg.mode==='night')mixNight(false);save()})}
+  g('tlRoot').addEventListener('input',function(e){cfg.root=+e.target.value;g('tlRootVal').textContent=cfg.root+' Hz';if(running&&cfg.mode==='night')mixNight(false);save()});
+  bN('tlNat','nat');bN('tlNsub','nsub');bN('tlNmaster','nmaster');
+  g('tlLenSegs').addEventListener('click',function(e){var b=e.target.closest('.tl-seg');if(!b)return;cfg.minutes=+b.dataset.min;
+    [].forEach.call(D.querySelectorAll('#tlLenSegs .tl-seg'),function(x){x.setAttribute('aria-pressed',String(+x.dataset.min===cfg.minutes))});save()});
   g('tlPlay').addEventListener('click',function(){running?fadeStop():start()});
 
-  // visual
   var cv=g('tlViz'),ctx=cv.getContext('2d'),W=0,H=0,DPR=1,ph=0,vis=false;
   function resize(){DPR=Math.min(window.devicePixelRatio||1,2);W=window.innerWidth;H=window.innerHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0)}
-  window.addEventListener('resize',resize); resize();
+  window.addEventListener('resize',resize);resize();
   function cvar(v){return getComputedStyle(D.documentElement).getPropertyValue(v).trim()||'#000'}
   function rgb(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(function(c){return c+c}).join('');var n=parseInt(h,16);return ((n>>16)&255)+','+((n>>8)&255)+','+(n&255)}
-  function draw(){
-    requestAnimationFrame(draw);
-    if(!vis||!W)return;
-    var cx=W/2,cy=H*0.32,R=Math.min(W,H)*0.2;
-    ctx.fillStyle=cvar('--ink'); ctx.fillRect(0,0,W,H);
-    ph+= running?(mode==='night'?0.006:0.014):0.004;
-    var amp=0.5+0.5*Math.sin(ph), r=R*(0.7+0.3*amp), acc=mode==='night'?cvar('--low'):cvar('--brass');
-    var gr=ctx.createRadialGradient(cx,cy,r*0.1,cx,cy,r*2.4);
-    gr.addColorStop(0,'rgba('+rgb(acc)+','+(0.16*(running?1:0.5)).toFixed(3)+')'); gr.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=gr; ctx.beginPath(); ctx.arc(cx,cy,r*2.4,0,Math.PI*2); ctx.fill();
-    ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.strokeStyle='rgba('+rgb(acc)+','+(0.3+0.3*amp).toFixed(3)+')'; ctx.lineWidth=1.3; ctx.stroke();
-  }
+  function draw(){requestAnimationFrame(draw);if(!vis||!W)return;
+    var cx=W/2,cy=H*0.3,R=Math.min(W,H)*0.18;ctx.fillStyle=cvar('--ink');ctx.fillRect(0,0,W,H);
+    ph+=running?(cfg.mode==='night'?0.005:0.014):0.004;var amp=0.5+0.5*Math.sin(ph),r=R*(0.7+0.3*amp),acc=cfg.mode==='night'?cvar('--low'):cvar('--brass');
+    var gr=ctx.createRadialGradient(cx,cy,r*0.1,cx,cy,r*2.4);gr.addColorStop(0,'rgba('+rgb(acc)+','+(0.16*(running?1:0.5)).toFixed(3)+')');gr.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=gr;ctx.beginPath();ctx.arc(cx,cy,r*2.4,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.strokeStyle='rgba('+rgb(acc)+','+(0.3+0.3*amp).toFixed(3)+')';ctx.lineWidth=1.3;ctx.stroke();}
   requestAnimationFrame(draw);
 
-  function open(){ g('tonelab').classList.add('show'); vis=true; resize(); }
-  function close(){ if(running)fadeStop(); g('tonelab').classList.remove('show'); vis=false; }
+  function open(){g('tonelab').classList.add('show');vis=true;resize()}
+  function close(){if(running)fadeStop();g('tonelab').classList.remove('show');vis=false}
   g('tlClose').addEventListener('click',close);
-  var pbtn=g('pToneLab'); if(pbtn) pbtn.addEventListener('click',open);
-  window.addEventListener('keydown',function(e){ if(e.key==='Escape'&&g('tonelab').classList.contains('show')) close(); });
+  var pbtn=g('pToneLab');if(pbtn)pbtn.addEventListener('click',open);
+  window.addEventListener('keydown',function(e){if(e.key==='Escape'&&g('tonelab').classList.contains('show'))close()});
 
-  // init
-  load(); setMode(mode);
+  load();
   ['tlGamma','tlSub','tlHum','tlEcho','tlMaster'].forEach(function(id){var k=id.replace('tl','').toLowerCase();g(id).value=cfg[k];g(id+'Val').textContent=cfg[k]+'%'});
-  g('tlCarrier').value=cfg.carrier; g('tlCarrVal').textContent=cfg.carrier+' Hz';
-  g('tlBin').setAttribute('aria-pressed',String(cfg.binaural));
-  [].forEach.call(D.querySelectorAll('#tlLen .tl-seg'),function(x){x.setAttribute('aria-pressed',String(+x.dataset.min===cfg.minutes))});
+  g('tlCarrier').value=cfg.carrier;g('tlCarrVal').textContent=cfg.carrier+' Hz';g('tlBin').setAttribute('aria-pressed',String(cfg.binaural));
+  g('tlRoot').value=cfg.root;g('tlRootVal').textContent=cfg.root+' Hz';
+  ['tlNat','tlNsub','tlNmaster'].forEach(function(id){var k=id.replace('tl','').toLowerCase();g(id).value=cfg[k];g(id+'Val').textContent=cfg[k]+'%'});
+  [].forEach.call(D.querySelectorAll('#tlVoices .tl-voice'),function(x){x.setAttribute('aria-pressed',String(x.dataset.voice===cfg.voice))});
+  [].forEach.call(D.querySelectorAll('#tlLenSegs .tl-seg'),function(x){x.setAttribute('aria-pressed',String(+x.dataset.min===cfg.minutes))});
+  setMode(cfg.mode);
   window.ToneLab={open:open,close:close};
 })();
 </script>
