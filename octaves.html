@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The First Hum — Octaves of Creation</title>
+<meta name="description" content="From a spinning heart to light and the elements — one hum, climbing octaves.">
+<style>
+  :root{--dsp:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --ut:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace}
+  html[data-theme="dark"]{--ink:#070f12;--ink2:#0b161a;--panel:rgba(17,35,41,.6);
+    --patina:#7FB8AE;--brass:#C9A227;--bone:#E8DFC9;--dim:rgba(232,223,201,.58);
+    --line:rgba(46,106,99,.4);--high:#C2703F;--low:#4C7FA6;--verdigris:#2E6A63}
+  html[data-theme="light"]{--ink:#EDE7D9;--ink2:#FBF8F1;--panel:rgba(255,255,255,.72);
+    --patina:#1F5C55;--brass:#8A6A16;--bone:#16201F;--dim:rgba(22,32,31,.68);
+    --line:rgba(46,106,99,.34);--high:#C2703F;--low:#2F6A93;--verdigris:#2E6A63}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0}
+  body{background:var(--ink);color:var(--bone);font-family:var(--dsp);line-height:1.62;
+    transition:background .5s,color .5s;overflow-x:hidden}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  button{font-family:inherit;cursor:pointer}
+  a{color:var(--brass)}
+
+  nav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;
+    padding:12px 18px;background:color-mix(in srgb,var(--ink) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .home{font-family:var(--ut);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-decoration:none}
+  nav .tog{background:transparent;border:1px solid var(--line);color:var(--dim);border-radius:2px;
+    font-family:var(--ut);font-size:10px;letter-spacing:.1em;padding:7px 11px}
+
+  header.hero{padding:52px 0 26px;text-align:center}
+  .eyebrow{font-family:var(--ut);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);margin:0 0 12px}
+  h1{font-size:40px;font-weight:400;line-height:1.05;margin:0 0 10px}
+  h1 em{display:block;font-style:normal;font-size:16px;letter-spacing:.02em;color:var(--dim);margin-top:12px;font-family:var(--dsp)}
+  .lead{font-size:17px;color:var(--dim);max-width:560px;margin:14px auto 0}
+
+  section{padding:30px 0;border-top:1px solid var(--line)}
+  .k{font-family:var(--ut);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--patina);margin:0 0 6px}
+  h2{font-size:26px;font-weight:400;margin:0 0 12px;line-height:1.15}
+  p{margin:0 0 13px}
+  .panel{background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:18px}
+  .mono{font-family:var(--ut)}
+  .big{font-family:var(--ut);font-size:34px;color:var(--brass);line-height:1}
+  .sub{color:var(--dim);font-size:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .chip{flex:0 1 auto;padding:10px 13px;border:1px solid var(--line);background:var(--ink2);color:var(--dim);
+    border-radius:3px;font-size:14px}
+  .chip.sel{border-color:var(--brass);color:var(--bone);box-shadow:inset 0 0 0 1px var(--brass)}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent}
+  input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:var(--line)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-10px;border-radius:50%;
+    background:var(--brass);border:3px solid var(--ink)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border:3px solid var(--ink);border-radius:50%;background:var(--brass)}
+  .play{border:1px solid var(--brass);background:transparent;color:var(--bone);border-radius:30px;padding:10px 18px;font-size:14px}
+  .play.on{background:var(--brass);color:var(--ink)}
+  .play:disabled{opacity:.35;border-color:var(--line)}
+  canvas{display:block;width:100%;border-radius:10px}
+  .swatch{width:100%;height:60px;border-radius:8px;border:1px solid var(--line);margin-top:10px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .el{text-align:left;padding:11px;border:1px solid var(--line);background:var(--ink2);border-radius:8px;color:var(--bone)}
+  .el .sy{font-family:var(--ut);font-size:22px;color:var(--brass)}
+  .el .nm2{font-size:12px;color:var(--dim)}
+  .el .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-left:6px;vertical-align:middle;border:1px solid rgba(255,255,255,.2)}
+  .read{display:flex;gap:16px;flex-wrap:wrap;align-items:baseline;margin-top:8px}
+  .read b{font-family:var(--ut);color:var(--brass);font-weight:400;font-size:20px}
+  .tieback{text-align:center;padding:40px 0}
+  .tieback .line{font-size:19px;margin:0 auto 6px;max-width:540px}
+  .cta{display:inline-flex;gap:10px;margin-top:16px;flex-wrap:wrap;justify-content:center}
+  .cta a{text-decoration:none;border:1px solid var(--brass);color:var(--brass);border-radius:30px;padding:11px 18px;font-size:14px}
+  .cta a.solid{background:var(--brass);color:var(--ink)}
+  footer{border-top:1px solid var(--line);padding:26px 0 46px;text-align:center;color:var(--dim);font-size:13px}
+  .note{font-size:12.5px;color:var(--dim);border-left:2px solid var(--line);padding-left:11px;margin-top:10px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="home" href="/">← The Humming of God</a>
+  <button class="tog" id="tog">Light</button>
+</nav>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Understand it · a learning board</p>
+    <h1>The First Hum<em>Octaves of creation — from a spinning heart to light and the elements</em></h1>
+    <p class="lead">One wave, doubled over and over. The beat in your chest and the color of a star are the same thing on different rungs of the same ladder. Here's the ladder.</p>
+  </header>
+
+  <!-- 1. BORN -->
+  <section>
+    <p class="k">1 · Born — the spin</p>
+    <h2>Before you had a face, you had a beat</h2>
+    <p>About three weeks in — day 22 — a single tube of cells folds, twists, and <em>spins</em>. That twist has a name in embryology: cardiac looping. Then it pulses. The heart is the first organ that works; everything else in you is built around a rhythm that began as a spiral.</p>
+    <canvas id="spin" height="220" aria-label="A slow spiral pulsing like a heartbeat"></canvas>
+    <p class="sub" style="text-align:center;margin-top:8px">A spiral, pulsing near a newborn's rate — about 78 beats a minute, ~1.3 per second.</p>
+  </section>
+
+  <!-- 2. OCTAVES -->
+  <section>
+    <p class="k">2 · One hum, climbing octaves</p>
+    <h2>An octave is just double</h2>
+    <p>Double a frequency and you get the same note, higher — an octave. Start at that first heartbeat and keep doubling. Watch where one hum goes as it climbs.</p>
+    <div class="chips" id="seed">
+      <button class="chip sel" data-f="1.3">Seed: heartbeat<span class="sub"> 1.3 Hz</span></button>
+      <button class="chip" data-f="136.1">your hum<span class="sub"> 136.1 Hz</span></button>
+      <button class="chip" data-f="440">A note<span class="sub"> 440 Hz</span></button>
+    </div>
+    <div class="panel">
+      <div class="big" id="oFreq">1.3 Hz</div>
+      <div class="sub" id="oBand">Octave 0 · the first beat</div>
+      <input type="range" id="oct" min="0" max="52" value="0" aria-label="Octaves up">
+      <div class="read">
+        <span class="mono sub">Octave <b id="oN" style="font-size:16px">0</b> up</span>
+        <button class="play" id="oPlay" disabled>▶ hear it</button>
+        <button class="play" id="oLight">✦ climb to light</button>
+      </div>
+      <div class="swatch" id="oSwatch" style="display:none"></div>
+    </div>
+    <p class="note" id="oNote">Keep climbing. Somewhere past the 40th doubling, a sound becomes a color — the same wave, now fast enough to be light.</p>
+  </section>
+
+  <!-- 3. HARMONICS -->
+  <section>
+    <p class="k">3 · One note holds many</p>
+    <h2>The hum is already a chord</h2>
+    <p>A real tone is never alone. On top of the fundamental sit its overtones — 2×, 3×, 4× the frequency — stacked by nature as octaves and fifths. It's why one throat can sound like a choir. Add them one at a time and listen to a single note fill out.</p>
+    <div class="panel">
+      <canvas id="harm" height="120" aria-label="Harmonic series bars"></canvas>
+      <div class="chips" id="hChips" style="margin-top:12px">
+        <button class="chip sel" data-h="1">1 · root</button>
+        <button class="chip" data-h="2">+2 · octave</button>
+        <button class="chip" data-h="3">+3 · fifth</button>
+        <button class="chip" data-h="4">+4</button>
+        <button class="chip" data-h="5">+5</button>
+        <button class="chip" data-h="6">+6</button>
+      </div>
+      <button class="play" id="hPlay">▶ hear the stack</button>
+      <span class="sub mono" id="hRead" style="margin-left:10px">root only · 136 Hz</span>
+    </div>
+  </section>
+
+  <!-- 4. ELEMENTS -->
+  <section>
+    <p class="k">4 · Matter sings in light</p>
+    <h2>Every element is a chord of light</h2>
+    <p>This is the part that's not a metaphor. Heat an element and it glows at its own exact frequencies — its spectrum. Sodium burns the amber of a street lamp. Hydrogen glows red. Those colors ARE the element; no two are alike. Tap one to see the light it is — and the note it becomes if you drop that light ~40 octaves back down into sound.</p>
+    <div class="grid2" id="els"></div>
+    <div class="panel" id="elOut" style="margin-top:12px;display:none">
+      <div class="read">
+        <span class="sub mono">LIGHT</span><b id="elNm"></b>
+        <span class="sub mono" id="elTHz"></span>
+      </div>
+      <div class="swatch" id="elSwatch"></div>
+      <div class="read" style="margin-top:12px">
+        <span class="sub mono">DROPPED TO SOUND</span><b id="elHz"></b>
+        <button class="play" id="elPlay">▶ hear it</button>
+      </div>
+      <p class="sub" id="elTie" style="margin:10px 0 0"></p>
+    </div>
+    <p class="note">150 years ago John Newlands lined the elements up and found their traits repeat every eighth — he called it the <em>Law of Octaves</em>, and the Royal Society laughed at him. Walter Russell later drew the whole table as octaves of one wave. Spectroscopy says the same thing the hard way: matter is organized light, and light is fast sound.</p>
+  </section>
+
+  <!-- 5. TIE-BACK -->
+  <section class="tieback">
+    <p class="k" style="text-align:center">5 · The through-line</p>
+    <p class="line">Spin becomes a beat. The beat becomes a hum. The hum holds a chord. The chord climbs into light. The light settles into the elements you're made of.</p>
+    <p class="line" style="color:var(--brass)">One wave. Many octaves. That's the humming of God.</p>
+    <div class="cta">
+      <a class="solid" href="/#night-cta">Hum it tonight →</a>
+      <a href="/">Back to the doors</a>
+    </div>
+  </section>
+</div>
+
+<footer class="wrap">
+  <p>The Humming of God · 4 In, 7 Hold, 8 Hum</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var D=document,g=function(i){return D.getElementById(i)};
+  var AC=window.AudioContext||window.webkitAudioContext, ac=null;
+  var C=299792458; // m/s
+
+  /* theme */
+  function theme(t){D.documentElement.setAttribute('data-theme',t);g('tog').textContent=t==='dark'?'Light':'Dark';
+    try{localStorage.setItem('oct_theme',t)}catch(e){}}
+  g('tog').addEventListener('click',function(){theme(D.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');draw.spin();draw.harm();});
+  try{var th=localStorage.getItem('oct_theme');if(th)theme(th);}catch(e){}
+  function cvar(v){return getComputedStyle(D.documentElement).getPropertyValue(v).trim()||'#C9A227'}
+
+  function tone(freq,ms,vol){ // short gentle sine
+    try{ if(!ac)ac=new AC(); if(ac.state==='suspended')ac.resume();
+      var o=ac.createOscillator(),gn=ac.createGain();o.type='sine';o.frequency.value=freq;
+      o.connect(gn);gn.connect(ac.destination);var t=ac.currentTime;
+      gn.gain.setValueAtTime(0.0001,t);gn.gain.exponentialRampToValueAtTime(vol||0.2,t+0.03);
+      gn.gain.exponentialRampToValueAtTime(0.0001,t+(ms||1400)/1000);
+      o.start(t);o.stop(t+(ms||1400)/1000+0.05);
+    }catch(e){}
+  }
+
+  /* wavelength(nm) -> css rgb (Bruton approximation) */
+  function nmRGB(w){
+    var r=0,gc=0,b=0;
+    if(w>=380&&w<440){r=-(w-440)/60;b=1;}
+    else if(w<490){gc=(w-440)/50;b=1;}
+    else if(w<510){gc=1;b=-(w-510)/20;}
+    else if(w<580){r=(w-510)/70;gc=1;}
+    else if(w<645){r=1;gc=-(w-645)/65;}
+    else if(w<=780){r=1;}
+    var f=1; if(w<420)f=0.3+0.7*(w-380)/40; else if(w>700)f=0.3+0.7*(780-w)/80;
+    function c(x){return Math.round(255*Math.pow(Math.max(0,x)*f,0.8));}
+    return 'rgb('+c(r)+','+c(gc)+','+c(b)+')';
+  }
+  function fmtF(hz){
+    if(hz<1000) return hz.toFixed(hz<10?2:1)+' Hz';
+    if(hz<1e6) return (hz/1e3).toFixed(2)+' kHz';
+    if(hz<1e9) return (hz/1e6).toFixed(2)+' MHz';
+    if(hz<1e12) return (hz/1e9).toFixed(2)+' GHz';
+    return (hz/1e12).toFixed(1)+' THz';
+  }
+  var NOTES=['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+  function noteName(f){ var n=Math.round(12*Math.log(f/440)/Math.log(2))+57; // A4=57 from C0
+    var nm=NOTES[((n%12)+12)%12]; return nm; }
+
+  /* ---------- 2. octave ladder ---------- */
+  var seed=1.3, oct=0;
+  function band(f){
+    if(f<2) return ['the first beat', false];
+    if(f<20) return ['Infrasound — you feel it, not hear it', false];
+    if(f<20000){
+      var tag='Sound you can hear';
+      if(Math.abs(f-136.1)/136.1<0.06) tag='Sound you can hear — the hum';
+      if(Math.abs(f-440)/440<0.06) tag='Sound you can hear — the note A';
+      return [tag, true];
+    }
+    if(f<1e6) return ['Ultrasound', false];
+    if(f<3e11) return ['Radio waves', false];
+    if(f<4e14) return ['Infrared — heat', false];
+    if(f<7.9e14) return ['Visible light — color', false];
+    return ['Ultraviolet and beyond', false];
+  }
+  function renderOct(){
+    var f=seed*Math.pow(2,oct);
+    g('oFreq').textContent=fmtF(f);
+    var b=band(f); g('oBand').textContent='Octave '+oct+' · '+b[0];
+    g('oN').textContent=oct;
+    g('oPlay').disabled=!b[1];
+    var sw=g('oSwatch');
+    if(f>=4e14&&f<7.9e14){ // visible
+      var nm=C/f*1e9; sw.style.display='block'; sw.style.background=nmRGB(nm);
+      g('oBand').textContent='Octave '+oct+' · visible light · '+nm.toFixed(0)+' nm';
+    } else sw.style.display='none';
+  }
+  g('oct').addEventListener('input',function(e){oct=+e.target.value;renderOct();});
+  g('oPlay').addEventListener('click',function(){var f=seed*Math.pow(2,oct); if(f>=20&&f<20000) tone(f,1500);});
+  g('oLight').addEventListener('click',function(){
+    for(var n=0;n<=52;n++){var f=seed*Math.pow(2,n); if(f>=4e14&&f<7.9e14){oct=n;g('oct').value=n;renderOct();return;}}
+  });
+  [].forEach.call(g('seed').querySelectorAll('.chip'),function(c){
+    c.addEventListener('click',function(){
+      g('seed').querySelectorAll('.chip').forEach(function(x){x.classList.remove('sel')});
+      c.classList.add('sel'); seed=parseFloat(c.dataset.f);
+      // find octave where it enters visible, show a helpful default near sound
+      oct=Math.min(52,Math.max(0,oct)); renderOct();
+    });
+  });
+
+  /* ---------- 3. harmonics ---------- */
+  var hN=1, hFund=136.1;
+  var harmCv=g('harm'), hctx=harmCv.getContext('2d');
+  function sizeCanvas(cv){var r=cv.getBoundingClientRect();var dpr=Math.min(window.devicePixelRatio||1,2);
+    cv.width=r.width*dpr;cv.height=cv.height*1; cv.width=r.width*dpr; cv._dpr=dpr; cv._w=r.width;}
+  function drawHarm(){
+    var cv=harmCv, dpr=Math.min(window.devicePixelRatio||1,2);
+    var w=cv.getBoundingClientRect().width, h=120; cv.width=w*dpr; cv.height=h*dpr;
+    var x=hctx; x.setTransform(dpr,0,0,dpr,0,0); x.clearRect(0,0,w,h);
+    var brass=cvar('--brass'), line=cvar('--line'), dim=cvar('--dim');
+    var n=6, gap=w/n;
+    for(var i=1;i<=n;i++){
+      var bx=(i-0.5)*gap, bh=(h-28)*(1/i), by=h-18-bh;
+      x.fillStyle = i<=hN? brass : line;
+      x.globalAlpha = i<=hN?1:0.5;
+      x.fillRect(bx-gap*0.3, by, gap*0.6, bh);
+      x.globalAlpha=1; x.fillStyle=dim; x.font='11px ui-monospace,monospace'; x.textAlign='center';
+      x.fillText(i+'×', bx, h-4);
+    }
+  }
+  function playStack(){
+    for(var i=1;i<=hN;i++){ tone(hFund*i, 1600, 0.16/i); }
+  }
+  [].forEach.call(g('hChips').querySelectorAll('.chip'),function(c){
+    c.addEventListener('click',function(){
+      hN=+c.dataset.h;
+      [].forEach.call(g('hChips').querySelectorAll('.chip'),function(x){x.classList.toggle('sel',+x.dataset.h<=hN);});
+      g('hRead').textContent = hN===1?'root only · 136 Hz':('1–'+hN+' stacked · '+Math.round(hFund)+' Hz fundamental');
+      drawHarm();
+    });
+  });
+  g('hPlay').addEventListener('click',playStack);
+
+  /* ---------- 4. elements (real emission lines) ---------- */
+  var ELS=[
+    {sy:'H', nm:'Hydrogen', wl:656.3, tie:'The red in a nebula and in every star — the H-alpha line.'},
+    {sy:'He',nm:'Helium',  wl:587.6, tie:'Found in the Sun before it was found on Earth, by this yellow line.'},
+    {sy:'Na',nm:'Sodium',  wl:589.0, tie:'The amber of an old street lamp. One line does it.'},
+    {sy:'Ne',nm:'Neon',    wl:640.2, tie:'The original red-orange of a neon sign.'},
+    {sy:'Li',nm:'Lithium', wl:670.8, tie:'A deep carmine red in a flame test.'},
+    {sy:'K', nm:'Potassium',wl:766.5, tie:'A far-red line at the edge of what the eye can hold.'},
+    {sy:'Hg',nm:'Mercury', wl:546.1, tie:'The hard green of old fluorescent tubes.'},
+    {sy:'Ca',nm:'Calcium', wl:422.7, tie:'A violet line — the stuff of your bones, lit up.'}
+  ];
+  var elsWrap=g('els');
+  ELS.forEach(function(el,i){
+    var f=C/(el.wl*1e-9); // Hz
+    var color=nmRGB(el.wl);
+    var b=D.createElement('button'); b.className='el';
+    b.innerHTML='<span class="sy">'+el.sy+'</span> <span class="dot" style="background:'+color+'"></span><div class="nm2">'+el.nm+' · '+el.wl+' nm</div>';
+    b.addEventListener('click',function(){ showEl(el,color,f); });
+    elsWrap.appendChild(b);
+  });
+  function showEl(el,color,f){
+    g('elOut').style.display='block';
+    g('elNm').textContent=el.nm+' · '+el.wl+' nm';
+    g('elTHz').textContent=(f/1e12).toFixed(0)+' THz';
+    g('elSwatch').style.background=color;
+    // drop into audible: divide by 2 until in 60–1000 Hz
+    var s=f; while(s>1000) s/=2;
+    g('elHz').textContent=s.toFixed(1)+' Hz · ~'+noteName(s);
+    g('elPlay').onclick=function(){ tone(s,1600,0.2); };
+    g('elTie').textContent=el.tie;
+  }
+
+  /* ---------- 1. spin canvas ---------- */
+  var spinCv=g('spin'), sctx=spinCv.getContext('2d'), t0=Date.now();
+  function drawSpin(){
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var w=spinCv.getBoundingClientRect().width, h=220;
+    spinCv.width=w*dpr; spinCv.height=h*dpr; var x=sctx; x.setTransform(dpr,0,0,dpr,0,0);
+    x.clearRect(0,0,w,h);
+    var t=(Date.now()-t0)/1000;
+    var beat=0.5+0.5*Math.sin(t*1.3*Math.PI*2); // ~1.3 Hz
+    var cx=w/2, cy=h/2, R=Math.min(w,h)*0.4*(0.82+0.18*beat);
+    var brass=cvar('--brass'), low=cvar('--low');
+    // glow
+    var gr=x.createRadialGradient(cx,cy,2,cx,cy,R*1.4);
+    gr.addColorStop(0,'rgba(201,162,39,'+(0.10+0.12*beat).toFixed(3)+')'); gr.addColorStop(1,'rgba(0,0,0,0)');
+    x.fillStyle=gr; x.beginPath(); x.arc(cx,cy,R*1.4,0,7); x.fill();
+    // spiral
+    x.beginPath();
+    for(var a=0;a<Math.PI*2*4;a+=0.08){
+      var rr=R*(a/(Math.PI*2*4));
+      var px=cx+Math.cos(a+t*0.6)*rr, py=cy+Math.sin(a+t*0.6)*rr;
+      if(a===0)x.moveTo(px,py); else x.lineTo(px,py);
+    }
+    x.strokeStyle=brass; x.globalAlpha=0.5+0.4*beat; x.lineWidth=1.6; x.stroke(); x.globalAlpha=1;
+    x.beginPath(); x.arc(cx,cy,R*0.1*(0.7+0.5*beat),0,7); x.fillStyle=low; x.fill();
+    requestAnimationFrame(drawSpin);
+  }
+
+  var draw={spin:function(){}, harm:drawHarm};
+  window.addEventListener('resize',function(){drawHarm();});
+  renderOct(); drawHarm(); drawSpin();
+})();
+</script>
+</body>
+</html>
