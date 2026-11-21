@@ -371,6 +371,65 @@
   .tl-foot{margin-top:20px;font-size:11.5px;line-height:1.5;color:var(--dimmer)}
   .tl-foot b{color:var(--dim);font-weight:400}
   .tl-hide{display:none}
+
+/* ===== Frequency Cleanse (night) ===== */
+#fcOverlay{position:fixed;inset:0;z-index:9000;background:#05090b;color:#E8DFC9;
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#fcOverlay.show{display:block}
+#fcOverlay .fcwrap{max-width:520px;margin:0 auto;padding:20px 20px calc(40px + env(safe-area-inset-bottom));min-height:100%;display:flex;flex-direction:column;align-items:center}
+#fcOverlay .fctop{width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+#fcOverlay .fcbrand{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#C9A227}
+#fcOverlay .fcx{background:transparent;border:1px solid rgba(127,184,174,.3);color:rgba(232,223,201,.7);border-radius:2px;font-family:ui-monospace,Menlo,monospace;font-size:11px;padding:7px 11px;cursor:pointer}
+#fcOverlay h2{font-size:29px;font-weight:400;margin:8px 0 2px;text-align:center;color:#E8DFC9;border:0;padding:0}
+#fcOverlay .fctag{color:rgba(232,223,201,.55);font-size:14px;text-align:center;margin:0 0 4px}
+#fcOverlay .fcorbwrap{position:relative;width:240px;height:240px;display:flex;align-items:center;justify-content:center;margin:10px 0 2px}
+#fcOverlay .fcorb{width:140px;height:140px;border-radius:50%;
+  background:radial-gradient(circle at 50% 42%,rgba(201,162,39,.42),rgba(76,127,166,.12) 55%,transparent 72%);
+  box-shadow:0 0 60px 10px rgba(201,162,39,.45);animation:fcbreathe 11s ease-in-out infinite;will-change:transform,opacity}
+#fcOverlay .fcring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(127,184,174,.22)}
+#fcOverlay .fcring.r2{transform:scale(.72)}#fcOverlay .fcring.r3{transform:scale(.44)}
+@keyframes fcbreathe{0%,100%{transform:scale(.82);opacity:.7}50%{transform:scale(1.12);opacity:1}}
+#fcOverlay.resting .fcorb{animation-play-state:paused;opacity:.5}
+#fcOverlay .fcstate{position:absolute;bottom:-2px;width:100%;text-align:center;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#7FB8AE}
+#fcOverlay .fcbegin{width:100%;max-width:300px;padding:17px;border:0;border-radius:40px;margin:8px 0 2px;
+  background:linear-gradient(180deg,#d8af2e,#b98d16);color:#1a1205;font-size:18px;font-weight:700;font-family:inherit;letter-spacing:.03em;cursor:pointer;box-shadow:0 8px 28px -8px rgba(201,162,39,.5)}
+#fcOverlay .fcbegin.on{background:transparent;color:#E8DFC9;border:1px solid rgba(127,184,174,.3);box-shadow:none}
+#fcOverlay .fccount{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#C9A227;text-align:center;margin-top:6px;min-height:16px}
+#fcOverlay .fcblock{width:100%;margin-top:14px}
+#fcOverlay .fclbl{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,223,201,.55);margin:0 0 8px}
+#fcOverlay .fcchips{display:flex;flex-wrap:wrap;gap:8px}
+#fcOverlay .fcchip{flex:1 1 auto;min-width:70px;text-align:center;padding:11px 8px;border:1px solid rgba(127,184,174,.22);background:#0b161a;color:rgba(232,223,201,.55);border-radius:3px;font-family:inherit;font-size:14px;cursor:pointer;transition:.2s}
+#fcOverlay .fcchip.sel{border-color:#C9A227;color:#E8DFC9;box-shadow:inset 0 0 0 1px #C9A227}
+#fcOverlay .fcchip small{display:block;font-family:ui-monospace,Menlo,monospace;font-size:9px;letter-spacing:.1em;color:rgba(232,223,201,.45);margin-top:3px}
+#fcOverlay .fcslab{display:flex;align-items:center;gap:12px;margin:14px 0}
+#fcOverlay .fcslab .nm{font-size:14px;min-width:84px;color:#E8DFC9}
+#fcOverlay input[type=range]{-webkit-appearance:none;appearance:none;flex:1;height:26px;background:transparent;margin:0}
+#fcOverlay input[type=range]::-webkit-slider-runnable-track{height:3px;border-radius:3px;background:rgba(127,184,174,.3)}
+#fcOverlay input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-10px;border-radius:50%;background:#C9A227;border:3px solid #05090b;box-shadow:0 0 10px -2px rgba(201,162,39,.5)}
+#fcOverlay input[type=range]::-moz-range-track{height:3px;border-radius:3px;background:rgba(127,184,174,.3)}
+#fcOverlay input[type=range]::-moz-range-thumb{width:20px;height:20px;border:3px solid #05090b;border-radius:50%;background:#C9A227}
+#fcOverlay .fcval{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#7FB8AE;min-width:40px;text-align:right}
+#fcOverlay .fctoggle{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid rgba(127,184,174,.22)}
+#fcOverlay .fctoggle .t{font-size:14px}#fcOverlay .fctoggle .s{font-size:12px;color:rgba(232,223,201,.55)}
+#fcOverlay .fcsw{position:relative;width:46px;height:26px;border-radius:14px;background:#0b161a;border:1px solid rgba(127,184,174,.22);flex:0 0 auto;cursor:pointer}
+#fcOverlay .fcsw b{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:rgba(232,223,201,.55);transition:.22s}
+#fcOverlay .fcsw.on{background:rgba(201,162,39,.2);border-color:#C9A227}
+#fcOverlay .fcsw.on b{left:22px;background:#C9A227}
+#fcOverlay .fctimer{display:flex;gap:7px}#fcOverlay .fctimer .fcchip{min-width:0;padding:10px 6px;font-size:13px}
+#fcOverlay .fcfoot{margin-top:20px;text-align:center;color:rgba(232,223,201,.5);font-size:12px;line-height:1.5}
+#fcOverlay .fcfoot b{color:#7FB8AE;font-weight:400}
+/* one-tap night ribbon on the front page */
+#night-cta{padding:0 0 10px}
+#nightRibbon{display:flex;align-items:center;gap:16px;width:100%;text-align:left;cursor:pointer;
+  background:linear-gradient(100deg,#0b161a,#0a1016);border:1px solid rgba(201,162,39,.35);border-radius:14px;
+  padding:16px 20px;color:#E8DFC9;font-family:inherit;box-shadow:0 10px 30px -14px rgba(0,0,0,.8)}
+#nightRibbon .moon{flex:0 0 auto;width:44px;height:44px;border-radius:50%;
+  background:radial-gradient(circle at 38% 38%,#C9A227,rgba(76,127,166,.3) 70%,transparent);box-shadow:0 0 22px -2px rgba(201,162,39,.55)}
+#nightRibbon .nr-t{font-size:19px;line-height:1.15;margin:0}
+#nightRibbon .nr-s{font-size:13px;color:rgba(232,223,201,.6);margin:3px 0 0}
+#nightRibbon .nr-go{margin-left:auto;flex:0 0 auto;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C9A227;border:1px solid rgba(201,162,39,.4);border-radius:20px;padding:8px 14px}
+@media(max-width:520px){#nightRibbon .nr-go{display:none}#nightRibbon{padding:14px 16px;gap:13px}}
+
 </style>
 
 </head>
@@ -412,6 +471,7 @@
     <button data-jump="freq"><span>Door three</span><b>What the numbers mean</b><p>Reading the frequency bands.</p></button>
     <button data-jump="learn"><span>The plates</span><b>All nine boards</b><p>The whole thing, drawn out.</p></button>
     <button data-jump="tonelab"><span>Tone Lab</span><b>Build your own tone</b><p>40 Hz gamma, night delta, your hum. Mix it.</p></button>
+    <button data-night><span>Night</span><b>Frequency Cleanse</b><p>Steady hum for sleep. Bowls, monk, night air. Fades out.</p></button>
     <a class="drop-link" href="meditations.html"><span>Door four</span><b>Guided sessions</b><p>Watch and breathe along. Video.</p></a>
     <a class="drop-link" href="boards.html"><span>Door five</span><b>Seven traditions</b><p>Where else this shows up, and what we claim.</p></a>
   </div>
@@ -434,6 +494,21 @@
     <p class="scrollcue">Choose your way in ↓</p>
   </div>
 </header>
+
+<!-- ============ NIGHT · one tap ============ -->
+<section id="night-cta">
+  <div class="wrap">
+    <button id="nightRibbon" data-night aria-label="Open the night frequency cleanse">
+      <span class="moon"></span>
+      <span>
+        <p class="nr-t">Can't sleep? Start a <em>Frequency Cleanse</em></p>
+        <p class="nr-s">One steady hum, bowls and night air — set it down and it fades itself out.</p>
+      </span>
+      <span class="nr-go">Begin night ↗</span>
+    </button>
+  </div>
+</section>
+
 
 <!-- ================= DOORS ================= -->
 <section id="doors">
@@ -772,6 +847,7 @@
     var j=b.getAttribute('data-jump');
     if(j==='tone'){ mode='tone'; openModal(); }
     else if(j==='tonelab'){ window.ToneLab&&window.ToneLab.open(); }
+    else if(j==='night'){ window.FreqCleanse&&window.FreqCleanse.open(); }
     else $(j).scrollIntoView();
   });
   window.addEventListener('click',function(e){
@@ -829,6 +905,7 @@
     if(go==='chapters') $('chapters').scrollIntoView();
     else if(go==='learn') $('freq').scrollIntoView();
     else if(go==='tonelab'){ window.ToneLab&&window.ToneLab.open(); }
+    else if(go==='night'){ window.FreqCleanse&&window.FreqCleanse.open(); }
     else { mode='tone'; openModal(); }
   });
 
@@ -1725,6 +1802,169 @@
   [].forEach.call(D.querySelectorAll('#tlLenSegs .tl-seg'),function(x){x.setAttribute('aria-pressed',String(+x.dataset.min===cfg.minutes))});
   setMode(cfg.mode);
   window.ToneLab={open:open,close:close};
+})();
+</script>
+
+<!-- ============ FREQUENCY CLEANSE overlay ============ -->
+<div id="fcOverlay" class="resting" role="dialog" aria-label="Frequency Cleanse">
+  <div class="fcwrap">
+    <div class="fctop"><span class="fcbrand">The Humming of God</span>
+      <button class="fcx" id="fcClose">Close ✕</button></div>
+    <h2>Frequency Cleanse</h2>
+    <p class="fctag">One steady tone. No change in the night.</p>
+    <div class="fcorbwrap">
+      <div class="fcring"></div><div class="fcring r2"></div><div class="fcring r3"></div>
+      <div class="fcorb" id="fcOrb"></div><div class="fcstate" id="fcState">Rest</div>
+    </div>
+    <button class="fcbegin" id="fcBegin">Begin cleanse</button>
+    <div class="fccount" id="fcCount"></div>
+    <div class="fcblock"><p class="fclbl">Voice</p>
+      <div class="fcchips" id="fcVoices">
+        <button class="fcchip sel" data-v="bowls">Bowls<small>HIMALAYAN</small></button>
+        <button class="fcchip" data-v="monk">Monk<small>THROAT HUM</small></button>
+        <button class="fcchip" data-v="tribal">Tribal<small>DRONE</small></button>
+        <button class="fcchip" data-v="tone">Pure<small>TONE</small></button>
+      </div></div>
+    <div class="fcblock"><p class="fclbl">Root &mdash; where it rests</p>
+      <div class="fcchips" id="fcRoots">
+        <button class="fcchip sel" data-r="136.1">Om<small>136.1 Hz</small></button>
+        <button class="fcchip" data-r="110">Ground<small>110 Hz</small></button>
+        <button class="fcchip" data-r="146.83">Center<small>146.8 Hz</small></button>
+      </div></div>
+    <div class="fcblock">
+      <div class="fcslab"><span class="nm">Volume</span><input type="range" id="fcVol" min="0" max="100" value="55"><span class="fcval" id="fcVolv">55</span></div>
+      <div class="fcslab"><span class="nm">Nature bed</span><input type="range" id="fcNat" min="0" max="100" value="22"><span class="fcval" id="fcNatv">22</span></div>
+      <div class="fcslab"><span class="nm">Deep sub</span><input type="range" id="fcSub" min="0" max="100" value="18"><span class="fcval" id="fcSubv">18</span></div>
+    </div>
+    <div class="fcblock">
+      <div class="fctoggle"><div><div class="t">Settle in</div><div class="s">Slow 3-min descent, then holds steady</div></div><div class="fcsw" id="fcSettle"><b></b></div></div>
+      <div class="fctoggle"><div><div class="t">4-7-8 breath guide</div><div class="s">Orb paces your breathing as you drift</div></div><div class="fcsw" id="fcBreath"><b></b></div></div>
+    </div>
+    <div class="fcblock"><p class="fclbl">Sleep timer &mdash; fades itself out</p>
+      <div class="fctimer" id="fcTimer">
+        <button class="fcchip" data-m="30">30m</button><button class="fcchip" data-m="60">60m</button>
+        <button class="fcchip sel" data-m="90">90m</button><button class="fcchip" data-m="0">All&nbsp;night</button>
+      </div></div>
+    <div class="fcfoot">
+      <p><b>For the night:</b> plug in &middot; auto-lock Never &middot; ring/silent switch ON (silent mutes this).</p>
+      <p>Synthesized live on your phone &mdash; nothing streams, no ads, runs till it fades.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  "use strict";
+  var D=document, g=function(i){return D.getElementById(i)};
+  var AC=window.AudioContext||window.webkitAudioContext;
+  var ac=null,master=null,limiter=null,natGain=null,subOsc=null,subGain=null,natSrc=null;
+  var voiceGain=null,playing=false,curVoice='bowls',root=136.1,bowlTimer=null,bowlOn=false;
+  var voiceNodes=[],wakeLock=null,breathTimer=null,offTimer=null,countTimer=null,endAt=0;
+  var cfg={vol:55,nat:22,sub:18,voice:'bowls',root:136.1,settle:false,breath:false,minutes:90};
+  try{var s=localStorage.getItem('fccleanse_site');if(s){var o=JSON.parse(s);for(var k in o)if(k in cfg)cfg[k]=o[k];}}catch(e){}
+  function save(){try{localStorage.setItem('fccleanse_site',JSON.stringify(cfg))}catch(e){}}
+
+  function makeNoise(){var len=10*ac.sampleRate,buf=ac.createBuffer(1,len,ac.sampleRate),d=buf.getChannelData(0),last=0;
+    for(var i=0;i<len;i++){var w=Math.random()*2-1;last=(last+0.02*w)/1.02;d[i]=last*3.2;}return buf;}
+  function ensure(){
+    if(ac)return; ac=new AC();
+    limiter=ac.createDynamicsCompressor();limiter.threshold.value=-3;limiter.knee.value=6;limiter.ratio.value=12;limiter.attack.value=0.004;limiter.release.value=0.25;
+    master=ac.createGain();master.gain.value=0.0001;master.connect(limiter);limiter.connect(ac.destination);
+    voiceGain=ac.createGain();voiceGain.gain.value=0.9;voiceGain.connect(master);
+    natSrc=ac.createBufferSource();natSrc.buffer=makeNoise();natSrc.loop=true;
+    var nlp=ac.createBiquadFilter();nlp.type='lowpass';nlp.frequency.value=620;nlp.Q.value=0.4;
+    natGain=ac.createGain();natGain.gain.value=cfg.nat/100*0.5;
+    natSrc.connect(nlp);nlp.connect(natGain);natGain.connect(master);
+    var windLfo=ac.createOscillator(),windAmt=ac.createGain();windLfo.frequency.value=0.05;windAmt.gain.value=cfg.nat/100*0.22;
+    windLfo.connect(windAmt);windAmt.connect(natGain.gain);windLfo.start();natSrc.start();
+    subOsc=ac.createOscillator();subOsc.type='sine';subOsc.frequency.value=root/2;
+    subGain=ac.createGain();subGain.gain.value=cfg.sub/100*0.6;subOsc.connect(subGain);subGain.connect(master);subOsc.start();
+  }
+  function clearVoice(){bowlOn=false;if(bowlTimer){clearTimeout(bowlTimer);bowlTimer=null;}
+    voiceNodes.forEach(function(n){try{n.stop&&n.stop();}catch(e){}try{n.disconnect();}catch(e){}});voiceNodes=[];}
+  function buildMonk(){var fund=root/2;var mix=ac.createGain();mix.gain.value=0.5;mix.connect(voiceGain);
+    var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=360;lp.Q.value=0.7;lp.connect(mix);
+    [1,1.004,0.996,2].forEach(function(m,i){var o=ac.createOscillator();o.type=i===3?'sine':'sawtooth';o.frequency.value=fund*m;
+      var og=ac.createGain();og.gain.value=i===3?0.12:0.16;o.connect(og);og.connect(lp);o.start();voiceNodes.push(o);});
+    var bp=ac.createBiquadFilter();bp.type='bandpass';bp.frequency.value=1500;bp.Q.value=6;
+    var fo=ac.createOscillator();fo.type='sawtooth';fo.frequency.value=fund;var fg=ac.createGain();fg.gain.value=0.05;
+    fo.connect(bp);bp.connect(fg);fg.connect(mix);fo.start();voiceNodes.push(fo);
+    var bl=ac.createOscillator(),ba=ac.createGain();bl.frequency.value=0.14;ba.gain.value=0.14;bl.connect(ba);ba.connect(mix.gain);bl.start();voiceNodes.push(bl);}
+  function buildTribal(){var fund=root/2;var mix=ac.createGain();mix.gain.value=0.5;mix.connect(voiceGain);
+    var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=240;lp.Q.value=4;lp.connect(mix);
+    var o=ac.createOscillator();o.type='sawtooth';o.frequency.value=fund;var og=ac.createGain();og.gain.value=0.3;o.connect(og);og.connect(lp);o.start();voiceNodes.push(o);
+    var bp=ac.createBiquadFilter();bp.type='bandpass';bp.frequency.value=1100;bp.Q.value=4;
+    var bz=ac.createOscillator();bz.type='sawtooth';bz.frequency.value=fund*2;var bg=ac.createGain();bg.gain.value=0.04;bz.connect(bp);bp.connect(bg);bg.connect(mix);bz.start();voiceNodes.push(bz);
+    var wl=ac.createOscillator(),wa=ac.createGain();wl.type='sine';wl.frequency.value=5.5;wa.gain.value=0.16;wl.connect(wa);wa.connect(mix.gain);wl.start();voiceNodes.push(wl);}
+  function buildTone(){var mix=ac.createGain();mix.gain.value=0.34;mix.connect(voiceGain);
+    var o=ac.createOscillator();o.type='sine';o.frequency.value=root;o.connect(mix);o.start();voiceNodes.push(o);
+    var o2=ac.createOscillator();o2.type='sine';o2.frequency.value=root*2;var g2=ac.createGain();g2.gain.value=0.12;o2.connect(g2);g2.connect(mix);o2.start();voiceNodes.push(o2);
+    var bl=ac.createOscillator(),ba=ac.createGain();bl.frequency.value=0.1;ba.gain.value=0.1;bl.connect(ba);ba.connect(mix.gain);bl.start();voiceNodes.push(bl);}
+  var BOWL=[1,2.75,5.38,8.94];
+  function strike(){if(!bowlOn)return;var t=ac.currentTime;
+    BOWL.forEach(function(p,i){var decay=5.5-i*0.9,peak=0.42/(i+1);
+      [0,1].forEach(function(d){var o=ac.createOscillator();o.type='sine';o.frequency.value=root*p*(d?1.004:1);
+        var gg=ac.createGain();gg.gain.setValueAtTime(0.0001,t);gg.gain.exponentialRampToValueAtTime(peak,t+0.012);gg.gain.exponentialRampToValueAtTime(0.0001,t+decay);
+        o.connect(gg);gg.connect(voiceGain);o.start(t);o.stop(t+decay+0.1);});});
+    bowlTimer=setTimeout(strike,(11+Math.random()*9)*1000);}
+  function startVoice(name){clearVoice();if(name==='bowls'){bowlOn=true;strike();}else if(name==='monk')buildMonk();else if(name==='tribal')buildTribal();else buildTone();}
+  function switchVoice(name){curVoice=name;cfg.voice=name;save();if(!playing)return;var now=ac.currentTime;
+    voiceGain.gain.cancelScheduledValues(now);voiceGain.gain.setTargetAtTime(0.0001,now,0.25);
+    setTimeout(function(){startVoice(name);voiceGain.gain.setTargetAtTime(0.9,ac.currentTime,0.8);},450);}
+  function applyRootNow(){if(subOsc)subOsc.frequency.setTargetAtTime(root/2,ac.currentTime,0.3);}
+  function doSettle(){var start=root*1.5,dur=180,target=cfg.root;root=start;startVoice(curVoice);
+    if(subOsc)subOsc.frequency.setTargetAtTime(target/2,ac.currentTime,dur/4);
+    var steps=6,i=0;(function stepDown(){i++;var frac=i/steps;root=start+(target-start)*frac;
+      if(curVoice!=='bowls'){clearVoice();startVoice(curVoice);}applyRootNow();
+      if(i<steps&&playing&&cfg.settle)setTimeout(stepDown,(dur/steps)*1000);
+      else{root=target;applyRootNow();if(curVoice!=='bowls'){clearVoice();startVoice(curVoice);}}})();}
+  function setBreath(on){var orb=g('fcOrb');if(breathTimer){clearInterval(breathTimer);breathTimer=null;}
+    if(!on){orb.style.transition='';orb.style.animation='';return;}
+    orb.style.animation='none';
+    function cyc(){orb.style.transition='transform 4s ease-in-out,opacity 4s';orb.style.transform='scale(1.15)';orb.style.opacity='1';
+      setTimeout(function(){orb.style.transition='transform 7s linear';},4000);
+      setTimeout(function(){orb.style.transition='transform 8s ease-in-out,opacity 8s';orb.style.transform='scale(.8)';orb.style.opacity='.7';},11000);}
+    cyc();breathTimer=setInterval(cyc,19000);}
+  function lock(){try{if('wakeLock' in navigator){navigator.wakeLock.request('screen').then(function(w){wakeLock=w;}).catch(function(){});}}catch(e){}}
+  D.addEventListener('visibilitychange',function(){if(playing&&D.visibilityState==='visible')lock();});
+  function fmt(ms){var s=Math.max(0,Math.round(ms/1000)),m=Math.floor(s/60);return m+':'+('0'+(s%60)).slice(-2);}
+  function tick(){if(!playing||!cfg.minutes){g('fcCount').textContent=playing?'All night':'';return;}
+    var left=endAt-Date.now();g('fcCount').textContent=left>0?'Fades in '+fmt(left):'Fading…';if(left>0)countTimer=setTimeout(tick,1000);}
+  function begin(){ensure();if(ac.state==='suspended')ac.resume();
+    playing=true;g('fcOverlay').classList.remove('resting');g('fcBegin').textContent='End';g('fcBegin').classList.add('on');g('fcState').textContent='Cleanse';
+    lock();root=cfg.root;if(cfg.settle)doSettle();else startVoice(curVoice);
+    master.gain.cancelScheduledValues(ac.currentTime);master.gain.setValueAtTime(0.0001,ac.currentTime);master.gain.setTargetAtTime(cfg.vol/100*0.7,ac.currentTime,6);
+    if(cfg.breath)setBreath(true);
+    if(cfg.minutes){endAt=Date.now()+cfg.minutes*60000;offTimer=setTimeout(fadeOut,cfg.minutes*60000);}tick();}
+  function fadeOut(){if(!ac)return;master.gain.setTargetAtTime(0.0001,ac.currentTime,14);setTimeout(stop,55000);}
+  function stop(){playing=false;g('fcOverlay').classList.add('resting');g('fcBegin').textContent='Begin cleanse';g('fcBegin').classList.remove('on');g('fcState').textContent='Rest';g('fcCount').textContent='';
+    if(offTimer){clearTimeout(offTimer);offTimer=null;}if(countTimer){clearTimeout(countTimer);countTimer=null;}
+    setBreath(false);clearVoice();if(master&&ac)master.gain.setTargetAtTime(0.0001,ac.currentTime,0.4);
+    try{if(wakeLock){wakeLock.release();wakeLock=null;}}catch(e){}}
+  function selChips(wrap,attr,cb){g(wrap).querySelectorAll('.fcchip').forEach(function(c){c.addEventListener('click',function(){
+    g(wrap).querySelectorAll('.fcchip').forEach(function(x){x.classList.remove('sel')});c.classList.add('sel');cb(c.getAttribute(attr));});});}
+  selChips('fcVoices','data-v',function(v){curVoice=v;switchVoice(v);});
+  selChips('fcRoots','data-r',function(r){cfg.root=parseFloat(r);root=cfg.root;save();
+    if(playing&&!cfg.settle){if(curVoice!=='bowls'){clearVoice();startVoice(curVoice);}applyRootNow();}});
+  selChips('fcTimer','data-m',function(m){cfg.minutes=parseInt(m,10);save();
+    if(playing){if(offTimer)clearTimeout(offTimer);if(cfg.minutes){endAt=Date.now()+cfg.minutes*60000;offTimer=setTimeout(fadeOut,cfg.minutes*60000);}tick();}});
+  function slider(id,vid,key,apply){var el=g(id);el.value=cfg[key];g(vid).textContent=cfg[key];
+    el.addEventListener('input',function(){cfg[key]=+el.value;g(vid).textContent=el.value;save();apply(+el.value);});}
+  slider('fcVol','fcVolv','vol',function(v){if(playing&&master)master.gain.setTargetAtTime(v/100*0.7,ac.currentTime,0.3);});
+  slider('fcNat','fcNatv','nat',function(v){if(natGain)natGain.gain.setTargetAtTime(v/100*0.5,ac.currentTime,0.3);});
+  slider('fcSub','fcSubv','sub',function(v){if(subGain)subGain.gain.setTargetAtTime(v/100*0.6,ac.currentTime,0.3);});
+  function sw(id,key,cb){var el=g(id);if(cfg[key])el.classList.add('on');
+    el.addEventListener('click',function(){cfg[key]=!cfg[key];el.classList.toggle('on',cfg[key]);save();cb&&cb(cfg[key]);});}
+  sw('fcSettle','settle',null);sw('fcBreath','breath',function(on){if(playing)setBreath(on);});
+  (function(){D.querySelectorAll('#fcVoices .fcchip').forEach(function(c){c.classList.toggle('sel',c.getAttribute('data-v')===cfg.voice);});curVoice=cfg.voice;
+    D.querySelectorAll('#fcRoots .fcchip').forEach(function(c){c.classList.toggle('sel',parseFloat(c.getAttribute('data-r'))===cfg.root);});root=cfg.root;
+    D.querySelectorAll('#fcTimer .fcchip').forEach(function(c){c.classList.toggle('sel',parseInt(c.getAttribute('data-m'),10)===cfg.minutes);});})();
+  function open(){g('fcOverlay').classList.add('show');D.body.style.overflow='hidden';}
+  function close(){if(playing)stop();g('fcOverlay').classList.remove('show');D.body.style.overflow='';}
+  g('fcBegin').addEventListener('click',function(){playing?stop():begin();});
+  g('fcClose').addEventListener('click',close);
+  [].forEach.call(D.querySelectorAll('[data-night]'),function(el){el.addEventListener('click',function(ev){ev.preventDefault();open();});});
+  window.addEventListener('keydown',function(e){if(e.key==='Escape'&&g('fcOverlay').classList.contains('show'))close();});
+  window.FreqCleanse={open:open,close:close};
 })();
 </script>
 </body>
