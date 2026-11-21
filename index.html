@@ -430,6 +430,21 @@
 #nightRibbon .nr-go{margin-left:auto;flex:0 0 auto;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C9A227;border:1px solid rgba(201,162,39,.4);border-radius:20px;padding:8px 14px}
 @media(max-width:520px){#nightRibbon .nr-go{display:none}#nightRibbon{padding:14px 16px;gap:13px}}
 
+
+/* ===== book shelf ===== */
+#books .bk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:8px}
+#books .bk-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column}
+#books .bk-card.feat{grid-column:1/-1;border-color:rgba(201,162,39,.45);background:linear-gradient(120deg,var(--panel),transparent)}
+#books .bk-tag{font-family:var(--ut);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:6px}
+#books .bk-card h3{font-size:19px;font-weight:400;margin:0 0 3px;line-height:1.18}
+#books .bk-card.feat h3{font-size:25px}
+#books .bk-by{font-size:13px;color:var(--dim);margin:0 0 13px}
+#books .bk-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+#books .bk-btn{font-family:var(--ut);font-size:12px;letter-spacing:.06em;text-decoration:none;color:var(--brass);
+  border:1px solid var(--line);border-radius:22px;padding:8px 14px;transition:.2s}
+#books .bk-btn:hover{border-color:var(--brass)}
+#books .bk-btn.solid{background:var(--brass);color:var(--ink);border-color:var(--brass)}
+
 </style>
 
 </head>
@@ -475,6 +490,7 @@
     <a class="drop-link" href="meditations.html"><span>Door four</span><b>Guided sessions</b><p>Watch and breathe along. Video.</p></a>
     <a class="drop-link" href="boards.html"><span>Door five</span><b>Seven traditions</b><p>Where else this shows up, and what we claim.</p></a>
     <a class="drop-link" href="octaves.html"><span>The board</span><b>The first hum</b><p>Octaves of creation — the spin, harmonics, light, the elements.</p></a>
+    <a class="drop-link" href="#books"><span>The shelf</span><b>The books</b><p>Kindle, paperback, and read the hum book here.</p></a>
   </div>
 </div>
 
@@ -668,10 +684,28 @@
   </div>
 </section>
 
+<section id="books">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The shelf</p>
+      <h2>Read the <em>whole thing</em></h2>
+      <p class="lead">The book this site is built on, the frequency thesis behind it, and the stories that came out of the same place. Kindle, paperback, and — for the hum book — right here on the page.</p>
+    </div>
+    <div class="bk-grid">
+      <div class="bk-card feat"><span class="bk-tag">The book behind this site</span><h3>4 In, 7 Hold, 8 Hum</h3><p class="bk-by">by Clifton Jordan</p><div class="bk-btns"><a class="bk-btn solid" href="#chapters">Read it here</a><a class="bk-btn" href="https://www.amazon.com/dp/B0HMQ723GN" target="_blank" rel="noopener">Kindle</a><a class="bk-btn" href="https://www.amazon.com/dp/B0HMPVSLRN" target="_blank" rel="noopener">Paperback</a></div></div>
+      <div class="bk-card"><span class="bk-tag">The thesis, in full</span><h3>Frequency Event</h3><p class="bk-by">by Wayne Jordan</p><div class="bk-btns"><a class="bk-btn" href="https://www.amazon.com/dp/B0HMJXM24W" target="_blank" rel="noopener">Paperback</a></div></div>
+      <div class="bk-card"><h3>More Than One Way</h3><p class="bk-by">by Wayne Jordan</p><div class="bk-btns"><a class="bk-btn" href="https://www.amazon.com/dp/B0HMK1SJXN" target="_blank" rel="noopener">Kindle</a><a class="bk-btn" href="https://www.amazon.com/dp/B0HMK4NMRT" target="_blank" rel="noopener">Paperback</a></div></div>
+      <div class="bk-card"><h3>The Naming — A Prequel to Under the Cloud</h3><p class="bk-by">by Wayne Jordan</p><div class="bk-btns"><a class="bk-btn" href="https://www.amazon.com/dp/B0HRDMVLK5" target="_blank" rel="noopener">Kindle</a><a class="bk-btn" href="https://www.amazon.com/dp/B0HRF28448" target="_blank" rel="noopener">Paperback</a><a class="bk-btn" href="https://www.amazon.com/dp/B0HRF8HGRX" target="_blank" rel="noopener">Hardcover</a></div></div>
+      <div class="bk-card"><h3>Above The Dome — Under the Cloud, Book Two</h3><p class="bk-by">by Wayne Jordan</p><div class="bk-btns"><a class="bk-btn" href="https://www.amazon.com/dp/B0HRF4ZDW7" target="_blank" rel="noopener">Kindle</a><a class="bk-btn" href="https://www.amazon.com/dp/B0HRDZF22J" target="_blank" rel="noopener">Paperback</a></div></div>
+      <div class="bk-card"><h3>Guardians of the Desert Night — The Watchers of the Saguaro</h3><p class="bk-by">by Clifton Wayne Jordan</p><div class="bk-btns"><a class="bk-btn" href="https://www.amazon.com/dp/B0HMPD4B6W" target="_blank" rel="noopener">Kindle</a><a class="bk-btn" href="https://www.amazon.com/dp/B0HMPHHFGV" target="_blank" rel="noopener">Paperback</a></div></div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p>Not a replacement for medical care. Talk to a doctor first if you have cardiovascular or respiratory conditions, or if you're pregnant. Shorten the hold if you get light-headed, and stop if humming worsens tinnitus. Never practice while driving or in water.</p>
-    <p class="foot-links"><a href="meditations.html">Guided sessions</a> · <a href="octaves.html">The first hum</a> · <a href="boards.html">Traditions</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+    <p class="foot-links"><a href="meditations.html">Guided sessions</a> · <a href="octaves.html">The first hum</a> · <a href="#books">The books</a> · <a href="boards.html">Traditions</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
   </div>
 </footer>
 
