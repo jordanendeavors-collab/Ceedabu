@@ -2007,6 +2007,7 @@
   g('fcClose').addEventListener('click',close);
   [].forEach.call(D.querySelectorAll('[data-night]'),function(el){el.addEventListener('click',function(ev){ev.preventDefault();open();});});
   window.addEventListener('keydown',function(e){if(e.key==='Escape'&&g('fcOverlay').classList.contains('show'))close();});
+  (function(){try{var hm=new URLSearchParams(location.search).get('hum');if(hm){var v=parseFloat(hm);if(v>=40&&v<=400){cfg.root=v;root=v;[].forEach.call(D.querySelectorAll('#fcRoots .fcchip'),function(c){c.classList.remove('sel')});open();}}}catch(e){}})();
   window.FreqCleanse={open:open,close:close};
 })();
 </script>

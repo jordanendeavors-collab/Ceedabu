@@ -112,6 +112,7 @@
         <span class="mono sub">Octave <b id="oN" style="font-size:16px">0</b> up</span>
         <button class="play" id="oPlay" disabled>▶ hear it</button>
         <button class="play" id="oLight">✦ climb to light</button>
+        <button class="play" id="oClimb">▶ play the climb</button>
       </div>
       <div class="swatch" id="oSwatch" style="display:none"></div>
     </div>
@@ -153,7 +154,9 @@
       <div class="read" style="margin-top:12px">
         <span class="sub mono">DROPPED TO SOUND</span><b id="elHz"></b>
         <button class="play" id="elPlay">▶ hear it</button>
+        <button class="play" id="elChord">✦ its chord</button>
       </div>
+      <a class="play" id="elHum" href="#" style="display:inline-block;text-decoration:none;margin-top:12px">🌙 hum this tonight →</a>
       <p class="sub" id="elTie" style="margin:10px 0 0"></p>
     </div>
     <p class="note">150 years ago John Newlands lined the elements up and found their traits repeat every eighth — he called it the <em>Law of Octaves</em>, and the Royal Society laughed at him. Walter Russell later drew the whole table as octaves of one wave. Spectroscopy says the same thing the hard way: matter is organized light, and light is fast sound.</p>
@@ -272,6 +275,25 @@
   g('oLight').addEventListener('click',function(){
     for(var n=0;n<=52;n++){var f=seed*Math.pow(2,n); if(f>=4e14&&f<7.9e14){oct=n;g('oct').value=n;renderOct();return;}}
   });
+  /* play the climb — one tone rising from the seed up into light, in a single pass */
+  var sweeping=false;
+  g('oClimb').addEventListener('click',function(){
+    if(sweeping) return; sweeping=true;
+    var target=49; for(var n=0;n<=52;n++){var f=seed*Math.pow(2,n); if(f>=4e14&&f<7.9e14){target=n;break;}}
+    oct=0; g('oct').value=0; renderOct();
+    if(!ac&&AC){try{ac=new AC()}catch(e){}} if(ac&&ac.state==='suspended')ac.resume();
+    var o=null,gn=null; try{ o=ac.createOscillator(); gn=ac.createGain(); o.type='sine'; gn.gain.value=0.0001; o.connect(gn); gn.connect(ac.destination); o.start(); }catch(e){}
+    var dur=5200, t0=performance.now();
+    function frame(now){
+      var p=Math.min(1,(now-t0)/dur), of=p*target;
+      oct=Math.round(of); g('oct').value=oct; renderOct();
+      var f=seed*Math.pow(2,of);
+      if(o&&gn){ if(f>=20&&f<=17000){ o.frequency.setValueAtTime(f,ac.currentTime); gn.gain.setTargetAtTime(0.13,ac.currentTime,0.05);} else { gn.gain.setTargetAtTime(0.0001,ac.currentTime,0.06);} }
+      if(p<1) requestAnimationFrame(frame);
+      else { if(o){try{gn.gain.setTargetAtTime(0.0001,ac.currentTime,0.1); o.stop(ac.currentTime+0.3);}catch(e){}} oct=target; g('oct').value=target; renderOct(); sweeping=false; }
+    }
+    requestAnimationFrame(frame);
+  });
   [].forEach.call(g('seed').querySelectorAll('.chip'),function(c){
     c.addEventListener('click',function(){
       g('seed').querySelectorAll('.chip').forEach(function(x){x.classList.remove('sel')});
@@ -316,14 +338,14 @@
 
   /* ---------- 4. elements (real emission lines) ---------- */
   var ELS=[
-    {sy:'H', nm:'Hydrogen', wl:656.3, tie:'The red in a nebula and in every star — the H-alpha line.'},
-    {sy:'He',nm:'Helium',  wl:587.6, tie:'Found in the Sun before it was found on Earth, by this yellow line.'},
-    {sy:'Na',nm:'Sodium',  wl:589.0, tie:'The amber of an old street lamp. One line does it.'},
-    {sy:'Ne',nm:'Neon',    wl:640.2, tie:'The original red-orange of a neon sign.'},
-    {sy:'Li',nm:'Lithium', wl:670.8, tie:'A deep carmine red in a flame test.'},
-    {sy:'K', nm:'Potassium',wl:766.5, tie:'A far-red line at the edge of what the eye can hold.'},
-    {sy:'Hg',nm:'Mercury', wl:546.1, tie:'The hard green of old fluorescent tubes.'},
-    {sy:'Ca',nm:'Calcium', wl:422.7, tie:'A violet line — the stuff of your bones, lit up.'}
+    {sy:'H', nm:'Hydrogen', wl:656.3, lines:[656.3,486.1,434.0], tie:'The red in a nebula and in every star — and its other lines make a real chord.'},
+    {sy:'He',nm:'Helium',  wl:587.6, lines:[587.6,667.8,447.1], tie:'Found in the Sun before it was found on Earth, by this yellow line.'},
+    {sy:'Na',nm:'Sodium',  wl:589.0, lines:[589.0,568.8,615.4], tie:'The amber of an old street lamp.'},
+    {sy:'Ne',nm:'Neon',    wl:640.2, lines:[640.2,585.2,614.3], tie:'The original red-orange of a neon sign.'},
+    {sy:'Li',nm:'Lithium', wl:670.8, lines:[670.8,610.4,460.3], tie:'A deep carmine red in a flame test.'},
+    {sy:'K', nm:'Potassium',wl:766.5, lines:[766.5,404.4,693.9], tie:'A far-red line at the edge of what the eye can hold.'},
+    {sy:'Hg',nm:'Mercury', wl:546.1, lines:[546.1,435.8,578.0], tie:'The hard green of old fluorescent tubes.'},
+    {sy:'Ca',nm:'Calcium', wl:422.7, lines:[422.7,430.0,443.5], tie:'A violet line — the stuff of your bones, lit up.'}
   ];
   var elsWrap=g('els');
   ELS.forEach(function(el,i){
@@ -343,6 +365,11 @@
     var s=f; while(s>1000) s/=2;
     g('elHz').textContent=s.toFixed(1)+' Hz · ~'+noteName(s);
     g('elPlay').onclick=function(){ tone(s,1600,0.2); };
+    // the full chord — every bright line, dropped to sound, together
+    g('elChord').onclick=function(){ (el.lines||[el.wl]).forEach(function(wl){ var fl=C/(wl*1e-9), ss=fl; while(ss>1000) ss/=2; tone(ss,2400,0.11); }); };
+    // hand the note to the Night cleanse at a sleep-friendly pitch
+    var hr=f; while(hr>160) hr/=2; while(hr<80) hr*=2;
+    g('elHum').setAttribute('href','/?hum='+hr.toFixed(1)+'#night-cta');
     g('elTie').textContent=el.tie;
   }
 
