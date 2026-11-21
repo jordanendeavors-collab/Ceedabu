@@ -159,10 +159,25 @@
     <p class="note">150 years ago John Newlands lined the elements up and found their traits repeat every eighth — he called it the <em>Law of Octaves</em>, and the Royal Society laughed at him. Walter Russell later drew the whole table as octaves of one wave. Spectroscopy says the same thing the hard way: matter is organized light, and light is fast sound.</p>
   </section>
 
-  <!-- 5. TIE-BACK -->
+  <!-- 5. PRIMES -->
+  <section>
+    <p class="k">5 · Even the primes hum</p>
+    <h2>The numbers were singing too</h2>
+    <p>This week a proof of the <em>Riemann Hypothesis</em> — a 167-year-old riddle about the primes — was posted in machine-checkable form, one of them by a mathematician working with Claude. It's still being verified. Set the proof aside, though: what the riddle is <em>about</em> belongs right here.</p>
+    <p>The primes look random. They aren't. Riemann found a hidden set of numbers inside them — the <em>zeros</em> — and each one is a pure wave. Add the waves back together and they rebuild the primes exactly. The primes are an interference pattern. A chord.</p>
+    <p>Stranger still: the spacing of those zeros matches the energy levels of a vibrating quantum nucleus — the same statistics physicists measure in a real atom. The deepest order in arithmetic looks like something <em>resonating</em>. Even number has a spectrum.</p>
+    <div class="panel">
+      <div class="chips mono" id="zList" style="font-size:13px"></div>
+      <button class="play" id="zAsc">▶ hear them rise</button>
+      <button class="play" id="zChord">✦ all at once</button>
+      <p class="sub" style="margin:10px 0 0">The first ten Riemann zeros, scaled into the range you can hear. The spacing is real; the pitch is a mapping — same honesty as the elements.</p>
+    </div>
+  </section>
+
+  <!-- 6. TIE-BACK -->
   <section class="tieback">
-    <p class="k" style="text-align:center">5 · The through-line</p>
-    <p class="line">Spin becomes a beat. The beat becomes a hum. The hum holds a chord. The chord climbs into light. The light settles into the elements you're made of.</p>
+    <p class="k" style="text-align:center">6 · The through-line</p>
+    <p class="line">Spin becomes a beat. The beat becomes a hum. The hum holds a chord. The chord climbs into light. The light settles into the elements — and even the primes, it turns out, were a chord all along.</p>
     <p class="line" style="color:var(--brass)">One wave. Many octaves. That's the humming of God.</p>
     <div class="cta">
       <a class="solid" href="/#night-cta">Hum it tonight →</a>
@@ -357,6 +372,17 @@
     x.beginPath(); x.arc(cx,cy,R*0.1*(0.7+0.5*beat),0,7); x.fillStyle=low; x.fill();
     requestAnimationFrame(drawSpin);
   }
+
+  /* ---------- 5. Riemann zeros (the music of the primes) ---------- */
+  var ZEROS=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719,43.327073,48.005151,49.773832];
+  function zHz(t){return t*10;} // scale the zero heights into the audible range
+  (function(){var w=g('zList'); ZEROS.forEach(function(t){var s=D.createElement('span');s.className='chip';s.style.padding='7px 10px';s.textContent=t.toFixed(2);w.appendChild(s);});})();
+  g('zAsc').addEventListener('click',function(){
+    ZEROS.forEach(function(t,i){ setTimeout(function(){ tone(zHz(t),650,0.18); },i*380); });
+  });
+  g('zChord').addEventListener('click',function(){
+    ZEROS.forEach(function(t){ tone(zHz(t),2600,0.055); });
+  });
 
   var draw={spin:function(){}, harm:drawHarm};
   window.addEventListener('resize',function(){drawHarm();});
