@@ -17,6 +17,8 @@ html[data-theme="dark"]{
   --ok:#5fcf8f; --warn:#e6b94a; --bad:#ff7a6b;
 }
 *{box-sizing:border-box}
+.shelfbtn{display:inline-block;font:inherit;text-decoration:none;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 14px;margin:3px}.shelfbtn:hover{border-color:var(--accent)}
+
 :root{--card:var(--panel);--mute:var(--muted);--navy:var(--accent);--red:var(--accent2);--gold:var(--accent3)}
 .ohsec{display:none}.ohsec.on{display:block}
 #lab .note{border-left:4px solid var(--accent3);padding:8px 12px;background:var(--soft);border-radius:0 8px 8px 0;margin:10px 0;font-size:.92rem}
@@ -173,7 +175,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
     <div class="ctrl">Jump to zero #<input type="number" id="jumpZ" min="1" max="10025" value="1" style="width:90px;font:inherit;padding:4px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)"></div>
     <div id="ztWrap" style="max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:10px"><table id="zt"><thead><tr><th>n</th><th>γₙ (ρ = ½ + iγₙ)</th><th>gap to next</th></tr></thead><tbody></tbody></table></div>
     <p class="cap">Zeros 1–1,000: computed with mpmath to 15 digits (γ₁ = 14.134725…, γ₁₀₀₀ = 1419.422481…). Zeros 1,001–10,025: from Operator Hunt v3, spot-checked against fresh high-precision values, all within ±0.005. Shown to 5 decimals past #1,000 for that reason.</p>
-    <div class="ctrl"><a href="#lab"><button>Open the Riemann Lab: hunt for the hidden "instrument" →</button></a></div>
+    <div class="ctrl"><a class="shelfbtn" href="#lab">Open the Riemann Lab: hunt for the hidden "instrument" →</a></div>
     <p class="odds">Our odds of "solving" it: gone. It's been proved and machine-checked. What's left to hunt is <i>why</i> the zeros act like a spectrum (the Lab tab).</p>
   </div>
 </section>
@@ -502,11 +504,11 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
     <h2>From the shelf</h2>
     <p class="cap" style="margin-top:0">The books this page grew out of.</p>
     <div class="ctrl" style="flex-wrap:wrap">
-      <a href="/book/"><button>4 In, 7 Hold, 8 Hum · read it here</button></a>
-      <a href="https://www.amazon.com/dp/B0HMQ723GN" target="_blank" rel="noopener"><button>4 In, 7 Hold, 8 Hum · Kindle</button></a>
-      <a href="https://www.amazon.com/dp/B0HMJXM24W" target="_blank" rel="noopener"><button>Frequency Event · Paperback</button></a>
-      <a href="https://www.amazon.com/dp/B0HMK1SJXN" target="_blank" rel="noopener"><button>More Than One Way · Kindle</button></a>
-      <a href="/#books"><button>All the books →</button></a>
+      <a class="shelfbtn" href="/book/">4 In, 7 Hold, 8 Hum · read it here</a>
+      <a class="shelfbtn" href="https://www.amazon.com/dp/B0HMQ723GN" target="_blank" rel="noopener">4 In, 7 Hold, 8 Hum · Kindle</a>
+      <a class="shelfbtn" href="https://www.amazon.com/dp/B0HMJXM24W" target="_blank" rel="noopener">Frequency Event · Paperback</a>
+      <a class="shelfbtn" href="https://www.amazon.com/dp/B0HMK1SJXN" target="_blank" rel="noopener">More Than One Way · Kindle</a>
+      <a class="shelfbtn" href="/#books">All the books →</a>
     </div>
   </div>
 </section>
