@@ -1921,6 +1921,7 @@
         <button class="fcchip" data-v="monk">Monk<small>THROAT HUM</small></button>
         <button class="fcchip" data-v="tribal">Tribal<small>DRONE</small></button>
         <button class="fcchip" data-v="tone">Pure<small>TONE</small></button>
+        <button class="fcchip" data-v="drift">Drift<small>UP &amp; DOWN</small></button>
       </div></div>
     <div class="fcblock"><p class="fclbl">Root &mdash; where it rests</p>
       <div class="fcchips" id="fcRoots">
@@ -1955,7 +1956,7 @@
   var AC=window.AudioContext||window.webkitAudioContext;
   var ac=null,master=null,limiter=null,natGain=null,subOsc=null,subGain=null,natSrc=null;
   var voiceGain=null,playing=false,curVoice='bowls',root=136.1,bowlTimer=null,bowlOn=false;
-  var voiceNodes=[],wakeLock=null,breathTimer=null,offTimer=null,countTimer=null,endAt=0;
+  var voiceNodes=[],wakeLock=null,breathTimer=null,offTimer=null,countTimer=null,endAt=0,driftTimer=null;
   var cfg={vol:55,nat:22,sub:18,voice:'bowls',root:136.1,settle:false,breath:false,minutes:90};
   try{var s=localStorage.getItem('fccleanse_site');if(s){var o=JSON.parse(s);for(var k in o)if(k in cfg)cfg[k]=o[k];}}catch(e){}
   function save(){try{localStorage.setItem('fccleanse_site',JSON.stringify(cfg))}catch(e){}}
@@ -1976,7 +1977,7 @@
     subOsc=ac.createOscillator();subOsc.type='sine';subOsc.frequency.value=root/2;
     subGain=ac.createGain();subGain.gain.value=cfg.sub/100*0.6;subOsc.connect(subGain);subGain.connect(master);subOsc.start();
   }
-  function clearVoice(){bowlOn=false;if(bowlTimer){clearTimeout(bowlTimer);bowlTimer=null;}
+  function clearVoice(){bowlOn=false;if(bowlTimer){clearTimeout(bowlTimer);bowlTimer=null;}if(driftTimer){clearTimeout(driftTimer);driftTimer=null;}
     voiceNodes.forEach(function(n){try{n.stop&&n.stop();}catch(e){}try{n.disconnect();}catch(e){}});voiceNodes=[];}
   function buildMonk(){var fund=root/2;var mix=ac.createGain();mix.gain.value=0.5;mix.connect(voiceGain);
     var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=360;lp.Q.value=0.7;lp.connect(mix);
@@ -1996,6 +1997,18 @@
     var o=ac.createOscillator();o.type='sine';o.frequency.value=root;o.connect(mix);o.start();voiceNodes.push(o);
     var o2=ac.createOscillator();o2.type='sine';o2.frequency.value=root*2;var g2=ac.createGain();g2.gain.value=0.12;o2.connect(g2);g2.connect(mix);o2.start();voiceNodes.push(o2);
     var bl=ac.createOscillator(),ba=ac.createGain();bl.frequency.value=0.1;ba.gain.value=0.1;bl.connect(ba);ba.connect(mix.gain);bl.start();voiceNodes.push(bl);}
+  function buildDrift(){var mix=ac.createGain();mix.gain.value=0.3;mix.connect(voiceGain);
+    var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=520;lp.Q.value=0.6;lp.connect(mix);
+    var o1=ac.createOscillator();o1.type='triangle';o1.frequency.value=root;
+    var o1b=ac.createOscillator();o1b.type='triangle';o1b.frequency.value=root*1.005;
+    var og=ac.createGain();og.gain.value=0.5;o1.connect(og);o1b.connect(og);og.connect(lp);o1.start();o1b.start();
+    var o2=ac.createOscillator();o2.type='sine';o2.frequency.value=root*2;var g2=ac.createGain();g2.gain.value=0.14;o2.connect(g2);g2.connect(lp);o2.start();
+    var bl=ac.createOscillator(),ba=ac.createGain();bl.frequency.value=0.09;ba.gain.value=0.1;bl.connect(ba);ba.connect(mix.gain);bl.start();
+    voiceNodes.push(o1,o1b,o2,bl);
+    var dr=[{o:o1,m:1},{o:o1b,m:1.005},{o:o2,m:2}],PENTA=[0,2,4,7,9,12,9,7,4,2],i=0;
+    (function step(){var semi=PENTA[i%PENTA.length],f=root*Math.pow(2,semi/12);
+      dr.forEach(function(d){d.o.frequency.setTargetAtTime(f*d.m,ac.currentTime,2.4);});
+      i++;driftTimer=setTimeout(step,8000);})();}
   var BOWL=[1,2.75,5.38,8.94];
   function strike(){if(!bowlOn)return;var t=ac.currentTime;
     BOWL.forEach(function(p,i){var decay=5.5-i*0.9,peak=0.42/(i+1);
@@ -2003,7 +2016,7 @@
         var gg=ac.createGain();gg.gain.setValueAtTime(0.0001,t);gg.gain.exponentialRampToValueAtTime(peak,t+0.012);gg.gain.exponentialRampToValueAtTime(0.0001,t+decay);
         o.connect(gg);gg.connect(voiceGain);o.start(t);o.stop(t+decay+0.1);});});
     bowlTimer=setTimeout(strike,(11+Math.random()*9)*1000);}
-  function startVoice(name){clearVoice();if(name==='bowls'){bowlOn=true;strike();}else if(name==='monk')buildMonk();else if(name==='tribal')buildTribal();else buildTone();}
+  function startVoice(name){clearVoice();if(name==='bowls'){bowlOn=true;strike();}else if(name==='monk')buildMonk();else if(name==='tribal')buildTribal();else if(name==='drift')buildDrift();else buildTone();}
   function switchVoice(name){curVoice=name;cfg.voice=name;save();if(!playing)return;var now=ac.currentTime;
     voiceGain.gain.cancelScheduledValues(now);voiceGain.gain.setTargetAtTime(0.0001,now,0.25);
     setTimeout(function(){startVoice(name);voiceGain.gain.setTargetAtTime(0.9,ac.currentTime,0.8);},450);}
