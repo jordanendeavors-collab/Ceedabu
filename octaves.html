@@ -136,6 +136,7 @@
       </div>
       <button class="play" id="hPlay">▶ hear the stack</button>
       <span class="sub mono" id="hRead" style="margin-left:10px">root only · 136 Hz</span>
+      <p class="sub" style="margin:10px 0 0;font-size:.9em">On a phone speaker the 136 Hz root is faint. Earbuds or headphones let you hear the true low note. The overtones come through either way.</p>
     </div>
   </section>
 
@@ -215,14 +216,33 @@
   try{var th=localStorage.getItem('oct_theme');if(th)theme(th);}catch(e){}
   function cvar(v){return getComputedStyle(D.documentElement).getPropertyValue(v).trim()||'#C9A227'}
 
-  function tone(freq,ms,vol){ // short gentle sine
-    try{ if(!ac)ac=new AC(); if(ac.state==='suspended')ac.resume();
-      var o=ac.createOscillator(),gn=ac.createGain();o.type='sine';o.frequency.value=freq;
-      o.connect(gn);gn.connect(ac.destination);var t=ac.currentTime;
-      gn.gain.setValueAtTime(0.0001,t);gn.gain.exponentialRampToValueAtTime(vol||0.2,t+0.03);
-      gn.gain.exponentialRampToValueAtTime(0.0001,t+(ms||1400)/1000);
-      o.start(t);o.stop(t+(ms||1400)/1000+0.05);
-    }catch(e){}
+  /* audio: one shared context + gentle limiter, unlocked on the first touch (Android/iOS) */
+  var master=null;
+  function getAC(){
+    if(!AC) return null;
+    try{ if(!ac){ ac=new AC(); var comp=ac.createDynamicsCompressor(); comp.threshold.value=-10; comp.ratio.value=4;
+        master=ac.createGain(); master.gain.value=1.6; master.connect(comp); comp.connect(ac.destination); }
+      if(ac.state!=='running') ac.resume(); }catch(e){}
+    return ac;
+  }
+  function unlock(){ var a=getAC(); if(!a) return; try{ var b=a.createBuffer(1,1,22050),s=a.createBufferSource(); s.buffer=b; s.connect(a.destination); s.start(0);}catch(e){} }
+  ['pointerdown','touchstart','keydown'].forEach(function(ev){ D.addEventListener(ev,unlock,{once:true,passive:true}); });
+  function out(){ return master||ac.destination; }
+  // pure=true keeps a single sine (harmonic demo). Otherwise tones under 300 Hz get quiet
+  // 2x/3x partials so phone speakers (which can't reproduce ~136 Hz) still let you hear the pitch.
+  function tone(freq,ms,vol,pure){
+    var a=getAC(); if(!a) return;
+    function go(){ try{
+      var t=a.currentTime+0.02, d=(ms||1400)/1000, v=vol||0.2;
+      var parts=[[1,1]]; if(!pure&&freq<300){ parts.push([2,0.55]); parts.push([3,0.3]); }
+      parts.forEach(function(pt){
+        var o=a.createOscillator(),gn=a.createGain(); o.type='sine'; o.frequency.value=freq*pt[0];
+        o.connect(gn); gn.connect(out());
+        gn.gain.setValueAtTime(0.0001,t); gn.gain.exponentialRampToValueAtTime(v*pt[1],t+0.03);
+        gn.gain.exponentialRampToValueAtTime(0.0001,t+d); o.start(t); o.stop(t+d+0.05);
+      });
+    }catch(e){} }
+    if(a.state==='running') go(); else { try{ a.resume().then(go,go); }catch(e){ go(); } }
   }
 
   /* wavelength(nm) -> css rgb (Bruton approximation) */
@@ -289,8 +309,8 @@
     if(sweeping) return; sweeping=true;
     var target=49; for(var n=0;n<=52;n++){var f=seed*Math.pow(2,n); if(f>=4e14&&f<7.9e14){target=n;break;}}
     oct=0; g('oct').value=0; renderOct();
-    if(!ac&&AC){try{ac=new AC()}catch(e){}} if(ac&&ac.state==='suspended')ac.resume();
-    var o=null,gn=null; try{ o=ac.createOscillator(); gn=ac.createGain(); o.type='sine'; gn.gain.value=0.0001; o.connect(gn); gn.connect(ac.destination); o.start(); }catch(e){}
+    getAC();
+    var o=null,gn=null; try{ o=ac.createOscillator(); gn=ac.createGain(); o.type='sine'; gn.gain.value=0.0001; o.connect(gn); gn.connect(out()); o.start(); }catch(e){}
     var dur=5200, t0=performance.now();
     function frame(now){
       var p=Math.min(1,(now-t0)/dur), of=p*target;
@@ -332,7 +352,7 @@
     }
   }
   function playStack(){
-    for(var i=1;i<=hN;i++){ tone(hFund*i, 1600, 0.16/i); }
+    for(var i=1;i<=hN;i++){ tone(hFund*i, 1600, 0.22/i, true); }
   }
   [].forEach.call(g('hChips').querySelectorAll('.chip'),function(c){
     c.addEventListener('click',function(){
