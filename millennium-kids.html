@@ -31,6 +31,7 @@ td:first-child{font-family:Cambria,"Cambria Math",Georgia,serif;font-size:1.05re
 .tl li{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line)}
 .tl b{min-width:78px;color:var(--accent2);font-family:Cambria,Georgia,serif}
 .pill{display:inline-block;font-size:.78rem;padding:3px 10px;border-radius:999px;border:1px solid var(--line);margin:2px 4px 2px 0}
+.s-bonus{color:var(--accent);border-color:var(--accent)}
 .s-solved{color:var(--ok);border-color:var(--ok)}.s-active{color:var(--warn);border-color:var(--warn)}.s-unsolved{color:var(--accent2);border-color:var(--accent2)}
 .label{font-size:.78rem;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:6px;margin-right:6px}
 .real{background:var(--accent);color:#fff}.analogy{background:var(--accent3);color:#fff}
@@ -67,7 +68,7 @@ a{color:var(--accent)}
 <main>
 <div class="card">
  <h1>Seven questions worth $1,000,000 each</h1>
- <p>In the year 2000, the Clay Mathematics Institute picked seven math questions nobody has answered and offered $1,000,000 for each correct solution. It announced the list on May 24, 2000, at the Collège de France in Paris. <b>One</b> has been solved so far (number 3, Poincaré), and its solver turned the prize down.</p>
+ <p>In the year 2000, the Clay Mathematics Institute picked seven math questions nobody has answered and offered $1,000,000 for each correct solution. It announced the list on May 24, 2000, at the Collège de France in Paris. <b>One</b> has been solved so far (number 3, Poincaré), and its solver turned the prize down. Chapter 8 is a bonus on Einstein's gravity equation. It is not a Clay problem.</p>
  <p><b>How each chapter works (the RE method).</b> Recall what you already know. Recognize the pattern. Apply it with a hands-on try. Emulate: do the same move again in a new situation. Then come back and repeat it another day. Orange tags mark a kid analogy. Blue tags mark the real math statement.</p>
  <div id="statusrow"></div>
  <p class="small">Status labels are the ones on the Clay Institute website, read on 27 Nov 2026. They change, so check <a href="https://www.claymath.org/millennium-problems/" target="_blank" rel="noopener">claymath.org</a> before you repeat one.</p>
@@ -172,20 +173,32 @@ eq:"F<sub>μν</sub> = ∂<sub>μ</sub>A<sub>ν</sub> − ∂<sub>ν</sub>A<sub>
 parts:[["A<sub>μ</sub>","The force field. μ points to a direction (or time)."],["F<sub>μν</sub>","The field strength: how strong the force is."],["g","How strong the force is at its most basic level."],["[A<sub>μ</sub>, A<sub>ν</sub>]","The force fields push on each other. That extra term makes Yang–Mills different from simple electric forces."],["Δ","The mass gap, claimed to be greater than 0."]],
 gotcha:"The full problem has two parts: show the theory exists as a well-defined math object, then show the gap. Both are open.",
 src:"Clay Mathematics Institute, Yang–Mills page; Yang and Mills 1954."}
+
+,{id:"gr",n:8,bonus:true,name:"Bonus: Gravity as Curved Space",tag:"Matter tells space how to curve",st:["Not a Clay problem","bonus"],core:"Grade 4 core: lines, parallel lines and angles.",
+recall:"Two friends stand 10 steps apart on the equator of a globe. Both walk \"straight\" north, never turning. Far along, they are closer. At the North Pole they bump into each other.",
+rec:{q:"Both friends walked straight. Why did their paths come together?",ch:["The ground is curved","They pushed each other"],a:0,why:"On a curved surface, straight paths that start parallel can meet. Nobody pushed anybody."},
+play:"grPlay",
+emu:{q:"Same move, new situation. In the equation, if there is more matter and energy (T gets bigger), what happens to the curving (G)?",ch:["G gets bigger too","G gets smaller","Nothing changes"],a:0,why:"The equation says the two sides are equal, so more matter and energy means more curving."},
+plain:"Einstein's idea of gravity: matter and energy curve space and time, and things moving along the curved space follow paths that look like they are pulled. The equation connects how much space curves (left side) to how much matter and energy is there (right side).",
+origin:"Albert Einstein finished the equation in November 1915. A 1919 solar eclipse expedition led by Arthur Eddington measured starlight bending near the Sun, as predicted. In September 2015, the LIGO detectors recorded gravitational waves for the first time. This is well-tested physics. It does not mix with quantum physics yet, and that gap is an open research area.",
+eq:"G<sub>μν</sub> = (8πG / c<sup>4</sup>) T<sub>μν</sub>",
+parts:[["G<sub>μν</sub>","The Einstein tensor: a measurement of how much space and time curve at a point."],["T<sub>μν</sub>","The stress-energy tensor: how much matter and energy is there and how it moves."],["G (in 8πG)","Newton's gravitational constant, the strength of gravity."],["c<sup>4</sup>","The speed of light multiplied by itself four times. It is huge, so the factor 8πG/c⁴ is tiny. It takes a lot of mass to curve space a little."],["=","Curving on the left, stuff on the right. They match."]],
+gotcha:"The globe walk is an analogy for curved paths only. Real gravity curves time as well as space, which the walk does not show.",
+src:"Einstein 1915; Eddington expedition 1919; LIGO first detection announced 11 Feb 2016 (detected 14 Sep 2015)."}
 ];
 
 /* ---------- build page ---------- */
 var nav=$("nav"),host=$("chapters"),sr=$("statusrow");
-var SHORT={riemann:"Riemann",pnp:"P vs NP",poincare:"Poincaré",ns:"Navier–Stokes",bsd:"BSD",hodge:"Hodge",ym:"Yang–Mills"};
+var SHORT={gr:"Bonus: Gravity",riemann:"Riemann",pnp:"P vs NP",poincare:"Poincaré",ns:"Navier–Stokes",bsd:"BSD",hodge:"Hodge",ym:"Yang–Mills"};
 function mc(id,spec){var el=$(id);el.innerHTML="<div>"+spec.q+"</div><div class='opts'></div><div class='res'></div>";
  var o=el.querySelector(".opts"),r=el.querySelector(".res");
  spec.ch.forEach(function(t,i){var b=document.createElement("button");b.textContent=t;b.onclick=function(){
   if(i===spec.a){r.className="res good";r.textContent="Yes. "+spec.why}else{r.className="res bad";r.textContent="Not yet. Try another choice."}};o.appendChild(b)})}
 CH.forEach(function(c){
  var a=document.createElement("a");a.className="chip";a.href="#"+c.id;a.textContent=c.n+" "+SHORT[c.id];nav.appendChild(a);
- var p=document.createElement("span");p.className="pill s-"+c.st[1];p.textContent=c.n+". "+SHORT[c.id]+": "+c.st[0];sr.appendChild(p);
+ if(!c.bonus){var p=document.createElement("span");p.className="pill s-"+c.st[1];p.textContent=c.n+". "+SHORT[c.id]+": "+c.st[0];sr.appendChild(p)}
  var s=document.createElement("section");s.className="card";s.id=c.id;
- var h="<h2>"+c.n+". "+c.name+"</h2><div class='small'>"+c.tag+" <span class='pill s-"+c.st[1]+"'>Clay label: "+c.st[0]+"</span></div>";
+ var h="<h2>"+c.n+". "+c.name+"</h2><div class='small'>"+c.tag+" <span class='pill s-"+c.st[1]+"'>"+(c.bonus?"":"Clay label: ")+c.st[0]+"</span></div>";
  h+="<div class='stage'><span>1 RECALL</span>What you already know</div><p class='kid'><span class='label analogy'>KID ANALOGY</span>"+c.recall+"</p>";
  h+="<div class='stage'><span>2 RECOGNIZE</span>Spot the pattern</div><div class='mc' id='r_"+c.id+"'></div>";
  h+="<div class='stage'><span>3 APPLY</span>Try it yourself</div><div class='play' id='pl_"+c.id+"'></div>";
@@ -291,7 +304,19 @@ function ymPlay(el){
   $("yg").innerHTML=h;$("yo").textContent=lvl===0?"On the floor: no energy.":"On step "+lvl+": energy "+lvl+"Δ. Nothing exists between the floor and step 1."}
  $("yu").onclick=function(){if(lvl<3)lvl++;draw()};$("yd").onclick=function(){if(lvl>0)lvl--;draw()};draw()}
 
-var PL={riemannPlay:riemannPlay,pnpPlay:pnpPlay,poincarePlay:poincarePlay,nsPlay:nsPlay,bsdPlay:bsdPlay,hodgePlay:hodgePlay,ymPlay:ymPlay};
+function grPlay(el){
+ el.innerHTML="<b>Two straight paths.</b> Slide the curvature up.<label>Curvature: <span id='gk'>0</span></label><input type='range' id='gr1' min='0' max='100' value='0'><canvas id='gc' width='520' height='240' style='width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px'></canvas><p id='gcap' class='small'></p>";
+ var c=$("gc"),x=c.getContext("2d");
+ function draw(){var k=+$("gr1").value/100;$("gk").textContent=k.toFixed(2);
+  var cs=getComputedStyle(document.documentElement),ink=cs.getPropertyValue("--ink"),ac=cs.getPropertyValue("--accent2"),ln=cs.getPropertyValue("--line");
+  x.clearRect(0,0,520,240);x.strokeStyle=ln;x.lineWidth=1;for(var g=0;g<=520;g+=40){x.beginPath();x.moveTo(g,0);x.lineTo(g,240);x.stroke()}
+  x.lineWidth=3;x.strokeStyle=ac;var meet=false;
+  [-1,1].forEach(function(sg){x.beginPath();for(var t=0;t<=1.001;t+=.01){var d=Math.cos(k*t*Math.PI*.5*1.6)*50;if(d<0){d=0}var X=260+sg*d,Y=225-t*210;if(t===0)x.moveTo(X,Y);else x.lineTo(X,Y)}x.stroke()});
+  x.fillStyle=ink;x.beginPath();x.arc(260-50,225,5,0,6.3);x.arc(260+50,225,5,0,6.3);x.fill();
+  $("gcap").textContent=k<.05?"Flat surface: straight paths stay the same distance apart.":(k>.9?"Strong curvature: the straight paths meet. No push, only curved space.":"The paths drift together because the surface curves.")}
+ $("gr1").oninput=draw;draw()}
+
+var PL={riemannPlay:riemannPlay,pnpPlay:pnpPlay,poincarePlay:poincarePlay,nsPlay:nsPlay,bsdPlay:bsdPlay,hodgePlay:hodgePlay,ymPlay:ymPlay,grPlay:grPlay};
 CH.forEach(function(c){try{PL[c.play]($("pl_"+c.id))}catch(e){$("pl_"+c.id).textContent="This activity did not load. The rest of the chapter still works.";try{console.error(c.id+": "+e.message)}catch(z){}}});
 })();
 </script>
