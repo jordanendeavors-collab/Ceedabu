@@ -64,11 +64,21 @@ details.song summary{cursor:pointer;font-weight:700;color:var(--gold)}
 .songrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
 .songrow div{display:flex;gap:4px}
 @media(max-width:980px){.track{grid-template-columns:1fr}.steps{grid-template-columns:repeat(8,1fr)}canvas.mini{width:100%;height:auto;aspect-ratio:5/2}.songrow{grid-template-columns:repeat(2,1fr)}}
+.demo{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.demo b{display:block}.demo .d{color:var(--mute);font-size:14px}.demo .dtxt{flex:1 1 240px}
+#demoBox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:8px}
+#demoSteps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}
+#demoSteps button{min-height:40px;border:1px solid var(--line);border-radius:8px;padding:5px 4px;text-align:center;font-size:12px;color:var(--mute);background:var(--cell)}
+#demoSteps button.on{background:var(--on);color:var(--onink);border-color:var(--on);font-weight:700}
+#demoCap small{display:block;color:var(--gold);font-weight:700;letter-spacing:.04em;margin-bottom:2px}
+#demoCap{font-size:16px;line-height:1.35}
 </style>
 </head>
 <body>
 <h1>Math Beats Studio</h1>
 <p class="sub"><a href="/" style="color:inherit">← Math Beats Studio</a> · Equations drive the sound and the lights. Pitch is frequency (Hz). Layer clips, switch scenes, add instruments, record the show as video. Music and sonification, not a proof.</p>
+
+<div class="demo" id="demoCard"><div class="dtxt"><b>New here? Watch the 50-second demo.</b><span class="d">It plays four scenes by itself and explains each one. Sound on. Tap Stop any time, then it is yours.</span></div><button class="pri" id="demoBtn">▶ Watch the demo</button></div>
 
 <div class="stagebox" id="stagebox">
   <canvas id="stage" width="960" height="540"></canvas>
@@ -83,6 +93,8 @@ details.song summary{cursor:pointer;font-weight:700;color:var(--gold)}
   </div>
   <div class="readout" id="readout"></div>
 </div>
+
+<div id="demoBox" style="display:block"><div id="demoSteps"><button data-i="0">1 Equations</button><button data-i="1">2 Layers</button><button data-i="2">3 All tracks</button><button data-i="3">4 Song</button><button data-i="4">5 Your turn</button></div><div id="demoCap"><small>Tap a box</small>Each box plays that part of the demo and changes the stage and the scene.</div></div>
 
 <div class="bar">
   <button class="pri" id="play">▶ Play</button>
@@ -823,6 +835,51 @@ buildGlobal();syncGlobal();sizeStage();build();gsReset();
 if(lsGet("mbtheme")==="1")document.body.classList.add("dark");
 window.__mb={S:S,start:start,stop:stop,audition:audition,ctx:function(){return ac},master:function(){return comp},hz:hzOf,lvl:function(i){return S.tracks[i].lvl},rec:toggleRec,ksBuf:function(f){ensureAudio();return ksBuf(f)},degMax:degMax,recorder:function(){return mr},chunks:function(){return chunks}};
 requestAnimationFrame(frame);
+
+/* ================= guided demo ================= */
+var demo={on:false,t:[],prev:null,i:-1};
+var DEMO=[
+ [0,"1 of 5 · Equations make the sound","Each row is an equation: heat flow, waves, flowing fluid. Its curve sets the pitch, in Hz. The lights draw the same curve."],
+ [1,"2 of 5 · Add layers","Scene 2 brings in more instruments. Scenes switch on the beat, so the music never stops."],
+ [2,"3 of 5 · Everything at once","All seven tracks play with 8D swirl (use headphones). Watch the lights follow what you hear."],
+ [3,"4 of 5 · Build a song","Switch scenes live, or turn on Song mode to chain them in order."],
+ [3,"5 of 5 · Your turn","Tap cells to change notes, change the root Hz, pick another voice, or record a video. Music and sonification, not a proof."]
+];
+var DEMOLEN=10.4;
+function demoShow(i){
+ var d=DEMO[i];$("#demoBox").style.display="block";
+ $("#demoCap").innerHTML="<small>"+d[1]+"</small>"+d[2];
+ var k=$("#demoSteps").children;for(var j=0;j<k.length;j++)k[j].classList.toggle("on",j===i)}
+function demoClear(){demo.t.forEach(clearTimeout);demo.t=[]}
+function demoGo(i){
+ demoClear();demo.i=i;var d=DEMO[i];
+ S.scene=d[0];if(i>0){run.pending=d[0]}
+ var e=(i===2);if(S.eightD!==e){S.eightD=e;$("#b8d").classList.toggle("act",e);S.tracks.forEach(apply8d)}
+ refresh();demoShow(i);
+ if(i<4){demo.t.push(setTimeout(function(){if(demo.on)demoGo(i+1)},DEMOLEN*1000))}
+ else{demo.t.push(setTimeout(function(){if(demo.on){demoEnd();stop()}},9000))}
+}
+function demoEnd(){
+ demoClear();if(!demo.on)return;demo.on=false;
+ $("#demoBtn").textContent="▶ Watch the demo again";
+ if(demo.prev){S.eightD=demo.prev.e;$("#b8d").classList.toggle("act",S.eightD);S.tracks.forEach(apply8d)}
+ var k=$("#demoSteps").children;for(var j=0;j<k.length;j++)k[j].classList.remove("on");
+ $("#demoCap").innerHTML="<small>Demo over</small>Tap a box to replay that part, or Watch the demo to run it all."}
+function demoStart(from){
+ if(demo.on){demoEnd();if(playing)stop();return}
+ demo.on=true;demo.prev={e:S.eightD,s:S.scene};
+ if(!S.lights){S.lights=true;$("#bLights").classList.add("act")}
+ if(S.songOn){S.songOn=false;$("#songBtn").textContent="Song mode: off"}
+ if(playing)stop();
+ S.scene=0;refresh();start();$("#demoBtn").textContent="■ Stop the demo";
+ try{$("#stagebox").scrollIntoView({behavior:"smooth",block:"start"})}catch(e){}
+ demoGo(from||0)}
+$("#demoBtn").onclick=function(){demoStart(0)};
+$("#demoSteps").addEventListener("click",function(e){
+ var t=e.target.closest("button");if(!t)return;var i=+t.dataset.i;
+ if(!demo.on){demoStart(i)}else{demoGo(i)}});
+$("#play").addEventListener("click",function(){if(demo.on)demoEnd()},true);
+["#scenes","#songBtn","#rand","#clearAll"].forEach(function(q){var el=$(q);if(el)el.addEventListener("pointerdown",function(){if(demo.on)demoEnd()},true)});
 })();
 </script>
 </body>
