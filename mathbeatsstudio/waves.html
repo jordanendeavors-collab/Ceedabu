@@ -30,6 +30,7 @@ canvas{display:block;width:100%;background:var(--card);border:1px solid var(--li
 .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0}
 .row label{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 input[type=range]{width:170px;min-height:36px;accent-color:var(--on)}
+.pron{font-size:15px;color:var(--mute)}.pron b{font-size:16px}.say{min-height:34px;padding:2px 10px;font-size:14px;vertical-align:middle}
 .words{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
 .word{border:2px solid var(--line);border-radius:12px;padding:10px;background:var(--cell)}
 .word b{font-size:20px}.word.c{border-color:var(--crest)}.word.c b{color:var(--crest)}
@@ -74,8 +75,8 @@ footer{color:var(--mute);font-size:14px;margin:18px 0 30px}
   </div>
   <div class="read" id="hRead"></div>
   <div class="words">
-    <div class="word c"><b>Crest</b><br>The top of the wave. The highest point above the middle line.</div>
-    <div class="word t"><b>Trough</b><br>The bottom of the wave. The lowest point below the middle line.</div>
+    <div class="word c"><b>Crest</b> <button class="say" data-say="crest" aria-label="Hear the word crest">Hear it</button><br><span class="pron">say it: <b>KREST</b> (rhymes with best)</span><br>The top of the wave. The highest point above the middle line.</div>
+    <div class="word t"><b>Trough</b> <button class="say" data-say="trough" aria-label="Hear the word trough">Hear it</button><br><span class="pron">say it: <b>TRAWF</b> (rhymes with cough). The "ough" sounds like "off", not "oh".</span><br>The bottom of the wave. The lowest point below the middle line.</div>
     <div class="word"><b>Rest line</b><br>The middle. Above it is plus (+). Below it is minus (&minus;).</div>
   </div>
   <p class="note">A signal is a wave that carries something: sound, light, a radio message. We draw it as crests and troughs so we can read it.</p>
@@ -160,6 +161,7 @@ footer{color:var(--mute);font-size:14px;margin:18px 0 30px}
 
 <section class="card" aria-labelledby="h-faq">
   <h2 id="h-faq">Questions kids ask</h2>
+  <details><summary>How do I say crest and trough?</summary><p>Crest is KREST, like best. Trough is TRAWF, like cough. The "ough" in trough sounds like "off". Say it out loud three times: crest, trough, crest, trough.</p></details>
   <details><summary>Is the trough as big as the crest?</summary><p>In a plain, smooth wave, yes. If the crest is 3 above the rest line, the trough is 3 below it. Real signals can be lopsided, but we start with the even ones.</p></details>
   <details><summary>Why is the middle line there?</summary><p>It is the rest line: where the water, the rope or the air sits when nothing is moving. We measure every crest and trough from it. Above is plus. Below is minus.</p></details>
   <details><summary>Does a louder sound mean a taller crest?</summary><p>Yes. Loudness is the height of the crest (and the depth of the trough). Quiet sounds make small waves. Loud sounds make tall ones.</p></details>
@@ -300,6 +302,10 @@ function drawTide(){
  if(s>.97)r="High tide: a crest.";else if(s<-.97)r="Low tide: a trough.";else r=d>0?"The water is rising, toward high tide.":"The water is falling, toward low tide.";
  $("#tRead").textContent=r;$("#tTv").textContent=T.toFixed(1)+" hours";
 }
+
+/* ---------- say the words ---------- */
+document.querySelectorAll(".say").forEach(function(b){b.onclick=function(){
+ try{var u=new SpeechSynthesisUtterance(b.dataset.say);u.lang="en-US";u.rate=.8;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){b.textContent="Use the spelling guide"}}});
 
 /* ---------- tabs ---------- */
 var ex="ocean";
