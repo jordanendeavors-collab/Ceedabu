@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The 7 Big Math Questions, for Kids (Grade 3 and up) | The Humming of God</title>
-<meta name="description" content="Seven million-dollar math questions explained with cookies, puzzles, loops and water. Each one has a kid hook, the history, and the equation broken into pieces. Works offline.">
+<meta name="description" content="Seven million-dollar math questions as short, repeatable lessons. Each chapter follows the RE method: Recall, Recognize, Apply, Emulate, with the equation broken into pieces. Works offline.">
 <style>
 :root{--bg:#f7f6f2;--panel:#fff;--ink:#1d2330;--muted:#5b6475;--line:#dcd9d0;--accent:#2b5fb8;--accent2:#c0392b;--accent3:#b8860b;--soft:#eef2fa;--ok:#2e7d4f;--warn:#b8860b;--bad:#b03a2e}
 :root[data-theme=dark]{--bg:#0f1420;--panel:#171e2d;--ink:#e7ebf3;--muted:#9aa4b8;--line:#2a3347;--accent:#6ea2ff;--accent2:#ff7a6b;--accent3:#e6b94a;--soft:#1d2740;--ok:#5fcf8f;--warn:#e6b94a;--bad:#ff7a6b}
@@ -45,6 +45,14 @@ canvas,svg{max-width:100%}
 .nums{display:flex;flex-wrap:wrap;gap:6px}
 .nums button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .big{font-size:1.2rem;font-weight:700}
+.stage{margin:14px 0 6px;font-weight:700;color:var(--ink)}
+.stage span{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;padding:2px 10px;font-size:.78rem;margin-right:8px;letter-spacing:.04em}
+.mc{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0}
+.mc .opts{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.mc .opts button{text-align:left;white-space:normal;border-radius:10px}
+.mc .res{margin-top:8px;font-weight:600}
+.mc .good{color:var(--ok)}.mc .bad{color:var(--bad)}
+details{margin:10px 0}summary{cursor:pointer;font-weight:700;color:var(--accent);padding:6px 0}
 footer{max-width:860px;margin:0 auto;padding:6px 12px 40px;color:var(--muted);font-size:.88rem}
 a{color:var(--accent)}
 @media(max-width:520px){body{font-size:16px}.grid{grid-template-columns:repeat(6,1fr)}}
@@ -59,9 +67,8 @@ a{color:var(--accent)}
 <main>
 <div class="card">
  <h1>Seven questions worth $1,000,000 each</h1>
- <p class="kid"><b>Start here.</b> Some math questions are so hard that nobody on Earth knows the answer. In the year 2000, the Clay Mathematics Institute picked seven of them and offered $1,000,000 for each correct solution. Every one of them starts with something you already know: sharing cookies, solving a puzzle, a loop of string, flowing water, points on a graph, building with blocks, and steps on a ladder.</p>
- <p>The Clay Institute announced the list on May 24, 2000, at the Collège de France in Paris. <b>One</b> has been solved so far (the Poincaré conjecture, number 3 below). The prize was offered to its solver and he turned it down.</p>
- <p class="small">How each chapter works: a hook you can try, what the question really asks, the history, and the equation written out one piece at a time. Orange tags mark a kid analogy. Blue tags mark the real math statement. An analogy helps you picture the idea; the real statement is what mathematicians have to prove.</p>
+ <p>In the year 2000, the Clay Mathematics Institute picked seven math questions nobody has answered and offered $1,000,000 for each correct solution. It announced the list on May 24, 2000, at the Collège de France in Paris. <b>One</b> has been solved so far (number 3, Poincaré), and its solver turned the prize down.</p>
+ <p><b>How each chapter works (the RE method).</b> Recall what you already know. Recognize the pattern. Apply it with a hands-on try. Emulate: do the same move again in a new situation. Then come back and repeat it another day. Orange tags mark a kid analogy. Blue tags mark the real math statement.</p>
  <div id="statusrow"></div>
  <p class="small">Status labels are the ones on the Clay Institute website, read on 27 Nov 2026. They change, so check <a href="https://www.claymath.org/millennium-problems/" target="_blank" rel="noopener">claymath.org</a> before you repeat one.</p>
 </div>
@@ -72,7 +79,7 @@ a{color:var(--accent)}
  <p class="small">There are far more famous problems than these seven. This page covers the core seven first. More chapters can be added the same way.</p>
 </div>
 </main>
-<footer>Part of The Humming of God. Works offline. Read the history as a starting point and check the sources named in each chapter before you quote it.</footer>
+<footer>Part of The Humming of God. Works offline. Check the source named in each chapter before you quote it.</footer>
 <script>
 (function(){
 function $(i){return document.getElementById(i)}
@@ -82,91 +89,112 @@ function applyTheme(){document.documentElement.setAttribute("data-theme",th);$("
 $("theme").onclick=function(){th=th==="dark"?"light":"dark";ls("mk_theme",th);applyTheme()};applyTheme();
 
 var CH=[
-{id:"riemann",n:1,name:"The Riemann Hypothesis",tag:"Where do the prime numbers hide?",st:["Active","active"],core:"Grade 3 core: multiplication and division, equal groups. Grade 3 to 5: fractions.",
-hook:"You have 7 cookies and want to put the same number on every plate. Two plates leaves 1 extra. Three plates leaves 1 extra. Only 1 plate or 7 plates works. A number that only splits evenly into 1 and itself is a <b>prime</b>. Now 12 cookies: 2, 3, 4 or 6 plates all work. Primes show up in a pattern that looks random: 2, 3, 5, 7, 11, 13 and so on. Is there a hidden rule about where they appear?",
+{id:"riemann",n:1,name:"The Riemann Hypothesis",tag:"Where do the prime numbers hide?",st:["Active","active"],core:"Grade 3 core: multiplication facts and skip counting.",
+recall:"Count by 3s: 3, 6, 9, 12. Count by 5s: 5, 10, 15. Skip counting lands on the same numbers again and again. Some numbers never get landed on by any smaller count.",
+rec:{q:"Which number is NOT landed on by counting by 2s, 3s or 5s?",ch:["9","11","15"],a:1,why:"9 is on the 3s list. 15 is on the 3s and 5s lists. 11 is only reached by counting by 11 or by 1. A number like that is called a prime."},
 play:"riemannPlay",
-plain:"Bernhard Riemann found a special wave-like function. Its \"silent spots\" (the zeros) control how the primes are spread out. His guess: every silent spot sits on one straight line. If that is true, we know the primes are spread out as evenly as a number pattern can allow.",
-hist:[["300 BC","Euclid shows the primes never run out."],["1735","Euler adds 1 + 1/4 + 1/9 + 1/16 + ... and shows the total is exactly π²/6, about 1.6449."],["1737","Euler links an add-up over all counting numbers to a multiply-up over all primes. The equation below is that link."],["1859","Riemann writes a short paper to the Berlin Academy about how many primes are below a given size, and states the hypothesis."],["1914","G. H. Hardy proves infinitely many zeros sit on the line."],["Today","Computers have checked trillions of zeros. All of them are on the line. That is strong evidence and is not a proof."]],
+emu:{q:"You strike out every multiple of 2, 3, 5 and 7 on a board of 1 to 100. A number other than 1 is left standing. What kind of number is it?",ch:["A prime","A multiple of 4","A multiple of 9"],a:0,why:"Anything with a smaller helper in its skip-count list got struck out. What is left has no helper, so it is a prime. For 100, checking 2, 3, 5 and 7 is enough."},
+plain:"Primes look scattered: 2, 3, 5, 7, 11, 13 and on. Bernhard Riemann found a wave-like function whose zeros (its silent spots) control how the primes are spread out. His guess: every silent spot sits on one straight line. If that is true, the primes are as evenly spread as a pattern can allow.",
+origin:"Stated by Riemann in 1859. Computers have checked trillions of zeros. All are on the line. That is evidence and is not a proof.",
 eq:"ζ(s) = 1/1<sup>s</sup> + 1/2<sup>s</sup> + 1/3<sup>s</sup> + ... = ∏<sub>p prime</sub> 1 / (1 − p<sup>−s</sup>)<br><span class='small'>Hypothesis: every nontrivial zero has the form s = 1/2 + it</span>",
-parts:[["ζ(s)","\"Zeta of s.\" A machine: put a number s in, get a number out."],["s","The input. It can be a plain number like 2, or a two-part number with a real part and an imaginary part."],["1/n<sup>s</sup>","For each counting number n, make a fraction. With s = 2 you get 1/1, 1/4, 1/9, 1/16."],["...","Keep going forever."],["∏","Multiply a whole list of things together."],["p prime","Use only the primes: 2, 3, 5, 7, 11, and so on."],["1/(1−p<sup>−s</sup>)","One piece for each prime. Multiplying them all gives the same total as the long sum."],["zero","An input s where ζ(s) = 0."],["1/2 + it","A point whose real part is 1/2. The hypothesis says every nontrivial zero is on this line. The first one has t ≈ 14.1347."]],
-gotcha:"The sum on the left only works when the real part of s is bigger than 1. For other inputs, mathematicians extend the function in a way that keeps it smooth. The zeros the hypothesis talks about live in that extended region.",
-src:"Clay Mathematics Institute problem page; Bombieri's official Clay problem description."},
+parts:[["ζ(s)","\"Zeta of s.\" Put a number s in, get a number out."],["1/n<sup>s</sup>","A fraction for each counting number n. With s = 2: 1/1, 1/4, 1/9, 1/16."],["...","Keeps going forever."],["∏ over p prime","Multiply one piece for every prime: 2, 3, 5, 7, 11. The product gives the same total as the long sum."],["zero","An input where ζ(s) = 0."],["1/2 + it","The line. The first zero has t ≈ 14.1347."]],
+gotcha:"The long sum only works when the real part of s is bigger than 1. For other inputs, mathematicians extend the function smoothly. The zeros in the hypothesis live in that extended region.",
+src:"Clay Mathematics Institute problem page."},
 
-{id:"pnp",n:2,name:"P versus NP",tag:"Is checking an answer easier than finding it?",st:["Unsolved","unsolved"],core:"Grade 3 to 5 core: adding whole numbers, problem solving.",
-hook:"A sudoku takes a long time to solve. Once a friend hands you the finished grid, checking it takes seconds. Checking is quick. Finding looks slow. Is finding really slower, or is there a faster way we have not discovered yet?",
+{id:"pnp",n:2,name:"P versus NP",tag:"Is checking an answer easier than finding it?",st:["Unsolved","unsolved"],core:"Grade 3 to 5 core: adding whole numbers, multiplying by 10.",
+recall:"A bike lock has 3 number dials. If a friend tells you the code, you try it once. If nobody tells you, you might try up to 1,000 codes.",
+rec:{q:"A friend says the code is 4-7-2. What is your job now?",ch:["Check it: one try","Search all 1,000 codes"],a:0,why:"Checking a given answer is one try. Finding an answer with no hint can take a thousand."},
 play:"pnpPlay",
-plain:"P is the set of questions a computer can solve quickly. NP is the set of questions where a computer can check a given answer quickly. Every P question is also NP. The big question: are they the same set? Almost everyone expects \"no\", and nobody can prove it.",
-hist:[["1956","Kurt Gödel writes a letter to John von Neumann asking a very similar question."],["1971","Stephen Cook proves that one particular question (satisfiability) is the hardest kind of NP question."],["1972","Richard Karp shows 21 famous puzzles are all that same hardest kind."],["1973","Leonid Levin, working in the USSR, reports the same discovery on his own."],["Today","Still open. Clay lists it as unsolved."]],
+emu:{q:"A lock has 4 dials. About how many codes might you try if nobody tells you the answer?",ch:["40","400","10,000"],a:2,why:"Each new dial multiplies the tries by 10: 10 × 10 × 10 × 10 = 10,000."},
+plain:"P is the set of questions a computer can solve quickly. NP is the set where a computer can check a given answer quickly. Every P question is also in NP. The big question: are they the same set? Almost everyone expects no, and nobody can prove it.",
+origin:"Stephen Cook, 1971. Leonid Levin found the same result on his own in the USSR.",
 eq:"P  =?  NP",
-parts:[["P","Problems a computer can solve in \"polynomial time\": the work grows like n², n³ and so on as the problem size n grows."],["NP","Problems where a proposed answer can be checked in polynomial time."],["=?","The question mark is the whole problem: are these two sets equal?"],["n²","Doubling the size makes the work 4 times bigger. That is fast enough to be called quick."],["2<sup>n</sup>","Adding one more item doubles the work. That grows too fast. Many NP puzzles look like this when you try every possibility."]],
-gotcha:"\"Quick\" has a precise meaning here (polynomial time). A solution that takes n<sup>1000</sup> steps would count as quick on paper and would be useless in practice.",
-src:"Clay Mathematics Institute problem page (Cook's official description); Cook 1971; Karp 1972."},
+parts:[["P","Problems a computer solves in \"polynomial time\": the work grows like n² or n³ as the size n grows."],["NP","Problems where a proposed answer can be checked in polynomial time."],["=?","The whole question: are the two sets equal?"],["2<sup>n</sup>","Each extra item doubles the work. Trying every possibility often looks like this."]],
+gotcha:"\"Quick\" has a precise meaning: polynomial time. A method that takes n<sup>1000</sup> steps counts as quick on paper and is useless in practice.",
+src:"Clay Mathematics Institute problem page; Cook 1971."},
 
-{id:"poincare",n:3,name:"The Poincaré Conjecture",tag:"Can every loop be shrunk to a point?",st:["Solved","solved"],core:"Grade 3 core: shapes and their attributes. Later: loops and surfaces.",
-hook:"Put a rubber band around a ball. You can slide it off the end and shrink it to a dot. Put a rubber band around the middle of a donut, through the hole. It cannot shrink to a dot because the donut is in the way. The ball and the donut are different shapes, and that loop test shows it. Henri Poincaré asked what the same test says about shapes with three dimensions.",
+{id:"poincare",n:3,name:"The Poincaré Conjecture",tag:"Can every loop be shrunk to a point?",st:["Solved","solved"],core:"Grade 3 core: shapes and their attributes.",
+recall:"Lay a jump rope in a circle on bare ground. Pull it tight toward the middle and it shrinks to a point. Now lay the rope in a circle around a pole stuck in the ground.",
+rec:{q:"Which loop can shrink all the way to a point?",ch:["The loop on bare ground","The loop around the pole"],a:0,why:"The pole is in the way of the second loop. It can only shrink until it touches the pole."},
 play:"poincarePlay",
-plain:"A 3-sphere is the 3-dimensional version of a ball's surface. The conjecture says: any closed 3-dimensional shape where every loop can be shrunk to a point must be a 3-sphere, just stretched or squished.",
-hist:[["1904","Henri Poincaré asks the question."],["1982","Richard Hamilton invents Ricci flow, a way to smooth out a shape the way heat smooths out a hot spot."],["2002 to 2003","Grigori Perelman posts three papers online that use Ricci flow and prove the conjecture."],["2010","Clay announces the Millennium Prize for Perelman on March 18. He declines it."],["Note","It is the only Millennium problem solved so far."]],
+emu:{q:"A mug has a handle with a hole. A loop of string goes through the hole. Can it shrink to a point?",ch:["Yes","No, the handle stops it"],a:1,why:"The handle is like the pole. Shapes with a hole like that have loops that get stuck. A ball surface has no such hole."},
+plain:"A 3-sphere is the 3-dimensional version of a ball's surface. The conjecture: any closed 3-dimensional shape where every loop can shrink to a point must be a 3-sphere, just stretched or squished.",
+origin:"Henri Poincaré asked it in 1904. Grigori Perelman posted the proof in 2002 and 2003. Clay announced the prize on 18 March 2010 and he declined it. It is the only Millennium problem solved so far.",
 eq:"∂g/∂t = −2 Ric(g)",
-parts:[["g","The rule for measuring distance inside the shape."],["∂g/∂t","How that rule changes as time t passes."],["Ric(g)","Ricci curvature: a number-machine that measures how the shape bends."],["−2","The minus sign makes bumps smooth out. Hamilton's flow evens out the shape the way heat evens out temperature."]],
-gotcha:"This equation is Hamilton's tool. Perelman's proof had to handle places where the flow forms sharp pinches, which is the hardest part.",
-src:"Clay Mathematics Institute, Poincaré Conjecture page; Clay press release March 18, 2010."},
+parts:[["g","The rule for measuring distance inside the shape."],["∂g/∂t","How that rule changes as time t passes."],["Ric(g)","Ricci curvature: measures how the shape bends."],["−2","The minus sign makes bumps smooth out, the way heat evens out temperature."]],
+gotcha:"This is Richard Hamilton's Ricci flow (1982), the tool Perelman used. The hardest part of the proof was handling places where the flow pinches.",
+src:"Clay Mathematics Institute, Poincaré Conjecture page and the 18 March 2010 press release."},
 
-{id:"ns",n:4,name:"Navier–Stokes",tag:"Can water flow ever blow up?",st:["Active","active"],core:"Grade 3 to 5 core: measurement, rates and patterns.",
-hook:"Stir your juice and watch the swirl. Thick honey swirls slowly. Water swirls fast. Wind, ocean currents and airplane wings all follow the same equations. Question: can a smooth flow ever suddenly turn infinitely violent at one tiny spot?",
+{id:"ns",n:4,name:"Navier–Stokes",tag:"Can water flow ever blow up?",st:["Active","active"],core:"Grade 3 to 5 core: measurement and comparing.",
+recall:"Stir a cup of water with a spoon, then stop. The swirl slowly fades. Do the same in a cup of pudding and it stops almost at once.",
+rec:{q:"Which fluid has the bigger viscosity (ν), water or pudding?",ch:["Water","Pudding"],a:1,why:"Viscosity measures how sticky or thick a fluid is. Thick fluids smooth out swirls fast."},
 play:"nsPlay",
-plain:"The Navier–Stokes equations describe how fluids move. Engineers use them every day. Mathematicians still do not know if, in 3 dimensions, a smooth starting flow always stays smooth or can ever break down into a point of infinite speed.",
-hist:[["1822","Claude-Louis Navier writes the first version of the equations."],["1845","George Stokes finishes the version we use today."],["2000","Clay lists it as one of the seven problems."],["11 Sep 2026","Clay posts that it is contemplating an announcement that the problem \"has apparently been settled.\" Clay says its review is \"deliberately unhurried\". No prize has been announced."]],
+emu:{q:"Which of these is a job for the Navier–Stokes equations?",ch:["Air flowing over an airplane wing","A song stuck in your head"],a:0,why:"They describe how fluids and gases move: air, water, oil, blood in a pipe."},
+plain:"The Navier–Stokes equations describe how fluids move. Engineers use them every day. Mathematicians still do not know if, in 3 dimensions, a smooth flow always stays smooth or can ever break down into a point of infinite speed.",
+origin:"Navier wrote the first version in 1822. Stokes finished the form we use in 1845. On 11 Sep 2026 Clay posted that it is contemplating an announcement that the problem \"has apparently been settled\". Clay says its review is \"deliberately unhurried\" and has announced no prize.",
 eq:"∂u/∂t + (u·∇)u = −(1/ρ)∇p + ν∇²u + f<br>∇·u = 0",
-parts:[["u","The velocity: which way and how fast the water moves at every point."],["∂u/∂t","How the velocity changes as time passes."],["(u·∇)u","The flow carries itself along, which makes things swirl."],["p","Pressure."],["ρ","Density: how heavy the fluid is for its size."],["ν","Viscosity: how thick or sticky it is. Honey is high, water is low."],["∇²u","Spreads out differences. Thick fluids smooth out swirls faster."],["f","Outside pushes, like gravity or a spoon."],["∇·u = 0","Water cannot be squeezed. Whatever flows into a spot flows out."]],
-gotcha:"Do not repeat a claim that it is solved until Clay says so. Clay's wording on 11 Sep 2026 is cautious and gives no names.",
-src:"Clay Mathematics Institute, Navier–Stokes Announcement (11 Sep 2026) and problem page."},
+parts:[["u","Velocity: which way and how fast the fluid moves at every point."],["∂u/∂t","How the velocity changes over time."],["(u·∇)u","The flow carries itself along. This is what makes swirls."],["p, ρ","Pressure and density."],["ν","Viscosity: thick or thin."],["∇²u","Spreads out differences. Thick fluids smooth swirls faster."],["f","Outside pushes like gravity or a spoon."],["∇·u = 0","The fluid cannot be squeezed. What flows into a spot flows out."]],
+gotcha:"Do not repeat a claim that it is solved until Clay says so.",
+src:"Clay Mathematics Institute, Navier–Stokes announcement (11 Sep 2026) and problem page."},
 
 {id:"bsd",n:5,name:"Birch and Swinnerton-Dyer",tag:"Counting special points on a curve",st:["Unsolved","unsolved"],core:"Grade 5 core: the coordinate plane and ordered pairs.",
-hook:"A point on a graph is a pair like (2, 3). Some curves have points with whole-number or fraction coordinates. Question: how many such points does a curve have, and can a pattern in simple counting tell you?",
+recall:"A treasure map says go 3 steps right and 2 steps up. That spot is the point (3, 2). A graph is a map made of points.",
+rec:{q:"Which point is on the curve y² = x³ − x + 1?",ch:["(3, 5)","(2, 2)","(1, 3)"],a:0,why:"Try x = 3: x³ − x + 1 = 27 − 3 + 1 = 25, and 5² = 25. For (2, 2): 8 − 2 + 1 = 7, but 2² = 4. For (1, 3): 1 − 1 + 1 = 1, but 3² = 9."},
 play:"bsdPlay",
-plain:"An elliptic curve is a curve like y² = x³ + ax + b. Some have only a few points with fraction coordinates. Some have infinitely many. The conjecture says a count you get by checking the curve one small clock at a time predicts which case you are in.",
-hist:[["1922","Louis Mordell shows the fraction points on such a curve can all be built from a finite list."],["Early 1960s","Bryan Birch and Peter Swinnerton-Dyer use the EDSAC computer in Cambridge to count points and spot a pattern."],["1965","They publish the conjecture."],["Today","Only special cases are proven. Clay lists it as unsolved."]],
+emu:{q:"Same curve, new point. Is (5, 11) on y² = x³ − x + 1?",ch:["Yes","No"],a:0,why:"x = 5: 125 − 5 + 1 = 121, and 11² = 121. It matches."},
+plain:"An elliptic curve looks like y² = x³ + ax + b. Some have only a few points with fraction coordinates. Some have infinitely many. The conjecture says a count made by checking the curve on small clocks predicts which case you are in.",
+origin:"Bryan Birch and Peter Swinnerton-Dyer found the pattern in the early 1960s using the EDSAC computer in Cambridge. They published it in 1965. Only special cases are proven.",
 eq:"y² = x³ + ax + b<br>L(E, s) ≈ C · (s − 1)<sup>r</sup> near s = 1",
-parts:[["y² = x³ + ax + b","The curve. Pick numbers a and b and you get a different curve. The numbers must make 4a³ + 27b² not equal to 0."],["E","The name of the curve."],["rational point","A point whose x and y are fractions."],["r","The rank: how many independent fraction points of infinite order the curve has."],["L(E, s)","A function built by counting points on the curve one small prime p at a time (the N<sub>p</sub> counts below)."],["(s − 1)<sup>r</sup>","The conjecture says L touches zero at s = 1 with strength r, the same r as the rank."]],
-gotcha:"The \"counting on a clock\" idea: for a prime p, you only allow x and y values 0 to p−1 and see which make the equation work after taking the remainder when divided by p. That is arithmetic you can do by hand for p = 5.",
-src:"Clay Mathematics Institute, Birch and Swinnerton-Dyer page (Wiles's description); Birch and Swinnerton-Dyer 1965."},
+parts:[["y² = x³ + ax + b","The curve. Choose a and b. They must make 4a³ + 27b² not equal to 0."],["rational point","A point whose x and y are fractions."],["r","The rank: how many independent fraction points of infinite order the curve has."],["L(E, s)","A function built by counting points on the curve one small prime p at a time."],["(s − 1)<sup>r</sup>","The conjecture says L touches zero at s = 1 with strength r, the same r as the rank."]],
+gotcha:"Counting \"on a clock\": for a prime p, only allow x and y from 0 to p−1 and keep remainders when dividing by p. You can do that by hand for p = 5.",
+src:"Clay Mathematics Institute, Birch and Swinnerton-Dyer page; Birch and Swinnerton-Dyer 1965."},
 
-{id:"hodge",n:6,name:"The Hodge Conjecture",tag:"Complicated shapes from simple pieces",st:["Unsolved","unsolved"],core:"Grade 1 to 5 core: composing shapes from rectangles and triangles.",
-hook:"You can build a house, a boat or a rocket from the same blocks. Mathematicians collect all kinds of shape-like measurements. Question: when a measurement could be a shape, is there always a way to build it from simple, equation-made pieces?",
+{id:"hodge",n:6,name:"The Hodge Conjecture",tag:"Complicated shapes from simple pieces",st:["Unsolved","unsolved"],core:"Grade 1 to 5 core: composing shapes.",
+recall:"With a handful of pattern blocks (squares, rectangles, triangles) you can build a boat, a house or a rocket.",
+rec:{q:"The boat in the picture is built from which pieces?",ch:["Rectangles and triangles","Only circles"],a:0,why:"The hull is a rectangle plus a triangle at the bow. The sails are triangles."},
 play:"hodgePlay",
-plain:"This one is the hardest to picture. Take a smooth shape defined by equations. Some of its \"hidden measurements\" are built from simple pieces (the shapes that the equations make). Hodge's conjecture says a certain big family of measurements can always be built that way, using fractions as the amounts.",
-hist:[["1930s to 1940s","W. V. D. Hodge develops a way to split shapes' measurements into types."],["1950","Hodge states the conjecture in his address at the International Congress of Mathematicians."],["Today","Still open. It is proven for some special cases. Clay lists it as unsolved."]],
+emu:{q:"Build a simple house outline from the same blocks. Which set works?",ch:["A square and a triangle roof","A circle and a star"],a:0,why:"The same move works with new shapes: a square body with a triangle on top."},
+plain:"This is the hardest one to picture. Take a smooth shape defined by equations. Some of its hidden measurements can be built from simple sub-shapes made by equations. Hodge's conjecture says a certain big family of measurements can always be built that way, using fractions as the amounts.",
+origin:"W. V. D. Hodge stated the conjecture in his 1950 address to the International Congress of Mathematicians. It is proven only for special cases.",
 eq:"Hodge classes in H<sup>2p</sup>(X, ℚ)  =  rational combinations of algebraic cycles",
-parts:[["X","A smooth shape described by polynomial equations."],["H<sup>2p</sup>(X, ℚ)","A list of measurements of X, using fractions (ℚ means the fractions)."],["Hodge class","A measurement with one extra property: it fits Hodge's pattern."],["algebraic cycle","A simple sub-shape made by equations, like a curve or a flat sheet inside X."],["rational combination","Add up some of these pieces, each multiplied by a fraction."]],
-gotcha:"The blocks picture is an analogy. The real statement needs some university math to read. The takeaway for now: it asks if one type of measurement always comes from equation-built pieces.",
-src:"Clay Mathematics Institute, Hodge Conjecture page (Deligne's description)."},
+parts:[["X","A smooth shape described by polynomial equations."],["H<sup>2p</sup>(X, ℚ)","A list of measurements of X, using fractions (ℚ)."],["Hodge class","A measurement with one extra property that fits Hodge's pattern."],["algebraic cycle","A simple sub-shape made by equations."],["rational combination","Add some of these pieces, each times a fraction."]],
+gotcha:"The blocks picture is a teaching analogy. The real statement needs university math. A mathematician should check this chapter before it goes far.",
+src:"Clay Mathematics Institute, Hodge Conjecture page."},
 
-{id:"ym",n:7,name:"Yang–Mills and the Mass Gap",tag:"Why is there a smallest step?",st:["Unsolved","unsolved"],core:"Grade 3 core: fractions on the number line.",
-hook:"Picture a ladder with a first step. You cannot hover half a step up. You are on the floor or you are on a step. Inside a proton, tiny particles called quarks are held together by a very strong force. Physics says the smallest nonzero amount of energy in that force is bigger than zero. Why?",
+{id:"ym",n:7,name:"Yang–Mills and the Mass Gap",tag:"Why is there a smallest step?",st:["Unsolved","unsolved"],core:"Grade 3 core: whole steps on a number line.",
+recall:"On a staircase you stand on a step. You cannot stand halfway between two steps.",
+rec:{q:"On the ladder picture, which spot is NOT allowed?",ch:["Step 2","Between step 1 and step 2","The floor"],a:1,why:"Energy in this picture comes in whole steps only."},
 play:"ymPlay",
-plain:"Yang–Mills theory is the math behind the strong force and similar forces. Physicists use it and the experiments agree with it. Mathematicians have not shown that the theory is built on solid ground, and have not proven the \"mass gap\": the smallest nonzero energy is a positive number.",
-hist:[["1954","Chen Ning Yang and Robert Mills publish their equations."],["1970s","The strong force is described with a version of their theory (called QCD)."],["2000","Clay lists the existence and mass gap problem as one of the seven."],["Today","Still open. Clay lists it as unsolved."]],
+emu:{q:"The gap Δ is the distance from the floor to step 1. The mass gap claim says Δ is...",ch:["Zero","Bigger than zero","Negative"],a:1,why:"A gap of zero would mean there is no first step. The claim is that the lowest nonzero energy is a positive number."},
+plain:"Yang–Mills theory is the math behind the strong force, which holds quarks together inside protons. Physicists use it and experiments agree with it. Mathematicians have not shown the theory is built on solid ground, and have not proven the mass gap.",
+origin:"Chen Ning Yang and Robert Mills published their equations in 1954.",
 eq:"F<sub>μν</sub> = ∂<sub>μ</sub>A<sub>ν</sub> − ∂<sub>ν</sub>A<sub>μ</sub> + g [A<sub>μ</sub>, A<sub>ν</sub>]<br>Mass gap: smallest nonzero energy Δ &gt; 0",
-parts:[["A<sub>μ</sub>","The force field. μ points to which direction (and time)."],["∂<sub>μ</sub>A<sub>ν</sub>","How the field changes in direction μ."],["F<sub>μν</sub>","The field strength: how strong the force is."],["g","How strong the force is at its most basic level."],["[A<sub>μ</sub>, A<sub>ν</sub>]","The force fields push on each other. That extra term is what makes Yang–Mills different from simple electric forces."],["Δ","The mass gap. The conjecture says there is a smallest nonzero energy and Δ is greater than 0."]],
-gotcha:"The proof has two parts: show the theory exists as a well-defined math object, then show the gap. Both parts are open.",
-src:"Clay Mathematics Institute, Yang–Mills page (Jaffe and Witten's description); Yang and Mills 1954."}
+parts:[["A<sub>μ</sub>","The force field. μ points to a direction (or time)."],["F<sub>μν</sub>","The field strength: how strong the force is."],["g","How strong the force is at its most basic level."],["[A<sub>μ</sub>, A<sub>ν</sub>]","The force fields push on each other. That extra term makes Yang–Mills different from simple electric forces."],["Δ","The mass gap, claimed to be greater than 0."]],
+gotcha:"The full problem has two parts: show the theory exists as a well-defined math object, then show the gap. Both are open.",
+src:"Clay Mathematics Institute, Yang–Mills page; Yang and Mills 1954."}
 ];
 
 /* ---------- build page ---------- */
 var nav=$("nav"),host=$("chapters"),sr=$("statusrow");
+var SHORT={riemann:"Riemann",pnp:"P vs NP",poincare:"Poincaré",ns:"Navier–Stokes",bsd:"BSD",hodge:"Hodge",ym:"Yang–Mills"};
+function mc(id,spec){var el=$(id);el.innerHTML="<div>"+spec.q+"</div><div class='opts'></div><div class='res'></div>";
+ var o=el.querySelector(".opts"),r=el.querySelector(".res");
+ spec.ch.forEach(function(t,i){var b=document.createElement("button");b.textContent=t;b.onclick=function(){
+  if(i===spec.a){r.className="res good";r.textContent="Yes. "+spec.why}else{r.className="res bad";r.textContent="Not yet. Try another choice."}};o.appendChild(b)})}
 CH.forEach(function(c){
- var a=document.createElement("a");a.className="chip";a.href="#"+c.id;a.textContent=c.n+" "+({riemann:"Riemann",pnp:"P vs NP",poincare:"Poincaré",ns:"Navier–Stokes",bsd:"BSD",hodge:"Hodge",ym:"Yang–Mills"})[c.id];nav.appendChild(a);
- var p=document.createElement("span");p.className="pill s-"+c.st[1];p.textContent=c.n+". "+c.name.replace("The ","")+": "+c.st[0];sr.appendChild(p);
+ var a=document.createElement("a");a.className="chip";a.href="#"+c.id;a.textContent=c.n+" "+SHORT[c.id];nav.appendChild(a);
+ var p=document.createElement("span");p.className="pill s-"+c.st[1];p.textContent=c.n+". "+SHORT[c.id]+": "+c.st[0];sr.appendChild(p);
  var s=document.createElement("section");s.className="card";s.id=c.id;
  var h="<h2>"+c.n+". "+c.name+"</h2><div class='small'>"+c.tag+" <span class='pill s-"+c.st[1]+"'>Clay label: "+c.st[0]+"</span></div>";
- h+="<h3>Start here</h3><p class='kid'><span class='label analogy'>KID ANALOGY</span>"+c.hook+"</p>";
- h+="<div class='play' id='pl_"+c.id+"'></div>";
- h+="<h3>The real question</h3><p><span class='label real'>REAL MATH</span>"+c.plain+"</p>";
- h+="<h3>History</h3><ul class='tl'>"+c.hist.map(function(x){return "<li><b>"+x[0]+"</b><span>"+x[1]+"</span></li>"}).join("")+"</ul>";
- h+="<h3>The equation, piece by piece</h3><div class='eq'>"+c.eq+"</div><table>"+c.parts.map(function(x){return "<tr><td>"+x[0]+"</td><td>"+x[1]+"</td></tr>"}).join("")+"</table>";
- h+="<h3>Gotcha for older kids</h3><p class='small'>"+c.gotcha+"</p><p class='small'><b>Core connection:</b> "+c.core+"</p><p class='small'><b>Sources:</b> "+c.src+"</p>";
- s.innerHTML=h;host.appendChild(s);
+ h+="<div class='stage'><span>1 RECALL</span>What you already know</div><p class='kid'><span class='label analogy'>KID ANALOGY</span>"+c.recall+"</p>";
+ h+="<div class='stage'><span>2 RECOGNIZE</span>Spot the pattern</div><div class='mc' id='r_"+c.id+"'></div>";
+ h+="<div class='stage'><span>3 APPLY</span>Try it yourself</div><div class='play' id='pl_"+c.id+"'></div>";
+ h+="<div class='stage'><span>4 EMULATE</span>Do the same move in a new spot</div><div class='mc' id='e_"+c.id+"'></div>";
+ h+="<h3>The real question</h3><p><span class='label real'>REAL MATH</span>"+c.plain+"</p><p class='small'>"+c.origin+"</p>";
+ h+="<h3>The equation</h3><div class='eq'>"+c.eq+"</div>";
+ h+="<details><summary>Piece by piece (older kids)</summary><table>"+c.parts.map(function(x){return "<tr><td>"+x[0]+"</td><td>"+x[1]+"</td></tr>"}).join("")+"</table><p class='small'>"+c.gotcha+"</p></details>";
+ h+="<p class='small'><b>Core connection:</b> "+c.core+" <b>Source:</b> "+c.src+"</p><p class='small'>Repeat this chapter again tomorrow. Repetition is how RE works.</p>";
+ s.innerHTML=h;host.appendChild(s);mc("r_"+c.id,c.rec);mc("e_"+c.id,c.emu);
 });
 
 /* ---------- interactives ---------- */
@@ -174,18 +202,15 @@ function isPrime(n){if(n<2)return false;for(var i=2;i*i<=n;i++)if(n%i===0)return
 function divs(n){var d=[];for(var i=1;i<=n;i++)if(n%i===0)d.push(i);return d}
 
 function riemannPlay(el){
- var h="<b>Tap a number.</b> Red numbers are primes.<div class='grid' id='rg'></div><p id='rinfo' class='big'>Tap a number to see how many plates work.</p>";
- h+="<hr><b>Euler's add-up (s = 2).</b> Add more fractions and watch the total.<label>How many fractions: <span id='rn'>5</span></label><input type='range' id='rs' min='1' max='200' value='5'><p id='rsum'></p>";
- el.innerHTML=h;var g=$("rg");
- for(var i=1;i<=60;i++){g.appendChild((function(n){var b=document.createElement("button");b.textContent=n;if(isPrime(n))b.className="pr";b.onclick=function(){
-  Array.prototype.forEach.call(g.children,function(x){x.classList.remove("sel")});b.classList.add("sel");
-  var d=divs(n),inf=n+" cookies: ";
-  if(n===1)inf+="1 plate. Neither prime nor not prime by the usual rule.";
-  else if(isPrime(n))inf+="prime. Only "+d.join(" and ")+" plates share them evenly.";
-  else inf+="shares evenly on "+d.join(", ")+" plates. Not prime.";
-  $("rinfo").textContent=inf};return b})(i))}
- function sum(){var N=+$("rs").value,s=0;for(var k=1;k<=N;k++)s+=1/(k*k);$("rn").textContent=N;
-  $("rsum").innerHTML="1 + 1/4 + 1/9 + ... (first "+N+" fractions) = <b>"+s.toFixed(5)+"</b><br><span class='small'>The total never passes π²/6 = "+(Math.PI*Math.PI/6).toFixed(5)+". Euler proved that in 1735.</span>"}
+ el.innerHTML="<b>The strike-out game.</b> Board size: <span id='rsz'>60</span><input type='range' id='rn' min='30' max='100' value='60'><div class='grid' id='rg'></div><div><button data-p='2'>Strike out 2s</button> <button data-p='3'>3s</button> <button data-p='5'>5s</button> <button data-p='7'>7s</button> <button id='rrs'>Reset</button></div><p id='rinfo' class='big'>Strike out the multiples. What is left?</p><details><summary>Extra for older kids: Euler's add-up (s = 2)</summary><label>How many fractions: <span id='rk'>5</span></label><input type='range' id='rs' min='1' max='200' value='5'><p id='rsum'></p></details>";
+ var out={},N=60;
+ function draw(){N=+$("rn").value;$("rsz").textContent=N;var g=$("rg");g.innerHTML="";
+  for(var n=1;n<=N;n++){var b=document.createElement("button");b.textContent=n;if(out[n])b.style.opacity=".2";else if(n>1&&isPrime(n)&&Object.keys(out).length>0)b.className="pr";g.appendChild(b)}
+  var left=[];for(n=2;n<=N;n++)if(!out[n])left.push(n);
+  $("rinfo").textContent=Object.keys(out).length?"Left standing: "+left.join(", "):"Strike out the multiples. What is left?"}
+ Array.prototype.forEach.call(el.querySelectorAll("button[data-p]"),function(b){b.onclick=function(){var p=+b.getAttribute("data-p");for(var m=p*2;m<=100;m+=p)out[m]=true;draw()}});
+ $("rrs").onclick=function(){out={};draw()};$("rn").oninput=draw;draw();
+ function sum(){var K=+$("rs").value,t=0;for(var k=1;k<=K;k++)t+=1/(k*k);$("rk").textContent=K;$("rsum").innerHTML="1 + 1/4 + 1/9 + ... ("+K+" fractions) = <b>"+t.toFixed(5)+"</b><br><span class='small'>It never passes π²/6 = "+(Math.PI*Math.PI/6).toFixed(5)+" (Euler, 1735).</span>"}
  $("rs").oninput=sum;sum()}
 
 function pnpPlay(el){
@@ -203,13 +228,11 @@ function pnpPlay(el){
  newP()}
 
 function poincarePlay(el){
- el.innerHTML="<b>Pull the string tight.</b><input type='range' id='pr' min='0' max='100' value='0'><svg viewBox='0 0 520 200' width='100%' role='img' aria-label='A loop on a ball shrinks to a point; a loop around a donut stops at the hole'><g id='ball'></g><g id='donut'></g></svg><p id='pcap' class='small'></p>";
- function draw(){var t=+$("pr").value/100;
-  var rx=80*(1-t)+2,ry=18*(1-t)+1;
-  $("ball").innerHTML="<circle cx='120' cy='100' r='70' fill='none' stroke='currentColor' stroke-width='2'/><ellipse cx='120' cy='100' rx='"+rx+"' ry='"+ry+"' fill='none' stroke='#c0392b' stroke-width='3'/><text x='120' y='190' text-anchor='middle' font-size='14' fill='currentColor'>Ball: loop shrinks to a dot</text>";
-  var drx=Math.max(78*(1-t),28),dry=Math.max(32*(1-t),12);
-  $("donut").innerHTML="<ellipse cx='390' cy='100' rx='95' ry='55' fill='none' stroke='currentColor' stroke-width='2'/><ellipse cx='390' cy='100' rx='36' ry='14' fill='none' stroke='currentColor' stroke-width='2'/><ellipse cx='390' cy='100' rx='"+drx+"' ry='"+dry+"' fill='none' stroke='#c0392b' stroke-width='3' stroke-dasharray='"+(t>.62?"6 4":"0")+"'/><text x='390' y='190' text-anchor='middle' font-size='14' fill='currentColor'>Donut: loop gets stuck at the hole</text>";
-  $("pcap").textContent=t<.1?"Drag the slider to the right.":(t>.9?"The loop on the ball is a dot. The loop around the donut stopped when it hit the hole.":"Pulling tighter...")}
+ el.innerHTML="<b>Pull the rope tight.</b><input type='range' id='pr' min='0' max='100' value='0'><svg viewBox='0 0 520 200' width='100%' role='img' aria-label='A rope loop on bare ground shrinks to a point; a rope loop around a pole stops at the pole'><g id='gnd'></g><g id='pole'></g></svg><p id='pcap' class='small'></p>";
+ function draw(){var t=+$("pr").value/100,r=70*(1-t)+2,rp=Math.max(70*(1-t),16);
+  $("gnd").innerHTML="<text x='130' y='24' text-anchor='middle' font-size='14' fill='currentColor'>Bare ground</text><circle cx='130' cy='100' r='"+r+"' fill='none' stroke='#c0392b' stroke-width='3'/>";
+  $("pole").innerHTML="<text x='390' y='24' text-anchor='middle' font-size='14' fill='currentColor'>Around a pole (top view)</text><circle cx='390' cy='100' r='"+rp+"' fill='none' stroke='#c0392b' stroke-width='3'/><circle cx='390' cy='100' r='12' fill='currentColor'/>";
+  $("pcap").textContent=t<.1?"Drag the slider to the right.":(t>.9?"The rope on bare ground became a dot. The rope around the pole stopped at the pole.":"Pulling tighter...")}
  $("pr").oninput=draw;draw()}
 
 function nsPlay(el){
