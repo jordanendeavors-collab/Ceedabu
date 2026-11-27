@@ -834,6 +834,11 @@ defaults();var had=load();
 buildGlobal();syncGlobal();sizeStage();build();gsReset();
 if(lsGet("mbtheme")==="1")document.body.classList.add("dark");
 window.__mb={S:S,start:start,stop:stop,audition:audition,ctx:function(){return ac},master:function(){return comp},hz:hzOf,lvl:function(i){return S.tracks[i].lvl},rec:toggleRec,ksBuf:function(f){ensureAudio();return ksBuf(f)},degMax:degMax,recorder:function(){return mr},chunks:function(){return chunks}};
+function gotoHash(){var h=(location.hash||"").slice(1),m={demo:"#demoCard",pitch:"#rootHz",scenes:"#scenes",voices:".track",lights:"#stagebox",dna:"#dnaBox",body:"#stagebox"},q=m[h];if(!q)return;
+ if(h==="dna")$("#dnaBox").open=true;
+ if(h==="body"&&!S.body)$("#bBody").click();
+ var e=$(q);if(e&&e.scrollIntoView)setTimeout(function(){e.scrollIntoView({behavior:"smooth",block:"start"})},200)}
+gotoHash();window.addEventListener("hashchange",gotoHash);
 requestAnimationFrame(frame);
 
 /* ================= guided demo ================= */
