@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crest and Trough | Math Beats Studio</title>
+<meta name="theme-color" content="#0a1424">
+<meta name="description" content="Learn crest and trough: the top and the bottom of a wave. Live examples, practice, and questions. Free, works offline.">
+<link rel="icon" href="/favicon.png" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#14233f;--mute:#5d6a85;--line:#d6dce8;--gold:#b07d10;--navy:#14305a;--on:#14305a;--onink:#fff;--cell:#e6ebf4;--crest:#c62828;--trough:#1f5fbf;--ok:#1f7a3a;--bad:#b3261e}
+body.dark{--bg:#0a1424;--card:#111e36;--ink:#e8eef9;--mute:#9aa8c4;--line:#25375b;--gold:#e0b04a;--navy:#e0b04a;--on:#e0b04a;--onink:#0a1424;--cell:#1a2a4a;--crest:#ff7b7b;--trough:#6fb0ff;--ok:#5fd38a;--bad:#ff8a80}
+*{box-sizing:border-box}
+body{margin:0 auto;background:var(--bg);color:var(--ink);font:17px/1.45 Calibri,Arial,sans-serif;padding:12px;max-width:980px}
+h1,h2,h3{font-family:Cambria,Georgia,serif;color:var(--navy);margin:.2em 0 .3em}
+h1{font-size:30px}h2{font-size:24px;margin-top:0}h3{font-size:19px}
+a{color:var(--trough)}
+button{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-height:44px;cursor:pointer}
+button.pri{background:var(--on);color:var(--onink);border-color:var(--on);font-weight:700}
+button.sel{background:var(--on);color:var(--onink);border-color:var(--on)}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.sub{color:var(--mute);margin:0 0 10px}
+canvas{display:block;width:100%;background:var(--card);border:1px solid var(--line);border-radius:12px;touch-action:manipulation}
+.tall{height:250px}.mid{height:210px}.rc{height:190px;cursor:pointer}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0}
+.row label{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+input[type=range]{width:170px;min-height:36px;accent-color:var(--on)}
+.words{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
+.word{border:2px solid var(--line);border-radius:12px;padding:10px;background:var(--cell)}
+.word b{font-size:20px}.word.c{border-color:var(--crest)}.word.c b{color:var(--crest)}
+.word.t{border-color:var(--trough)}.word.t b{color:var(--trough)}
+.read{font-weight:700;min-height:1.5em;margin:6px 0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.hidden{display:none}
+.stage{border-left:6px solid var(--gold)}
+.stage .tag{display:inline-block;background:var(--on);color:var(--onink);border-radius:8px;padding:1px 9px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.fb{min-height:1.6em;font-weight:700;margin:6px 0}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.q{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.q .ch{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.why{color:var(--mute);margin:4px 0 0}
+.pick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.pick button{padding:4px;min-height:0}.pick canvas{height:80px;border:0}
+details{border-top:1px solid var(--line);padding:8px 0}
+summary{cursor:pointer;font-weight:700;min-height:36px;display:flex;align-items:center}
+.stars{font-weight:700;color:var(--gold)}
+.note{color:var(--mute);font-size:14px}
+footer{color:var(--mute);font-size:14px;margin:18px 0 30px}
+@media(max-width:600px){h1{font-size:25px}input[type=range]{width:130px}}
+@media(prefers-reduced-motion:reduce){.ani{animation:none}}
+</style>
+</head>
+<body>
+<header>
+  <div><a href="/">Math Beats Studio</a> · <a href="studio.html">Open the Studio</a></div>
+  <div><span class="stars" id="stars" aria-live="polite"></span> <button id="th">Light / Dark</button></div>
+</header>
+
+<h1>Crest and Trough</h1>
+<p class="sub">A wave goes up and down. The top is the crest. The bottom is the trough. That is how a signal is drawn.</p>
+
+<section class="card" aria-labelledby="h-live">
+  <h2 id="h-live">See it</h2>
+  <canvas id="hero" class="tall" role="img" aria-label="A moving wave with its crests labeled at the top and its troughs labeled at the bottom"></canvas>
+  <div class="row">
+    <label>Height <input type="range" id="hA" min="1" max="5" step="1" value="3"></label>
+    <label>Speed <input type="range" id="hF" min="1" max="6" step="1" value="3"></label>
+    <button id="hPause">Pause</button>
+  </div>
+  <div class="read" id="hRead"></div>
+  <div class="words">
+    <div class="word c"><b>Crest</b><br>The top of the wave. The highest point above the middle line.</div>
+    <div class="word t"><b>Trough</b><br>The bottom of the wave. The lowest point below the middle line.</div>
+    <div class="word"><b>Rest line</b><br>The middle. Above it is plus (+). Below it is minus (&minus;).</div>
+  </div>
+  <p class="note">A signal is a wave that carries something: sound, light, a radio message. We draw it as crests and troughs so we can read it.</p>
+</section>
+
+<section class="card" aria-labelledby="h-ex">
+  <h2 id="h-ex">Four places to find them</h2>
+  <div class="tabs" role="tablist">
+    <button role="tab" data-ex="ocean" class="sel">Ocean</button>
+    <button role="tab" data-ex="sound">Sound</button>
+    <button role="tab" data-ex="rope">Rope</button>
+    <button role="tab" data-ex="tide">Tides</button>
+  </div>
+
+  <div id="ex-ocean">
+    <canvas id="cOcean" class="tall" role="img" aria-label="Ocean waves with a boat riding up and down"></canvas>
+    <div class="row"><label>Wave height <input type="range" id="oA" min="1" max="5" value="3"></label></div>
+    <div class="read" id="oRead"></div>
+    <p class="note">The boat goes up to the crest, then down to the trough, again and again. The water itself does not travel to the shore. The shape of the wave does.</p>
+  </div>
+
+  <div id="ex-sound" class="hidden">
+    <canvas id="cSound" class="tall" role="img" aria-label="Air dots squeezed together and spread apart, with a pressure graph below"></canvas>
+    <div class="row">
+      <label>Pitch <input type="range" id="sP" min="100" max="900" step="10" value="300"> <span id="sPv">300 Hz</span></label>
+      <label>Loudness <input type="range" id="sL" min="1" max="5" value="3"></label>
+      <button id="sBtn" class="pri">Hear it</button>
+    </div>
+    <p class="note">Slow motion: a real 300 Hz sound makes 300 crests every second. Where the dots squeeze together, the pressure is high: that is the crest. Where they spread out, it is low: that is the trough. A louder sound makes taller crests. A higher pitch packs more crests into the same space. Keep the volume down.</p>
+  </div>
+
+  <div id="ex-rope" class="hidden">
+    <canvas id="cRope" class="tall" role="img" aria-label="A rope wave you can shake with your finger"></canvas>
+    <div class="row"><button id="rAuto" class="pri">Use my finger</button><span class="note" id="rHint">The rope is flicking by itself.</span></div>
+    <p class="note">Press the left end of the rope and move up and down. Every bump you make travels along the rope. The tops get the word CREST and the bottoms get TROUGH.</p>
+  </div>
+
+  <div id="ex-tide" class="hidden">
+    <canvas id="cTide" class="mid" role="img" aria-label="A day of sea level with two high tides and two low tides"></canvas>
+    <div class="row"><label>Time of day <input type="range" id="tT" min="0" max="24" step="0.1" value="3"></label><span id="tTv"></span></div>
+    <div class="read" id="tRead"></div>
+    <p class="note">In many places the sea rises and falls about twice a day. High tide is a crest. Low tide is a trough. This is an example picture, not a real tide chart.</p>
+  </div>
+</section>
+
+<section class="card stage" aria-labelledby="h-rec">
+  <span class="tag">Step 1 · Recall</span>
+  <h2 id="h-rec">Tap the right spot</h2>
+  <p class="sub">Read the question, then tap the wave.</p>
+  <div class="read" id="rcAsk"></div>
+  <canvas id="rc" class="rc" role="img" aria-label="A still wave. Tap the crest, the trough, or the rest line as asked."></canvas>
+  <div class="fb" id="rcFb" aria-live="polite"></div>
+  <button id="rcNext">New wave</button>
+</section>
+
+<section class="card stage" aria-labelledby="h-reg">
+  <span class="tag">Step 2 · Recognize</span>
+  <h2 id="h-reg">What do you see?</h2>
+  <div id="recog"></div>
+</section>
+
+<section class="card stage" aria-labelledby="h-app">
+  <span class="tag">Step 3 · Apply</span>
+  <h2 id="h-app">Match the wave</h2>
+  <p class="sub">The faint line is the target. Use the sliders to make your wave cover it.</p>
+  <canvas id="cApp" class="tall" role="img" aria-label="A target wave and your wave on a grid with plus and minus numbers"></canvas>
+  <div class="row">
+    <label>Height <input type="range" id="aA" min="1" max="4" step="1" value="1"></label>
+    <label>Crests across <input type="range" id="aN" min="1" max="4" step="1" value="1"></label>
+    <button id="aNew">New target</button>
+  </div>
+  <div class="read" id="aRead"></div>
+  <div class="fb" id="aFb" aria-live="polite"></div>
+</section>
+
+<section class="card stage" aria-labelledby="h-emu">
+  <span class="tag">Step 4 · Emulate</span>
+  <h2 id="h-emu">New situations</h2>
+  <p class="sub">Same idea, new places. Pick the wave that fits.</p>
+  <div id="emu"></div>
+</section>
+
+<section class="card" aria-labelledby="h-faq">
+  <h2 id="h-faq">Questions kids ask</h2>
+  <details><summary>Is the trough as big as the crest?</summary><p>In a plain, smooth wave, yes. If the crest is 3 above the rest line, the trough is 3 below it. Real signals can be lopsided, but we start with the even ones.</p></details>
+  <details><summary>Why is the middle line there?</summary><p>It is the rest line: where the water, the rope or the air sits when nothing is moving. We measure every crest and trough from it. Above is plus. Below is minus.</p></details>
+  <details><summary>Does a louder sound mean a taller crest?</summary><p>Yes. Loudness is the height of the crest (and the depth of the trough). Quiet sounds make small waves. Loud sounds make tall ones.</p></details>
+  <details><summary>What does a higher note change?</summary><p>The number of crests per second. A high note has lots of crests packed close. A low note has fewer, spread far apart. Crests per second is called frequency, and we count it in hertz (Hz).</p></details>
+  <details><summary>What is a wavelength?</summary><p>The distance from one crest to the next crest. Measure from trough to trough and you get the same answer.</p></details>
+  <details><summary>Can a wave have just a crest?</summary><p>One single bump is called a pulse, and a pulse can be only a crest. A wave that keeps going has both: crest, trough, crest, trough.</p></details>
+  <details><summary>Why call it a signal?</summary><p>A signal is a wave that carries a message. Your voice, a radio station and a phone call are all signals. Changing the crests and troughs is how the message gets in.</p></details>
+  <details><summary>Where can I hear and see waves like this?</summary><p>In the <a href="studio.html">Math Beats Studio</a>. Every track draws its curve in light and plays it as a note. Watch the curves rise to their crests and fall to their troughs.</p></details>
+</section>
+
+<footer>Part of <a href="/">Math Beats Studio</a> · From <a href="https://4in7hld8hum.com">The Humming of God</a> · Works offline once opened.</footer>
+
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s)};
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+var TH={};
+function readTheme(){var s=getComputedStyle(document.body),g=function(n){return s.getPropertyValue(n).trim()};
+ TH={ink:g("--ink"),mute:g("--mute"),line:g("--line"),card:g("--card"),crest:g("--crest"),trough:g("--trough"),ok:g("--ok"),on:g("--on"),gold:g("--gold"),cell:g("--cell")}}
+function fit(cv){var d=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;if(w<5||h<5)return null;
+ var W=Math.round(w*d),H=Math.round(h*d);if(cv.width!==W||cv.height!==H){cv.width=W;cv.height=H}
+ var c=cv.getContext("2d");c.setTransform(d,0,0,d,0,0);c.clearRect(0,0,w,h);return{c:c,w:w,h:h}}
+function txt(c,s,x,y,col,al,sz){c.fillStyle=col;c.textAlign=al||"left";c.font="bold "+(sz||13)+"px Calibri,Arial,sans-serif";c.fillText(s,x,y)}
+function dot(c,x,y,col,r){c.fillStyle=col;c.beginPath();c.arc(x,y,r||6,0,6.2832);c.fill()}
+function dash(c,x1,y1,x2,y2,col){c.save();c.setLineDash([6,5]);c.strokeStyle=col;c.lineWidth=1.5;c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke();c.restore()}
+var TAU=Math.PI*2;
+
+/* ---------- score ---------- */
+var score=parseInt(lsGet("cwStars")||"0",10)||0;
+function stars(n){score+=n;lsSet("cwStars",String(score));showStars()}
+function showStars(){$("#stars").textContent="Stars: "+score}
+
+/* ---------- hero ---------- */
+var H={A:3,f:.25,paused:false,t:0};
+$("#hA").oninput=function(){H.A=+this.value;heroRead()};
+$("#hF").oninput=function(){H.f=+this.value*.08;heroRead()};
+$("#hPause").onclick=function(){H.paused=!H.paused;this.textContent=H.paused?"Play":"Pause"};
+H.f=3*.08;
+function heroRead(){$("#hRead").textContent="Crest at +"+H.A+". Trough at −"+H.A+". The wave is "+(H.A*2)+" tall from trough to crest."}
+function drawHero(){
+ var o=fit($("#hero"));if(!o)return;var c=o.c,w=o.w,h=o.h,mid=h/2,u=(h/2-28)/5,A=H.A*u,x0=48,lam=(w-x0-30)/2;
+ c.lineWidth=1;
+ for(var k=-5;k<=5;k++){var y=mid-k*u;c.strokeStyle=k===0?TH.mute:TH.line;c.globalAlpha=k===0?0:.8;c.beginPath();c.moveTo(x0,y);c.lineTo(w-8,y);c.stroke();c.globalAlpha=1;
+  txt(c,(k>0?"+":k<0?"−":"")+Math.abs(k),x0-8,y+4,TH.mute,"right",12)}
+ dash(c,x0,mid,w-8,mid,TH.mute);txt(c,"rest line",w-10,mid-6,TH.mute,"right",12);
+ c.strokeStyle=TH.on;c.lineWidth=3.5;c.beginPath();
+ for(var x=x0;x<=w-8;x+=2){var yy=mid-A*Math.sin(TAU*((x-x0)/lam-H.t));if(x===x0)c.moveTo(x,yy);else c.lineTo(x,yy)}c.stroke();
+ for(var j=-1;j<4;j++){
+  var xc=x0+lam*(.25+j+H.t),xt=x0+lam*(.75+j+H.t);
+  if(xc>x0+10&&xc<w-20){dot(c,xc,mid-A,TH.crest,7);txt(c,"CREST",xc,mid-A-12,TH.crest,"center",14)}
+  if(xt>x0+10&&xt<w-24){dot(c,xt,mid+A,TH.trough,7);txt(c,"TROUGH",xt,mid+A+22,TH.trough,"center",14)}}
+}
+
+/* ---------- ocean ---------- */
+var O={A:3};$("#oA").oninput=function(){O.A=+this.value};
+function drawOcean(t){
+ var o=fit($("#cOcean"));if(!o)return;var c=o.c,w=o.w,h=o.h,mid=h*.55,u=(h*.4-20)/5,A=O.A*u,lam=w/2.4,f=.22;
+ c.fillStyle=TH.cell;c.fillRect(0,0,w,h);
+ function ht(x){return A*Math.sin(TAU*(x/lam-f*t))}
+ c.fillStyle=TH.trough;c.globalAlpha=.35;c.beginPath();c.moveTo(0,h);for(var x=0;x<=w;x+=3)c.lineTo(x,mid-ht(x));c.lineTo(w,h);c.closePath();c.fill();c.globalAlpha=1;
+ c.strokeStyle=TH.trough;c.lineWidth=3;c.beginPath();for(x=0;x<=w;x+=3){var y=mid-ht(x);if(x===0)c.moveTo(x,y);else c.lineTo(x,y)}c.stroke();
+ dash(c,0,mid,w,mid,TH.mute);txt(c,"rest line (calm water)",8,mid+16,TH.mute,"left",12);
+ var bx=w*.5,by=mid-ht(bx),sl=(ht(bx+2)-ht(bx-2))/4,ang=-Math.atan(sl);
+ c.save();c.translate(bx,by);c.rotate(ang);
+ c.fillStyle=TH.crest;c.beginPath();c.moveTo(-26,-4);c.lineTo(26,-4);c.lineTo(18,10);c.lineTo(-18,10);c.closePath();c.fill();
+ c.strokeStyle=TH.ink;c.lineWidth=2.5;c.beginPath();c.moveTo(0,-4);c.lineTo(0,-34);c.stroke();
+ c.fillStyle=TH.ink;c.beginPath();c.moveTo(1,-34);c.lineTo(20,-18);c.lineTo(1,-18);c.closePath();c.fill();c.restore();
+ var s=ht(bx)/A,d=-TAU*f*Math.cos(TAU*(bx/lam-f*t)),r;
+ if(s>.93)r="The boat is on a CREST: the top.";else if(s<-.93)r="The boat is in a TROUGH: the bottom.";else r=(d>0?"The boat is going up, toward a crest.":"The boat is going down, toward a trough.");
+ $("#oRead").textContent=r;
+}
+
+/* ---------- sound ---------- */
+var Sd={P:300,L:3,ac:null,osc:null,g:null,on:false};
+$("#sP").oninput=function(){Sd.P=+this.value;$("#sPv").textContent=Sd.P+" Hz";if(Sd.osc)Sd.osc.frequency.value=Sd.P};
+$("#sL").oninput=function(){Sd.L=+this.value;if(Sd.g)Sd.g.gain.value=.03*Sd.L};
+$("#sBtn").onclick=function(){if(Sd.on){soundOff();return}
+ try{var AC=window.AudioContext||window.webkitAudioContext;if(!Sd.ac)Sd.ac=new AC();if(Sd.ac.state==="suspended")Sd.ac.resume();
+  Sd.osc=Sd.ac.createOscillator();Sd.g=Sd.ac.createGain();Sd.osc.type="sine";Sd.osc.frequency.value=Sd.P;Sd.g.gain.value=.03*Sd.L;Sd.osc.connect(Sd.g);Sd.g.connect(Sd.ac.destination);Sd.osc.start();Sd.on=true;this.textContent="Stop the sound"}catch(e){this.textContent="No sound here"}};
+function soundOff(){try{if(Sd.osc){Sd.osc.stop();Sd.osc.disconnect()}}catch(e){}Sd.osc=null;Sd.on=false;$("#sBtn").textContent="Hear it"}
+function drawSound(t){
+ var o=fit($("#cSound"));if(!o)return;var c=o.c,w=o.w,h=o.h,x0=60,top=h*.5,lam=Math.max(30,(w-x0)*50/Sd.P*2.2),k=TAU/lam,om=TAU*.35,a=Sd.L*lam/30;
+ c.fillStyle=TH.on;c.fillRect(8,10,22,top-20);c.beginPath();c.moveTo(30,10);c.lineTo(50,0);c.lineTo(50,top);c.lineTo(30,top-10);c.closePath();c.fill();
+ var sp=Math.sin(-om*t)*4;c.fillStyle=TH.gold;c.fillRect(50+sp,6,4,top-12);
+ var rows=5,n=Math.floor((w-x0-10)/7);
+ for(var r=0;r<rows;r++){var y=14+r*((top-28)/(rows-1));
+  for(var i=0;i<n;i++){var xs=x0+i*7,xp=xs+a*Math.sin(k*xs-om*t);dot(c,xp,y,TH.ink,2.6)}}
+ var gm=top+(h-top)/2,gu=(h-top)/2-18,uA=gu*(Sd.L/5);
+ dash(c,x0,gm,w-8,gm,TH.mute);txt(c,"normal pressure",w-10,gm-4,TH.mute,"right",12);
+ c.strokeStyle=TH.on;c.lineWidth=3;c.beginPath();
+ for(var x=x0;x<=w-8;x+=2){var p=-Math.cos(k*x-om*t),yy=gm-uA*p;if(x===x0)c.moveTo(x,yy);else c.lineTo(x,yy)}c.stroke();
+ var shown=0;
+ for(var j=-2;j<40&&shown<3;j++){var xc=(TAU*(j)+om*t+Math.PI)/k;
+  if(xc>x0+40&&xc<w-40){dot(c,xc,gm-uA,TH.crest,6);txt(c,"CREST: squeezed",xc,gm-uA-10,TH.crest,"center",12);shown++;
+   var xt=xc+lam/2;if(xt<w-50){dot(c,xt,gm+uA,TH.trough,6);txt(c,"TROUGH: spread out",xt,gm+uA+18,TH.trough,"center",12)}break}}
+}
+
+/* ---------- rope ---------- */
+var R={hist:[],auto:true,ey:0,drag:false,t0:0};
+for(var i=0;i<400;i++)R.hist.push(0);
+$("#rAuto").onclick=function(){R.auto=!R.auto;this.textContent=R.auto?"Use my finger":"Let it flick itself";$("#rHint").textContent=R.auto?"The rope is flicking by itself.":"Press the left end of the rope and move up and down."};
+(function(){var cv=$("#cRope");
+ function mv(e){var r=cv.getBoundingClientRect();R.ey=Math.max(-1,Math.min(1,((r.top+r.height/2)-e.clientY)/(r.height/2-30)))}
+ cv.addEventListener("pointerdown",function(e){R.drag=true;if(R.auto){R.auto=false;$("#rAuto").textContent="Let it flick itself";$("#rHint").textContent="Press the left end of the rope and move up and down."}try{cv.setPointerCapture(e.pointerId)}catch(x){}mv(e)});
+ cv.addEventListener("pointermove",function(e){if(R.drag)mv(e)});
+ cv.addEventListener("pointerup",function(){R.drag=false});cv.addEventListener("pointercancel",function(){R.drag=false})})();
+function drawRope(t){
+ var o=fit($("#cRope"));if(!o)return;var c=o.c,w=o.w,h=o.h,mid=h/2,amp=h/2-34;
+ if(R.drag){}else if(R.auto)R.ey=Math.sin(TAU*.5*t)*.75;else R.ey*=.9;
+ R.hist.push(R.ey);if(R.hist.length>400)R.hist.shift();
+ var pts=[],len=R.hist.length;
+ for(var px=24;px<=w-12;px+=3){var dl=Math.round((px-24)/4.5),v=R.hist[Math.max(0,len-1-dl)]*(1-(px-24)/w*.3);pts.push([px,mid-v*amp])}
+ dash(c,24,mid,w-12,mid,TH.mute);txt(c,"rest line",w-14,mid-6,TH.mute,"right",12);
+ c.strokeStyle=TH.on;c.lineWidth=4;c.lineJoin="round";c.beginPath();pts.forEach(function(p,i){if(i===0)c.moveTo(p[0],p[1]);else c.lineTo(p[0],p[1])});c.stroke();
+ dot(c,pts[0][0],pts[0][1],TH.gold,9);
+ var lastLab=-99;
+ for(var i=2;i<pts.length-2;i++){var y=pts[i][1];
+  if(y<pts[i-1][1]&&y<=pts[i+1][1]&&mid-y>14&&pts[i][0]-lastLab>60&&pts[i][0]>60){dot(c,pts[i][0],y,TH.crest,6);txt(c,"CREST",pts[i][0],y-12,TH.crest,"center",13);lastLab=pts[i][0]}
+  else if(y>pts[i-1][1]&&y>=pts[i+1][1]&&y-mid>14&&pts[i][0]-lastLab>60&&pts[i][0]>60){dot(c,pts[i][0],y,TH.trough,6);txt(c,"TROUGH",pts[i][0],y+22,TH.trough,"center",13);lastLab=pts[i][0]}}
+}
+
+/* ---------- tide ---------- */
+function tideH(t){return Math.sin(TAU*t/12.4+1.2)}
+$("#tT").oninput=function(){};
+function drawTide(){
+ var o=fit($("#cTide"));if(!o)return;var c=o.c,w=o.w,h=o.h,x0=44,mid=h/2-6,A=h/2-40,T=+$("#tT").value;
+ dash(c,x0,mid,w-8,mid,TH.mute);txt(c,"average sea level",w-10,mid-6,TH.mute,"right",12);
+ c.strokeStyle=TH.on;c.lineWidth=3;c.beginPath();
+ for(var x=x0;x<=w-8;x+=2){var tt=(x-x0)/(w-8-x0)*24,y=mid-A*tideH(tt);if(x===x0)c.moveTo(x,y);else c.lineTo(x,y)}c.stroke();
+ for(var hr=0;hr<=24;hr+=6){var xx=x0+hr/24*(w-8-x0);txt(c,hr+" h",xx,h-6,TH.mute,"center",12)}
+ for(var q=0;q<=24;q+=.1){var v=tideH(q),v1=tideH(q-.1),v2=tideH(q+.1);
+  if(v>v1&&v>=v2&&v>.99){var xc=x0+q/24*(w-8-x0);dot(c,xc,mid-A,TH.crest,5);txt(c,"HIGH",xc,mid-A-9,TH.crest,"center",12)}
+  if(v<v1&&v<=v2&&v<-.99){var xt=x0+q/24*(w-8-x0);dot(c,xt,mid+A,TH.trough,5);txt(c,"LOW",xt,mid+A+17,TH.trough,"center",12)}}
+ var xd=x0+T/24*(w-8-x0),yd=mid-A*tideH(T);dot(c,xd,yd,TH.gold,9);
+ var s=tideH(T),d=tideH(T+.05)-tideH(T-.05),r;
+ if(s>.97)r="High tide: a crest.";else if(s<-.97)r="Low tide: a trough.";else r=d>0?"The water is rising, toward high tide.":"The water is falling, toward low tide.";
+ $("#tRead").textContent=r;$("#tTv").textContent=T.toFixed(1)+" hours";
+}
+
+/* ---------- tabs ---------- */
+var ex="ocean";
+document.querySelectorAll("[data-ex]").forEach(function(b){b.onclick=function(){
+ ex=b.dataset.ex;document.querySelectorAll("[data-ex]").forEach(function(x){x.classList.toggle("sel",x===b)});
+ ["ocean","sound","rope","tide"].forEach(function(n){$("#ex-"+n).classList.toggle("hidden",n!==ex)});
+ if(ex!=="sound")soundOff()}});
+
+/* ---------- mini wave drawer ---------- */
+function mini(cv,A,n,opt){
+ opt=opt||{};var o=fit(cv);if(!o)return;var c=o.c,w=o.w,h=o.h,mid=h/2,u=(h/2-8)/4,pad=opt.pad||10;
+ dash(c,pad,mid,w-pad,mid,TH.mute);
+ c.strokeStyle=opt.col||TH.on;c.lineWidth=opt.lw||3;c.beginPath();
+ for(var x=pad;x<=w-pad;x+=2){var y=mid-A*u*Math.sin(TAU*n*(x-pad)/(w-2*pad));if(x===pad)c.moveTo(x,y);else c.lineTo(x,y)}c.stroke();
+ return {c:c,w:w,h:h,mid:mid,u:u,pad:pad,xAt:function(f){return pad+f*(w-2*pad)},yAt:function(f){return mid-A*u*Math.sin(TAU*n*f)}};
+}
+
+/* ---------- step 1: recall ---------- */
+var RC={A:3,n:2,ph:0,ask:"crest",pts:[],done:false};
+var ASKS={crest:"Tap a CREST (the top of the wave).",trough:"Tap a TROUGH (the bottom of the wave).",rest:"Tap the REST LINE (the middle)."};
+function rcNew(){var k=["crest","trough","rest"];RC.ask=k[Math.floor(Math.random()*3)];RC.A=1+Math.floor(Math.random()*3)+(Math.random()<.5?1:0);RC.n=1+Math.floor(Math.random()*3);RC.done=false;
+ $("#rcAsk").textContent=ASKS[RC.ask];$("#rcFb").textContent="";$("#rcFb").className="fb";rcDraw()}
+function rcDraw(){var m=mini($("#rc"),RC.A,RC.n);if(!m)return;RC.m=m;RC.pts=[];
+ for(var j=0;j<RC.n;j++){RC.pts.push({k:"crest",x:m.xAt((.25+j)/RC.n),y:m.yAt((.25+j)/RC.n)});RC.pts.push({k:"trough",x:m.xAt((.75+j)/RC.n),y:m.yAt((.75+j)/RC.n)})}
+ if(RC.done){RC.pts.forEach(function(p){dot(m.c,p.x,p.y,p.k==="crest"?TH.crest:TH.trough,6);txt(m.c,p.k.toUpperCase(),p.x,p.y+(p.k==="crest"?-12:22),p.k==="crest"?TH.crest:TH.trough,"center",12)})}}
+$("#rc").addEventListener("click",function(e){var r=this.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,m=RC.m;if(!m||RC.done)return;var ok=false;
+ if(RC.ask==="rest")ok=Math.abs(y-m.mid)<14;
+ else RC.pts.forEach(function(p){if(p.k===RC.ask&&Math.hypot(p.x-x,p.y-y)<34)ok=true});
+ var fb=$("#rcFb");
+ if(ok){fb.textContent="Yes! That is a "+(RC.ask==="rest"?"point on the rest line.":RC.ask+".");fb.className="fb ok";RC.done=true;stars(1);rcDraw()}
+ else{fb.textContent=RC.ask==="crest"?"Not quite. A crest is the highest point, above the line.":RC.ask==="trough"?"Not quite. A trough is the lowest point, below the line.":"Not quite. The rest line is the straight line through the middle.";fb.className="fb no"}});
+$("#rcNext").onclick=rcNew;
+
+/* ---------- step 2: recognize ---------- */
+var QS=[
+ {q:"What is the dot P?",f:.25,n:1,A:3,mark:"P",ch:["Crest","Trough","Rest line"],a:0,why:"P is at the very top of the wave, above the rest line. The top is the crest."},
+ {q:"What is the dot P?",f:.75,n:1,A:3,mark:"P",ch:["Crest","Trough","Rest line"],a:1,why:"P is at the very bottom, below the rest line. The bottom is the trough."},
+ {q:"What is the dot P?",f:.5,n:1,A:3,mark:"P",ch:["Crest","Trough","On the rest line"],a:2,why:"P sits on the middle line, neither up nor down. That is the rest line."},
+ {q:"This wave has a crest at +3. Where is its trough?",f:.25,n:1,A:3,lab:true,ch:["+6","0","−3"],a:2,why:"A smooth wave goes as far below the line as it goes above it. Up 3, so down 3: −3."},
+ {q:"Which wave has the taller crest?",two:true,ch:["Wave A","Wave B"],a:1,why:"Wave B reaches higher above the rest line, so its crest is taller."},
+ {q:"Wave X has 2 crests in the picture. Wave Y has 5. Which one has more crests every second?",three:true,ch:["Wave X","Wave Y"],a:1,why:"Same space, more crests: Y. More crests per second means a higher frequency, and a higher note."}
+];
+function buildRecog(){var box=$("#recog");box.innerHTML="";
+ QS.forEach(function(q,i){var d=document.createElement("div");d.className="q";
+  d.innerHTML='<b>'+(i+1)+'. '+q.q+'</b><canvas class="mid" style="height:'+(q.two||q.three?150:130)+'px" id="rq'+i+'" role="img" aria-label="Picture for question '+(i+1)+'"></canvas><div class="ch"></div><div class="fb" aria-live="polite"></div>';
+  var ch=d.querySelector(".ch"),fb=d.querySelector(".fb");
+  q.ch.forEach(function(t,j){var b=document.createElement("button");b.textContent=t;b.onclick=function(){
+   if(q.done)return;
+   if(j===q.a){q.done=true;fb.className="fb ok";fb.textContent="Yes! "+q.why;stars(1);ch.querySelectorAll("button").forEach(function(x){x.disabled=true})}
+   else{fb.className="fb no";fb.textContent="Not yet. Look again, then try another."}};ch.appendChild(b)});
+  box.appendChild(d)})}
+function drawRecog(){
+ QS.forEach(function(q,i){var cv=$("#rq"+i);if(!cv)return;
+  if(q.two){var o=fit(cv);if(!o)return;var c=o.c,w=o.w,h=o.h,half=w/2;
+   [[0,1.3,"A"],[1,3.4,"B"]].forEach(function(s){var x0=s[0]*half+12,x1=x0+half-24,mid=h/2,u=(h/2-10)/4;dash(c,x0,mid,x1,mid,TH.mute);
+    c.strokeStyle=TH.on;c.lineWidth=3;c.beginPath();for(var x=x0;x<=x1;x+=2){var y=mid-s[1]*u*Math.sin(TAU*1.5*(x-x0)/(x1-x0));if(x===x0)c.moveTo(x,y);else c.lineTo(x,y)}c.stroke();txt(c,"Wave "+s[2],x0+4,16,TH.ink,"left",14)});return}
+  if(q.three){var o2=fit(cv);if(!o2)return;var c2=o2.c,w2=o2.w,h2=o2.h;
+   [[2,"X",h2*.27],[5,"Y",h2*.73]].forEach(function(s){var mid=s[2],u=h2/10,x0=40,x1=w2-12;dash(c2,x0,mid,x1,mid,TH.mute);c2.strokeStyle=TH.on;c2.lineWidth=3;c2.beginPath();
+    for(var x=x0;x<=x1;x+=2){var y=mid-2*u*Math.sin(TAU*s[0]*(x-x0)/(x1-x0));if(x===x0)c2.moveTo(x,y);else c2.lineTo(x,y)}c2.stroke();txt(c2,s[1],10,mid+5,TH.ink,"left",16)});return}
+  var m=mini(cv,q.A,q.n);if(!m)return;
+  if(q.mark){var x=m.xAt(q.f/q.n),y=m.yAt(q.f/q.n);dot(m.c,x,y,TH.gold,9);txt(m.c,"P",x+14,y-8,TH.ink,"left",16)}
+  if(q.lab){var xc=m.xAt(.25),yc=m.yAt(.25);dot(m.c,xc,yc,TH.crest,7);txt(m.c,"crest +3",xc+12,yc+4,TH.crest,"left",14);
+   var xt=m.xAt(.75),yt=m.yAt(.75);dot(m.c,xt,yt,TH.mute,7);txt(m.c,"trough ?",xt+12,yt+4,TH.mute,"left",14)}})}
+
+/* ---------- step 3: apply ---------- */
+var AP={A:2,n:2,done:false};
+function apNew(){AP.A=1+Math.floor(Math.random()*4);AP.n=1+Math.floor(Math.random()*4);AP.done=false;$("#aA").value=1;$("#aN").value=1;$("#aFb").textContent="";$("#aFb").className="fb";apDraw()}
+function apDraw(){
+ var o=fit($("#cApp"));if(!o)return;var c=o.c,w=o.w,h=o.h,mid=h/2,u=(h/2-18)/4,x0=44,x1=w-12,mA=+$("#aA").value,mN=+$("#aN").value;
+ for(var k=-4;k<=4;k++){var y=mid-k*u;c.strokeStyle=TH.line;c.lineWidth=1;c.beginPath();c.moveTo(x0,y);c.lineTo(x1,y);c.stroke();txt(c,(k>0?"+":k<0?"−":"")+Math.abs(k),x0-8,y+4,TH.mute,"right",12)}
+ dash(c,x0,mid,x1,mid,TH.mute);
+ function path(A,n,col,lw,dsh){c.save();if(dsh)c.setLineDash([3,6]);c.strokeStyle=col;c.lineWidth=lw;c.beginPath();for(var x=x0;x<=x1;x+=2){var y=mid-A*u*Math.sin(TAU*n*(x-x0)/(x1-x0));if(x===x0)c.moveTo(x,y);else c.lineTo(x,y)}c.stroke();c.restore()}
+ path(AP.A,AP.n,TH.mute,7,false);c.globalAlpha=1;path(mA,mN,TH.on,3,false);
+ txt(c,"target: faint thick line",x1,14,TH.mute,"right",12);
+ $("#aRead").textContent="Your wave: crest at +"+mA+", trough at −"+mA+", "+mN+" crest"+(mN>1?"s":"")+" across.";
+ if(!AP.done&&mA===AP.A&&mN===AP.n){AP.done=true;var f=$("#aFb");f.className="fb ok";f.textContent="Match! Crest +"+AP.A+", trough −"+AP.A+", "+AP.n+" crest"+(AP.n>1?"s":"")+". Press New target for another.";stars(2)}}
+$("#aA").oninput=apDraw;$("#aN").oninput=apDraw;$("#aNew").onclick=apNew;
+
+/* ---------- step 4: emulate ---------- */
+var EM=[
+ {q:"A quiet, low sound. Which wave?",w:[[3.5,4],[1,1],[3.5,1]],a:1,why:"Quiet means a small height. Low means few crests. Small and slow: the middle wave."},
+ {q:"A loud, high sound. Which wave?",w:[[1,1],[3.5,5],[3.5,1]],a:1,why:"Loud means tall crests. High means lots of crests close together. Tall and crowded."},
+ {q:"A huge storm wave far out at sea. Which wave?",w:[[1,4],[3.5,1],[1,1]],a:1,why:"Huge means a tall crest and a deep trough. Out at sea the crests are far apart, so only one or two fit."},
+ {q:"A calm lake with tiny ripples. Which wave?",w:[[3.5,1],[1,5],[3.5,5]],a:1,why:"Tiny means a small height. Ripples are close together, so lots of crests."}
+];
+function buildEmu(){var box=$("#emu");box.innerHTML="";
+ EM.forEach(function(e,i){var d=document.createElement("div");d.className="q";d.innerHTML="<b>"+(i+1)+". "+e.q+"</b><div class='pick'></div><div class='fb' aria-live='polite'></div>";
+  var pk=d.querySelector(".pick"),fb=d.querySelector(".fb");
+  e.w.forEach(function(s,j){var b=document.createElement("button");b.setAttribute("aria-label","Wave "+(j+1)+": height "+s[0]+", "+s[1]+" crests");var cv=document.createElement("canvas");cv.id="em"+i+"_"+j;b.appendChild(cv);
+   b.onclick=function(){if(e.done)return;if(j===e.a){e.done=true;fb.className="fb ok";fb.textContent="Yes! "+e.why;stars(2)}else{fb.className="fb no";fb.textContent="Not that one. Think: height is loudness or size, crests are how crowded."}};pk.appendChild(b)});
+  box.appendChild(d)})}
+function drawEmu(){EM.forEach(function(e,i){e.w.forEach(function(s,j){var cv=$("#em"+i+"_"+j);if(cv)mini(cv,s[0],s[1],{pad:6,lw:2.5})})})}
+
+/* ---------- loop ---------- */
+var last=0,tsec=0;
+function frame(ts){
+ var dt=Math.min(.05,(ts-last)/1000||0);last=ts;tsec+=dt;if(!H.paused)H.t+=dt*H.f;
+ drawHero();
+ if(ex==="ocean")drawOcean(tsec);else if(ex==="sound")drawSound(tsec);else if(ex==="rope")drawRope(tsec);else drawTide();
+ requestAnimationFrame(frame)}
+function drawStatic(){readTheme();rcDraw();drawRecog();apDraw();drawEmu()}
+window.addEventListener("resize",drawStatic);
+$("#th").onclick=function(){document.body.classList.toggle("dark");lsSet("wvtheme",document.body.classList.contains("dark")?"1":"0");drawStatic()};
+if(lsGet("wvtheme")==="1")document.body.classList.add("dark");
+readTheme();showStars();heroRead();buildRecog();buildEmu();rcNew();apNew();drawStatic();
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
