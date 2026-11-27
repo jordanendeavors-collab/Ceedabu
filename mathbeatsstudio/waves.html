@@ -122,6 +122,25 @@ footer{color:var(--mute);font-size:14px;margin:18px 0 30px}
   </div>
 </section>
 
+<section class="card" aria-labelledby="h-big">
+  <h2 id="h-big">How size and speed change the crest and trough</h2>
+  <p class="sub">One second of a wave. Move the sliders and watch the crest, the trough and the count.</p>
+  <canvas id="cAF" class="tall" role="img" aria-label="One second of a wave with its amplitude, range and crests marked"></canvas>
+  <div class="row">
+    <label>Amplitude <input type="range" id="mA" min="1" max="5" step="1" value="3"></label>
+    <label>Frequency <input type="range" id="mF" min="1" max="6" step="1" value="3"></label>
+  </div>
+  <div class="read" id="mRead"></div>
+  <div class="words">
+    <div class="word c"><b>Amplitude</b><br>How far the crest is above the rest line. The trough is the same distance below. <b>Bigger amplitude: higher crest and deeper trough, together.</b> In sound it is loudness. In the ocean it is wave size.</div>
+    <div class="word"><b>Range</b><br>From the bottom of the trough up to the top of the crest. It is always twice the amplitude. Crest +3 and trough &minus;3 make a range of 6.</div>
+    <div class="word t"><b>Frequency</b><br>How many crests go by in one second, counted in hertz (Hz). <b>Higher frequency: more crests and more troughs, but the same height.</b> In sound it is pitch.</div>
+    <div class="word"><b>Period</b><br>The time from one crest to the next. It is 1 divided by the frequency. 4 crests every second means one crest every 0.25 seconds.</div>
+    <div class="word"><b>Frequency range</b><br>The lowest to the highest frequency something can make or hear. People hear about 20 to 20,000 Hz. The middle C on a piano is about 262 Hz.</div>
+  </div>
+  <p class="note">Two different dials: amplitude moves the crest and trough up and down. Frequency packs more of them into each second. You can turn one without the other.</p>
+</section>
+
 <section class="card stage" aria-labelledby="h-rec">
   <span class="tag">Step 1 · Recall</span>
   <h2 id="h-rec">Tap the right spot</h2>
@@ -166,6 +185,9 @@ footer{color:var(--mute);font-size:14px;margin:18px 0 30px}
   <details><summary>Why is the middle line there?</summary><p>It is the rest line: where the water, the rope or the air sits when nothing is moving. We measure every crest and trough from it. Above is plus. Below is minus.</p></details>
   <details><summary>Does a louder sound mean a taller crest?</summary><p>Yes. Loudness is the height of the crest (and the depth of the trough). Quiet sounds make small waves. Loud sounds make tall ones.</p></details>
   <details><summary>What does a higher note change?</summary><p>The number of crests per second. A high note has lots of crests packed close. A low note has fewer, spread far apart. Crests per second is called frequency, and we count it in hertz (Hz).</p></details>
+  <details><summary>What is amplitude, and how is it different from frequency?</summary><p>Amplitude is how tall the crest is (and how deep the trough is). Frequency is how many crests go by each second. A loud low note has a big amplitude and a low frequency. A quiet high note has a small amplitude and a high frequency.</p></details>
+  <details><summary>What is range?</summary><p>The distance from the bottom of the trough to the top of the crest. It is twice the amplitude. Some people call it peak to peak: crest is the peak on top, trough is the peak on the bottom.</p></details>
+  <details><summary>What is a frequency range?</summary><p>The span from the lowest to the highest frequency. People hear about 20 to 20,000 Hz, so that is our hearing range. A speaker or an instrument has a frequency range too.</p></details>
   <details><summary>What is a wavelength?</summary><p>The distance from one crest to the next crest. Measure from trough to trough and you get the same answer.</p></details>
   <details><summary>Can a wave have just a crest?</summary><p>One single bump is called a pulse, and a pulse can be only a crest. A wave that keeps going has both: crest, trough, crest, trough.</p></details>
   <details><summary>Why call it a signal?</summary><p>A signal is a wave that carries a message. Your voice, a radio station and a phone call are all signals. Changing the crests and troughs is how the message gets in.</p></details>
@@ -303,6 +325,24 @@ function drawTide(){
  $("#tRead").textContent=r;$("#tTv").textContent=T.toFixed(1)+" hours";
 }
 
+/* ---------- amplitude / frequency ---------- */
+function drawAF(){
+ var o=fit($("#cAF"));if(!o)return;var c=o.c,w=o.w,h=o.h,mid=h/2,u=(h/2-26)/5,A=+$("#mA").value,F=+$("#mF").value,x0=48,x1=w-14,W=x1-x0;
+ for(var k=-5;k<=5;k++){var y=mid-k*u;c.strokeStyle=TH.line;c.lineWidth=1;c.beginPath();c.moveTo(x0,y);c.lineTo(x1,y);c.stroke();txt(c,(k>0?"+":k<0?"\u2212":"")+Math.abs(k),x0-8,y+4,TH.mute,"right",12)}
+ dash(c,x0,mid,x1,mid,TH.mute);
+ c.strokeStyle=TH.on;c.lineWidth=3.5;c.beginPath();
+ for(var x=x0;x<=x1;x+=2){var y2=mid-A*u*Math.sin(TAU*F*(x-x0)/W);if(x===x0)c.moveTo(x,y2);else c.lineTo(x,y2)}c.stroke();
+ for(var j=0;j<F;j++){var xc=x0+W*(.25+j)/F,xt=x0+W*(.75+j)/F;dot(c,xc,mid-A*u,TH.crest,5);dot(c,xt,mid+A*u,TH.trough,5);
+  if(j===0){txt(c,"CREST",xc,mid-A*u-10,TH.crest,"center",13);txt(c,"TROUGH",xt,mid+A*u+20,TH.trough,"center",13)}}
+ var xa=x0+W*.25/F;c.strokeStyle=TH.crest;c.lineWidth=2;c.beginPath();c.moveTo(xa,mid);c.lineTo(xa,mid-A*u);c.stroke();
+ if(F<=3)txt(c,"amplitude",xa+6,mid-A*u/2+4,TH.crest,"left",12);
+ var xr=x0+W*.5/F;c.strokeStyle=TH.gold;c.lineWidth=2;c.beginPath();c.moveTo(xr,mid+A*u);c.lineTo(xr,mid-A*u);c.stroke();
+ if(F<=3)txt(c,"range",xr+6,mid+A*u/2+4,TH.gold,"left",12);
+ if(F>=2){var xp=x0+W*.25/F,xq=x0+W*1.25/F,yp=mid-A*u-26<14?14:mid-A*u-26;c.strokeStyle=TH.mute;c.lineWidth=2;c.beginPath();c.moveTo(xp,yp);c.lineTo(xq,yp);c.stroke();txt(c,"period",(xp+xq)/2,yp-4,TH.mute,"center",12)}
+ [0,.5,1].forEach(function(t){txt(c,t+" s",x0+W*t,h-6,TH.mute,t===0?"left":t===1?"right":"center",12)});
+ $("#mRead").textContent="Amplitude "+A+": crest at +"+A+", trough at \u2212"+A+". Range "+(2*A)+". Frequency "+F+" Hz: "+F+" crest"+(F>1?"s":"")+" every second, one every "+(+(1/F).toFixed(2))+" s."}
+$("#mA").oninput=drawAF;$("#mF").oninput=drawAF;
+
 /* ---------- say the words ---------- */
 document.querySelectorAll(".say").forEach(function(b){b.onclick=function(){
  try{var u=new SpeechSynthesisUtterance(b.dataset.say);u.lang="en-US";u.rate=.8;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){b.textContent="Use the spelling guide"}}});
@@ -346,11 +386,14 @@ var QS=[
  {q:"What is the dot P?",f:.5,n:1,A:3,mark:"P",ch:["Crest","Trough","On the rest line"],a:2,why:"P sits on the middle line, neither up nor down. That is the rest line."},
  {q:"This wave has a crest at +3. Where is its trough?",f:.25,n:1,A:3,lab:true,ch:["+6","0","−3"],a:2,why:"A smooth wave goes as far below the line as it goes above it. Up 3, so down 3: −3."},
  {q:"Which wave has the taller crest?",two:true,ch:["Wave A","Wave B"],a:1,why:"Wave B reaches higher above the rest line, so its crest is taller."},
+ {q:"The amplitude of a wave goes up. What happens to its crest and its trough?",none:true,ch:["Crest rises, trough falls","Only the crest changes","Nothing changes"],a:0,why:"Amplitude is the distance from the rest line to the crest, and also to the trough. Make it bigger and the crest goes higher while the trough goes lower, by the same amount."},
+ {q:"A wave has a crest at +4 and a trough at \u22124. What is its range, from trough to crest?",none:true,ch:["4","8","0"],a:1,why:"Count from \u22124 up to +4: that is 8 steps. Range is always 2 times the amplitude."},
+ {q:"A wave keeps the same amplitude but its frequency goes up. What changes?",none:true,ch:["The crests get taller","More crests fit in each second","The rest line moves"],a:1,why:"Frequency counts crests per second. The crests are just as tall, but there are more of them. In sound, that is a higher note."},
  {q:"Wave X has 2 crests in the picture. Wave Y has 5. Which one has more crests every second?",three:true,ch:["Wave X","Wave Y"],a:1,why:"Same space, more crests: Y. More crests per second means a higher frequency, and a higher note."}
 ];
 function buildRecog(){var box=$("#recog");box.innerHTML="";
  QS.forEach(function(q,i){var d=document.createElement("div");d.className="q";
-  d.innerHTML='<b>'+(i+1)+'. '+q.q+'</b><canvas class="mid" style="height:'+(q.two||q.three?150:130)+'px" id="rq'+i+'" role="img" aria-label="Picture for question '+(i+1)+'"></canvas><div class="ch"></div><div class="fb" aria-live="polite"></div>';
+  d.innerHTML='<b>'+(i+1)+'. '+q.q+'</b>'+(q.none?"":'<canvas class="mid" style="height:'+(q.two||q.three?150:130)+'px" id="rq'+i+'" role="img" aria-label="Picture for question '+(i+1)+'"></canvas>')+'<div class="ch"></div><div class="fb" aria-live="polite"></div>';
   var ch=d.querySelector(".ch"),fb=d.querySelector(".fb");
   q.ch.forEach(function(t,j){var b=document.createElement("button");b.textContent=t;b.onclick=function(){
    if(q.done)return;
@@ -406,7 +449,7 @@ function frame(ts){
  drawHero();
  if(ex==="ocean")drawOcean(tsec);else if(ex==="sound")drawSound(tsec);else if(ex==="rope")drawRope(tsec);else drawTide();
  requestAnimationFrame(frame)}
-function drawStatic(){readTheme();rcDraw();drawRecog();apDraw();drawEmu()}
+function drawStatic(){readTheme();drawAF();rcDraw();drawRecog();apDraw();drawEmu()}
 window.addEventListener("resize",drawStatic);
 $("#th").onclick=function(){document.body.classList.toggle("dark");lsSet("wvtheme",document.body.classList.contains("dark")?"1":"0");drawStatic()};
 if(lsGet("wvtheme")==="1")document.body.classList.add("dark");
