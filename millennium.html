@@ -73,6 +73,7 @@ ul{padding-left:1.2em;margin:.3em 0} li{margin:.25em 0}
 .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.84rem;color:var(--muted);margin-top:6px}
 .sw{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:5px;border-radius:2px}
 footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);font-size:.8rem}
+.ksc{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.ksc a,.kidlink a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-decoration:none;font-weight:600}.ksc a:hover,.kidlink a:hover,.ksc a:focus-visible,.kidlink a:focus-visible{border-color:var(--accent)}.kidlink{margin:8px 0 0}
 </style>
 </head>
 <body>
@@ -92,7 +93,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
 
 <!-- OVERVIEW -->
 <section class="section" id="overview">
-  <div class="card" id="kids"><b>New: the 7 questions for kids (grade 3 and up).</b> Cookies, puzzles, loops and water, with the history and each equation broken into pieces. <a href="millennium-kids.html">Open the kids version</a></div>
+  <div class="card" id="kids"><b>New: Millennium Quest, the 7 questions for kids (grade 3 and up).</b> Eight worlds with five levels each, plus stars, badges and a boss round. Kids learn by Repetitive Emulation: watch, copy, then do it alone, right two times. <a href="millennium-kids.html">Play Millennium Quest</a><div class="ksc" role="group" aria-label="Jump straight into the kids game"><a href="millennium-kids.html#riemann"><span aria-hidden="true">🔢</span> Prime Hunt</a><a href="millennium-kids.html#pnp"><span aria-hidden="true">🔐</span> Lock Breaker</a><a href="millennium-kids.html#poincare"><span aria-hidden="true">🍩</span> Loop Land</a><a href="millennium-kids.html#ns"><span aria-hidden="true">🌊</span> Flow River</a><a href="millennium-kids.html#bsd"><span aria-hidden="true">📍</span> Point Map</a><a href="millennium-kids.html#hodge"><span aria-hidden="true">🧱</span> Shape Builder</a><a href="millennium-kids.html#ym"><span aria-hidden="true">🪜</span> Energy Ladder</a><a href="millennium-kids.html#gr"><span aria-hidden="true">🌍</span> Space Bend</a><a href="millennium-kids.html#daily"><span aria-hidden="true">🎯</span> Daily Mix</a><a href="millennium-kids.html#report"><span aria-hidden="true">📋</span> Grown-up report</a></div></div>
   <div class="card">
     <p class="ask">New here? You're in the right place — no math degree required.</p>
     <p>These are the <b>seven most famous unsolved problems in all of mathematics</b> — the Millennium Problems. In 2000 the Clay Mathematics Institute put up <b>$1,000,000 for solving any one of them</b> — seven problems, <b>$7 million</b> in all. Almost nobody can crack them, and that is <i>not</i> what this page is for.</p>
@@ -150,6 +151,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
   <div class="card">
     <h2>Riemann Hypothesis <span class="pill claimed">Proof certified in Lean · 21 Nov 2026</span></h2>
     <p class="ask">The primes look random. Riemann found a function whose zeros control exactly how they're spread out. The question: do <i>all</i> those zeros sit on one straight line?</p>
+    <p class="kidlink"><a href="millennium-kids.html#riemann"><span aria-hidden="true">🔢</span> Kids version: play Prime Hunt</a></p>
     <div class="eq">ζ(s) = 1 + 1/2<sup>s</sup> + 1/3<sup>s</sup> + 1/4<sup>s</sup> + … = ∏<sub>primes p</sub> 1/(1 − p<sup>−s</sup>)
       <small>Left: a sum over every whole number. Right: a product over only the primes. That equals sign (Euler, 1737) is why zeta "knows" the primes.</small></div>
     <div class="eq">Riemann Hypothesis: every nontrivial zero has the form &nbsp; s = ½ + iγ
@@ -346,6 +348,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
   <div class="card">
     <h2>P vs NP <span class="pill open">Unsolved · Clay</span></h2>
     <p class="ask">If a computer can <i>check</i> an answer fast, can it always <i>find</i> one fast?</p>
+    <p class="kidlink"><a href="millennium-kids.html#pnp"><span aria-hidden="true">🔐</span> Kids version: play Lock Breaker</a></p>
     <div class="eq">P &nbsp;⊆&nbsp; NP &nbsp;&nbsp;&nbsp; Question: P = NP ?
       <small>P = problems you can solve in polynomial time (n², n³…). NP = problems where you can check a proposed answer in polynomial time.</small></div>
     <h3>See it: check vs. search</h3>
@@ -378,6 +381,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
   <div class="card">
     <h2>Navier–Stokes <span class="pill claimed">Open · Clay: Active</span></h2>
     <p class="ask">These equations run every weather model and aircraft design. Can a smooth flow, left alone, ever develop a point of infinite speed (a "blow-up")? Or does it always stay smooth?</p>
+    <p class="kidlink"><a href="millennium-kids.html#ns"><span aria-hidden="true">🌊</span> Kids version: play Flow River</a></p>
     <div class="eq">∂u/∂t + (u·∇)u = −∇p + ν∇²u, &nbsp;&nbsp; ∇·u = 0
       <small>u = velocity at each point. (u·∇)u = the flow carrying itself along (makes swirls sharper). ν∇²u = viscosity (smooths swirls out). ∇·u = 0 means incompressible.</small></div>
     <h3>See it: a real 2D flow solve</h3>
@@ -410,6 +414,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
   <div class="card">
     <h2>Yang–Mills &amp; the Mass Gap <span class="pill open">Unsolved · Clay</span></h2>
     <p class="ask">The theory behind the forces of nature works brilliantly in experiments, but nobody has built it rigorously in math. Prove it exists, and prove its lightest particle has mass greater than zero (the "gap").</p>
+    <p class="kidlink"><a href="millennium-kids.html#ym"><span aria-hidden="true">🪜</span> Kids version: play Energy Ladder</a></p>
     <div class="eq">ℒ = −¼ F<sup>a</sup><sub>μν</sub> F<sup>aμν</sup>, &nbsp;&nbsp; F = dA + A∧A
       <small>Electromagnetism (light) is the simple version without the A∧A term. In the strong force, that extra term makes the force carriers (gluons) interact with each other.</small></div>
     <h3>See it: why a mass gap makes a force short-range</h3>
@@ -441,6 +446,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
   <div class="card">
     <h2>Hodge Conjecture <span class="pill open">Unsolved · Clay</span></h2>
     <p class="ask">Complicated high-dimensional shapes have "holes" of different types. Can every hole of a certain special kind be built from pieces cut out by simple polynomial equations?</p>
+    <p class="kidlink"><a href="millennium-kids.html#hodge"><span aria-hidden="true">🧱</span> Kids version: play Shape Builder</a></p>
     <div class="eq">Hdg<sup>k</sup>(X) = H<sup>2k</sup>(X,ℚ) ∩ H<sup>k,k</sup>(X) &nbsp; is spanned by algebraic cycles
       <small>Plain version: the "special" holes (Hodge classes) are exactly the ones you can build from shapes defined by equations (algebraic cycles), using rational amounts.</small></div>
     <h3>See it: harmonic modes, the engine of Hodge theory</h3>
@@ -472,6 +478,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
   <div class="card">
     <h2>Birch–Swinnerton-Dyer <span class="pill open">Unsolved · Clay</span></h2>
     <p class="ask">Take a curve like y² = x³ + ax + b. Does it have finitely or infinitely many points with fraction coordinates? BSD says a zeta-like function tells you, just by how it behaves at one spot.</p>
+    <p class="kidlink"><a href="millennium-kids.html#bsd"><span aria-hidden="true">📍</span> Kids version: play Point Map</a></p>
     <div class="eq">rank E(ℚ) = ord<sub>s=1</sub> L(E, s), &nbsp;&nbsp; L(E,s) ≈ ∏<sub>p</sub> (1 − a<sub>p</sub>p<sup>−s</sup> + p<sup>1−2s</sup>)<sup>−1</sup>
       <small>Rank = how many independent "seed" points generate all the rational points. L(E, s) is built prime by prime, just like zeta.</small></div>
     <div class="grid2">
@@ -500,6 +507,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
   <div class="card">
     <h2>Poincaré Conjecture <span class="pill solved">Solved · Perelman 2003</span></h2>
     <p class="ask">If every loop in a closed 3D space can be shrunk to a point, is that space just a (3D) sphere in disguise?</p>
+    <p class="kidlink"><a href="millennium-kids.html#poincare"><span aria-hidden="true">🍩</span> Kids version: play Loop Land</a></p>
     <div class="eq">∂g/∂t = −2 Ric(g) &nbsp;&nbsp; (Ricci flow)
       <small>Let the shape's geometry g flow: bulges shrink, dents fill in, like heat evening out. Perelman showed the flow (with careful "surgery" at pinch points) always reveals the true shape.</small></div>
     <h3>See it: the loop test</h3>
