@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The 7 Big Math Questions, for Kids (Grade 3 and up) | The Humming of God</title>
+<meta name="description" content="Seven million-dollar math questions explained with cookies, puzzles, loops and water. Each one has a kid hook, the history, and the equation broken into pieces. Works offline.">
+<style>
+:root{--bg:#f7f6f2;--panel:#fff;--ink:#1d2330;--muted:#5b6475;--line:#dcd9d0;--accent:#2b5fb8;--accent2:#c0392b;--accent3:#b8860b;--soft:#eef2fa;--ok:#2e7d4f;--warn:#b8860b;--bad:#b03a2e}
+:root[data-theme=dark]{--bg:#0f1420;--panel:#171e2d;--ink:#e7ebf3;--muted:#9aa4b8;--line:#2a3347;--accent:#6ea2ff;--accent2:#ff7a6b;--accent3:#e6b94a;--soft:#1d2740;--ok:#5fcf8f;--warn:#e6b94a;--bad:#ff7a6b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 -apple-system,"Segoe UI",Calibri,Arial,sans-serif}
+h1,h2,h3{font-family:Cambria,Georgia,serif;line-height:1.2}
+h1{font-size:1.55rem;margin:.2em 0}h2{font-size:1.4rem;margin:.1em 0 .3em}
+h3{font-size:.95rem;color:var(--accent);margin:1.2em 0 .3em;text-transform:uppercase;letter-spacing:.05em;font-family:inherit}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 12px}
+.top{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+nav{display:flex;gap:6px;overflow-x:auto;padding:6px 0 2px}
+button,.chip{font:inherit;font-size:.92rem;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 13px;min-height:40px;text-decoration:none;white-space:nowrap}
+button:hover,.chip:hover{border-color:var(--accent)}
+.btn{background:var(--accent);color:#fff;border-color:var(--accent)}
+main{max-width:860px;margin:0 auto;padding:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+.kid{border-left:5px solid var(--accent3);background:var(--soft);padding:10px 14px;border-radius:0 10px 10px 0}
+.kid b{color:var(--accent3)}
+.eq{font-family:Cambria,"Cambria Math",Georgia,serif;font-size:1.15rem;text-align:center;padding:12px;background:var(--soft);border-radius:10px;margin:10px 0;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+td,th{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+td:first-child{font-family:Cambria,"Cambria Math",Georgia,serif;font-size:1.05rem;white-space:nowrap;color:var(--accent);width:1%}
+.tl{list-style:none;padding:0;margin:0}
+.tl li{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.tl b{min-width:78px;color:var(--accent2);font-family:Cambria,Georgia,serif}
+.pill{display:inline-block;font-size:.78rem;padding:3px 10px;border-radius:999px;border:1px solid var(--line);margin:2px 4px 2px 0}
+.s-solved{color:var(--ok);border-color:var(--ok)}.s-active{color:var(--warn);border-color:var(--warn)}.s-unsolved{color:var(--accent2);border-color:var(--accent2)}
+.label{font-size:.78rem;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:6px;margin-right:6px}
+.real{background:var(--accent);color:#fff}.analogy{background:var(--accent3);color:#fff}
+.small{font-size:.88rem;color:var(--muted)}
+.play{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.grid button{padding:6px 0;min-height:38px;border-radius:8px;font-size:.9rem}
+.grid .pr{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.grid .sel{outline:3px solid var(--accent3)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+canvas,svg{max-width:100%}
+.nums{display:flex;flex-wrap:wrap;gap:6px}
+.nums button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.big{font-size:1.2rem;font-weight:700}
+footer{max-width:860px;margin:0 auto;padding:6px 12px 40px;color:var(--muted);font-size:.88rem}
+a{color:var(--accent)}
+@media(max-width:520px){body{font-size:16px}.grid{grid-template-columns:repeat(6,1fr)}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top"><div><b>The 7 Big Math Questions</b> <span class="small">Grade 3 and up</span></div>
+ <div><a class="chip" href="millennium.html">Grown-up field guide</a> <button id="theme" aria-label="Switch light and dark">Dark</button></div></div>
+ <nav id="nav"></nav>
+</header>
+<main>
+<div class="card">
+ <h1>Seven questions worth $1,000,000 each</h1>
+ <p class="kid"><b>Start here.</b> Some math questions are so hard that nobody on Earth knows the answer. In the year 2000, the Clay Mathematics Institute picked seven of them and offered $1,000,000 for each correct solution. Every one of them starts with something you already know: sharing cookies, solving a puzzle, a loop of string, flowing water, points on a graph, building with blocks, and steps on a ladder.</p>
+ <p>The Clay Institute announced the list on May 24, 2000, at the Collège de France in Paris. <b>One</b> has been solved so far (the Poincaré conjecture, number 3 below). The prize was offered to its solver and he turned it down.</p>
+ <p class="small">How each chapter works: a hook you can try, what the question really asks, the history, and the equation written out one piece at a time. Orange tags mark a kid analogy. Blue tags mark the real math statement. An analogy helps you picture the idea; the real statement is what mathematicians have to prove.</p>
+ <div id="statusrow"></div>
+ <p class="small">Status labels are the ones on the Clay Institute website, read on 27 Nov 2026. They change, so check <a href="https://www.claymath.org/millennium-problems/" target="_blank" rel="noopener">claymath.org</a> before you repeat one.</p>
+</div>
+<div id="chapters"></div>
+<div class="card">
+ <h2>Hear and see more</h2>
+ <p>Math Beats Studio turns these same equations into sound and light. Try the Riemann zeros, the heat and wave equations, and the Chladni plate: <a href="https://mathbeatsstudio.com/studio.html" target="_blank" rel="noopener">mathbeatsstudio.com</a>. Those are sonifications, which means a way to listen to numbers. They are music and not proofs.</p>
+ <p class="small">There are far more famous problems than these seven. This page covers the core seven first. More chapters can be added the same way.</p>
+</div>
+</main>
+<footer>Part of The Humming of God. Works offline. Read the history as a starting point and check the sources named in each chapter before you quote it.</footer>
+<script>
+(function(){
+function $(i){return document.getElementById(i)}
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+var th=ls("mk_theme")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+function applyTheme(){document.documentElement.setAttribute("data-theme",th);$("theme").textContent=th==="dark"?"Light":"Dark"}
+$("theme").onclick=function(){th=th==="dark"?"light":"dark";ls("mk_theme",th);applyTheme()};applyTheme();
+
+var CH=[
+{id:"riemann",n:1,name:"The Riemann Hypothesis",tag:"Where do the prime numbers hide?",st:["Active","active"],core:"Grade 3 core: multiplication and division, equal groups. Grade 3 to 5: fractions.",
+hook:"You have 7 cookies and want to put the same number on every plate. Two plates leaves 1 extra. Three plates leaves 1 extra. Only 1 plate or 7 plates works. A number that only splits evenly into 1 and itself is a <b>prime</b>. Now 12 cookies: 2, 3, 4 or 6 plates all work. Primes show up in a pattern that looks random: 2, 3, 5, 7, 11, 13 and so on. Is there a hidden rule about where they appear?",
+play:"riemannPlay",
+plain:"Bernhard Riemann found a special wave-like function. Its \"silent spots\" (the zeros) control how the primes are spread out. His guess: every silent spot sits on one straight line. If that is true, we know the primes are spread out as evenly as a number pattern can allow.",
+hist:[["300 BC","Euclid shows the primes never run out."],["1735","Euler adds 1 + 1/4 + 1/9 + 1/16 + ... and shows the total is exactly π²/6, about 1.6449."],["1737","Euler links an add-up over all counting numbers to a multiply-up over all primes. The equation below is that link."],["1859","Riemann writes a short paper to the Berlin Academy about how many primes are below a given size, and states the hypothesis."],["1914","G. H. Hardy proves infinitely many zeros sit on the line."],["Today","Computers have checked trillions of zeros. All of them are on the line. That is strong evidence and is not a proof."]],
+eq:"ζ(s) = 1/1<sup>s</sup> + 1/2<sup>s</sup> + 1/3<sup>s</sup> + ... = ∏<sub>p prime</sub> 1 / (1 − p<sup>−s</sup>)<br><span class='small'>Hypothesis: every nontrivial zero has the form s = 1/2 + it</span>",
+parts:[["ζ(s)","\"Zeta of s.\" A machine: put a number s in, get a number out."],["s","The input. It can be a plain number like 2, or a two-part number with a real part and an imaginary part."],["1/n<sup>s</sup>","For each counting number n, make a fraction. With s = 2 you get 1/1, 1/4, 1/9, 1/16."],["...","Keep going forever."],["∏","Multiply a whole list of things together."],["p prime","Use only the primes: 2, 3, 5, 7, 11, and so on."],["1/(1−p<sup>−s</sup>)","One piece for each prime. Multiplying them all gives the same total as the long sum."],["zero","An input s where ζ(s) = 0."],["1/2 + it","A point whose real part is 1/2. The hypothesis says every nontrivial zero is on this line. The first one has t ≈ 14.1347."]],
+gotcha:"The sum on the left only works when the real part of s is bigger than 1. For other inputs, mathematicians extend the function in a way that keeps it smooth. The zeros the hypothesis talks about live in that extended region.",
+src:"Clay Mathematics Institute problem page; Bombieri's official Clay problem description."},
+
+{id:"pnp",n:2,name:"P versus NP",tag:"Is checking an answer easier than finding it?",st:["Unsolved","unsolved"],core:"Grade 3 to 5 core: adding whole numbers, problem solving.",
+hook:"A sudoku takes a long time to solve. Once a friend hands you the finished grid, checking it takes seconds. Checking is quick. Finding looks slow. Is finding really slower, or is there a faster way we have not discovered yet?",
+play:"pnpPlay",
+plain:"P is the set of questions a computer can solve quickly. NP is the set of questions where a computer can check a given answer quickly. Every P question is also NP. The big question: are they the same set? Almost everyone expects \"no\", and nobody can prove it.",
+hist:[["1956","Kurt Gödel writes a letter to John von Neumann asking a very similar question."],["1971","Stephen Cook proves that one particular question (satisfiability) is the hardest kind of NP question."],["1972","Richard Karp shows 21 famous puzzles are all that same hardest kind."],["1973","Leonid Levin, working in the USSR, reports the same discovery on his own."],["Today","Still open. Clay lists it as unsolved."]],
+eq:"P  =?  NP",
+parts:[["P","Problems a computer can solve in \"polynomial time\": the work grows like n², n³ and so on as the problem size n grows."],["NP","Problems where a proposed answer can be checked in polynomial time."],["=?","The question mark is the whole problem: are these two sets equal?"],["n²","Doubling the size makes the work 4 times bigger. That is fast enough to be called quick."],["2<sup>n</sup>","Adding one more item doubles the work. That grows too fast. Many NP puzzles look like this when you try every possibility."]],
+gotcha:"\"Quick\" has a precise meaning here (polynomial time). A solution that takes n<sup>1000</sup> steps would count as quick on paper and would be useless in practice.",
+src:"Clay Mathematics Institute problem page (Cook's official description); Cook 1971; Karp 1972."},
+
+{id:"poincare",n:3,name:"The Poincaré Conjecture",tag:"Can every loop be shrunk to a point?",st:["Solved","solved"],core:"Grade 3 core: shapes and their attributes. Later: loops and surfaces.",
+hook:"Put a rubber band around a ball. You can slide it off the end and shrink it to a dot. Put a rubber band around the middle of a donut, through the hole. It cannot shrink to a dot because the donut is in the way. The ball and the donut are different shapes, and that loop test shows it. Henri Poincaré asked what the same test says about shapes with three dimensions.",
+play:"poincarePlay",
+plain:"A 3-sphere is the 3-dimensional version of a ball's surface. The conjecture says: any closed 3-dimensional shape where every loop can be shrunk to a point must be a 3-sphere, just stretched or squished.",
+hist:[["1904","Henri Poincaré asks the question."],["1982","Richard Hamilton invents Ricci flow, a way to smooth out a shape the way heat smooths out a hot spot."],["2002 to 2003","Grigori Perelman posts three papers online that use Ricci flow and prove the conjecture."],["2010","Clay announces the Millennium Prize for Perelman on March 18. He declines it."],["Note","It is the only Millennium problem solved so far."]],
+eq:"∂g/∂t = −2 Ric(g)",
+parts:[["g","The rule for measuring distance inside the shape."],["∂g/∂t","How that rule changes as time t passes."],["Ric(g)","Ricci curvature: a number-machine that measures how the shape bends."],["−2","The minus sign makes bumps smooth out. Hamilton's flow evens out the shape the way heat evens out temperature."]],
+gotcha:"This equation is Hamilton's tool. Perelman's proof had to handle places where the flow forms sharp pinches, which is the hardest part.",
+src:"Clay Mathematics Institute, Poincaré Conjecture page; Clay press release March 18, 2010."},
+
+{id:"ns",n:4,name:"Navier–Stokes",tag:"Can water flow ever blow up?",st:["Active","active"],core:"Grade 3 to 5 core: measurement, rates and patterns.",
+hook:"Stir your juice and watch the swirl. Thick honey swirls slowly. Water swirls fast. Wind, ocean currents and airplane wings all follow the same equations. Question: can a smooth flow ever suddenly turn infinitely violent at one tiny spot?",
+play:"nsPlay",
+plain:"The Navier–Stokes equations describe how fluids move. Engineers use them every day. Mathematicians still do not know if, in 3 dimensions, a smooth starting flow always stays smooth or can ever break down into a point of infinite speed.",
+hist:[["1822","Claude-Louis Navier writes the first version of the equations."],["1845","George Stokes finishes the version we use today."],["2000","Clay lists it as one of the seven problems."],["11 Sep 2026","Clay posts that it is contemplating an announcement that the problem \"has apparently been settled.\" Clay says its review is \"deliberately unhurried\". No prize has been announced."]],
+eq:"∂u/∂t + (u·∇)u = −(1/ρ)∇p + ν∇²u + f<br>∇·u = 0",
+parts:[["u","The velocity: which way and how fast the water moves at every point."],["∂u/∂t","How the velocity changes as time passes."],["(u·∇)u","The flow carries itself along, which makes things swirl."],["p","Pressure."],["ρ","Density: how heavy the fluid is for its size."],["ν","Viscosity: how thick or sticky it is. Honey is high, water is low."],["∇²u","Spreads out differences. Thick fluids smooth out swirls faster."],["f","Outside pushes, like gravity or a spoon."],["∇·u = 0","Water cannot be squeezed. Whatever flows into a spot flows out."]],
+gotcha:"Do not repeat a claim that it is solved until Clay says so. Clay's wording on 11 Sep 2026 is cautious and gives no names.",
+src:"Clay Mathematics Institute, Navier–Stokes Announcement (11 Sep 2026) and problem page."},
+
+{id:"bsd",n:5,name:"Birch and Swinnerton-Dyer",tag:"Counting special points on a curve",st:["Unsolved","unsolved"],core:"Grade 5 core: the coordinate plane and ordered pairs.",
+hook:"A point on a graph is a pair like (2, 3). Some curves have points with whole-number or fraction coordinates. Question: how many such points does a curve have, and can a pattern in simple counting tell you?",
+play:"bsdPlay",
+plain:"An elliptic curve is a curve like y² = x³ + ax + b. Some have only a few points with fraction coordinates. Some have infinitely many. The conjecture says a count you get by checking the curve one small clock at a time predicts which case you are in.",
+hist:[["1922","Louis Mordell shows the fraction points on such a curve can all be built from a finite list."],["Early 1960s","Bryan Birch and Peter Swinnerton-Dyer use the EDSAC computer in Cambridge to count points and spot a pattern."],["1965","They publish the conjecture."],["Today","Only special cases are proven. Clay lists it as unsolved."]],
+eq:"y² = x³ + ax + b<br>L(E, s) ≈ C · (s − 1)<sup>r</sup> near s = 1",
+parts:[["y² = x³ + ax + b","The curve. Pick numbers a and b and you get a different curve. The numbers must make 4a³ + 27b² not equal to 0."],["E","The name of the curve."],["rational point","A point whose x and y are fractions."],["r","The rank: how many independent fraction points of infinite order the curve has."],["L(E, s)","A function built by counting points on the curve one small prime p at a time (the N<sub>p</sub> counts below)."],["(s − 1)<sup>r</sup>","The conjecture says L touches zero at s = 1 with strength r, the same r as the rank."]],
+gotcha:"The \"counting on a clock\" idea: for a prime p, you only allow x and y values 0 to p−1 and see which make the equation work after taking the remainder when divided by p. That is arithmetic you can do by hand for p = 5.",
+src:"Clay Mathematics Institute, Birch and Swinnerton-Dyer page (Wiles's description); Birch and Swinnerton-Dyer 1965."},
+
+{id:"hodge",n:6,name:"The Hodge Conjecture",tag:"Complicated shapes from simple pieces",st:["Unsolved","unsolved"],core:"Grade 1 to 5 core: composing shapes from rectangles and triangles.",
+hook:"You can build a house, a boat or a rocket from the same blocks. Mathematicians collect all kinds of shape-like measurements. Question: when a measurement could be a shape, is there always a way to build it from simple, equation-made pieces?",
+play:"hodgePlay",
+plain:"This one is the hardest to picture. Take a smooth shape defined by equations. Some of its \"hidden measurements\" are built from simple pieces (the shapes that the equations make). Hodge's conjecture says a certain big family of measurements can always be built that way, using fractions as the amounts.",
+hist:[["1930s to 1940s","W. V. D. Hodge develops a way to split shapes' measurements into types."],["1950","Hodge states the conjecture in his address at the International Congress of Mathematicians."],["Today","Still open. It is proven for some special cases. Clay lists it as unsolved."]],
+eq:"Hodge classes in H<sup>2p</sup>(X, ℚ)  =  rational combinations of algebraic cycles",
+parts:[["X","A smooth shape described by polynomial equations."],["H<sup>2p</sup>(X, ℚ)","A list of measurements of X, using fractions (ℚ means the fractions)."],["Hodge class","A measurement with one extra property: it fits Hodge's pattern."],["algebraic cycle","A simple sub-shape made by equations, like a curve or a flat sheet inside X."],["rational combination","Add up some of these pieces, each multiplied by a fraction."]],
+gotcha:"The blocks picture is an analogy. The real statement needs some university math to read. The takeaway for now: it asks if one type of measurement always comes from equation-built pieces.",
+src:"Clay Mathematics Institute, Hodge Conjecture page (Deligne's description)."},
+
+{id:"ym",n:7,name:"Yang–Mills and the Mass Gap",tag:"Why is there a smallest step?",st:["Unsolved","unsolved"],core:"Grade 3 core: fractions on the number line.",
+hook:"Picture a ladder with a first step. You cannot hover half a step up. You are on the floor or you are on a step. Inside a proton, tiny particles called quarks are held together by a very strong force. Physics says the smallest nonzero amount of energy in that force is bigger than zero. Why?",
+play:"ymPlay",
+plain:"Yang–Mills theory is the math behind the strong force and similar forces. Physicists use it and the experiments agree with it. Mathematicians have not shown that the theory is built on solid ground, and have not proven the \"mass gap\": the smallest nonzero energy is a positive number.",
+hist:[["1954","Chen Ning Yang and Robert Mills publish their equations."],["1970s","The strong force is described with a version of their theory (called QCD)."],["2000","Clay lists the existence and mass gap problem as one of the seven."],["Today","Still open. Clay lists it as unsolved."]],
+eq:"F<sub>μν</sub> = ∂<sub>μ</sub>A<sub>ν</sub> − ∂<sub>ν</sub>A<sub>μ</sub> + g [A<sub>μ</sub>, A<sub>ν</sub>]<br>Mass gap: smallest nonzero energy Δ &gt; 0",
+parts:[["A<sub>μ</sub>","The force field. μ points to which direction (and time)."],["∂<sub>μ</sub>A<sub>ν</sub>","How the field changes in direction μ."],["F<sub>μν</sub>","The field strength: how strong the force is."],["g","How strong the force is at its most basic level."],["[A<sub>μ</sub>, A<sub>ν</sub>]","The force fields push on each other. That extra term is what makes Yang–Mills different from simple electric forces."],["Δ","The mass gap. The conjecture says there is a smallest nonzero energy and Δ is greater than 0."]],
+gotcha:"The proof has two parts: show the theory exists as a well-defined math object, then show the gap. Both parts are open.",
+src:"Clay Mathematics Institute, Yang–Mills page (Jaffe and Witten's description); Yang and Mills 1954."}
+];
+
+/* ---------- build page ---------- */
+var nav=$("nav"),host=$("chapters"),sr=$("statusrow");
+CH.forEach(function(c){
+ var a=document.createElement("a");a.className="chip";a.href="#"+c.id;a.textContent=c.n+" "+({riemann:"Riemann",pnp:"P vs NP",poincare:"Poincaré",ns:"Navier–Stokes",bsd:"BSD",hodge:"Hodge",ym:"Yang–Mills"})[c.id];nav.appendChild(a);
+ var p=document.createElement("span");p.className="pill s-"+c.st[1];p.textContent=c.n+". "+c.name.replace("The ","")+": "+c.st[0];sr.appendChild(p);
+ var s=document.createElement("section");s.className="card";s.id=c.id;
+ var h="<h2>"+c.n+". "+c.name+"</h2><div class='small'>"+c.tag+" <span class='pill s-"+c.st[1]+"'>Clay label: "+c.st[0]+"</span></div>";
+ h+="<h3>Start here</h3><p class='kid'><span class='label analogy'>KID ANALOGY</span>"+c.hook+"</p>";
+ h+="<div class='play' id='pl_"+c.id+"'></div>";
+ h+="<h3>The real question</h3><p><span class='label real'>REAL MATH</span>"+c.plain+"</p>";
+ h+="<h3>History</h3><ul class='tl'>"+c.hist.map(function(x){return "<li><b>"+x[0]+"</b><span>"+x[1]+"</span></li>"}).join("")+"</ul>";
+ h+="<h3>The equation, piece by piece</h3><div class='eq'>"+c.eq+"</div><table>"+c.parts.map(function(x){return "<tr><td>"+x[0]+"</td><td>"+x[1]+"</td></tr>"}).join("")+"</table>";
+ h+="<h3>Gotcha for older kids</h3><p class='small'>"+c.gotcha+"</p><p class='small'><b>Core connection:</b> "+c.core+"</p><p class='small'><b>Sources:</b> "+c.src+"</p>";
+ s.innerHTML=h;host.appendChild(s);
+});
+
+/* ---------- interactives ---------- */
+function isPrime(n){if(n<2)return false;for(var i=2;i*i<=n;i++)if(n%i===0)return false;return true}
+function divs(n){var d=[];for(var i=1;i<=n;i++)if(n%i===0)d.push(i);return d}
+
+function riemannPlay(el){
+ var h="<b>Tap a number.</b> Red numbers are primes.<div class='grid' id='rg'></div><p id='rinfo' class='big'>Tap a number to see how many plates work.</p>";
+ h+="<hr><b>Euler's add-up (s = 2).</b> Add more fractions and watch the total.<label>How many fractions: <span id='rn'>5</span></label><input type='range' id='rs' min='1' max='200' value='5'><p id='rsum'></p>";
+ el.innerHTML=h;var g=$("rg");
+ for(var i=1;i<=60;i++){g.appendChild((function(n){var b=document.createElement("button");b.textContent=n;if(isPrime(n))b.className="pr";b.onclick=function(){
+  Array.prototype.forEach.call(g.children,function(x){x.classList.remove("sel")});b.classList.add("sel");
+  var d=divs(n),inf=n+" cookies: ";
+  if(n===1)inf+="1 plate. Neither prime nor not prime by the usual rule.";
+  else if(isPrime(n))inf+="prime. Only "+d.join(" and ")+" plates share them evenly.";
+  else inf+="shares evenly on "+d.join(", ")+" plates. Not prime.";
+  $("rinfo").textContent=inf};return b})(i))}
+ function sum(){var N=+$("rs").value,s=0;for(var k=1;k<=N;k++)s+=1/(k*k);$("rn").textContent=N;
+  $("rsum").innerHTML="1 + 1/4 + 1/9 + ... (first "+N+" fractions) = <b>"+s.toFixed(5)+"</b><br><span class='small'>The total never passes π²/6 = "+(Math.PI*Math.PI/6).toFixed(5)+". Euler proved that in 1735.</span>"}
+ $("rs").oninput=sum;sum()}
+
+function pnpPlay(el){
+ el.innerHTML="<b>Find numbers that add to the target.</b> Tap numbers to pick them. Checking is instant. Finding takes work.<p>Target: <span class='big' id='ptar'></span></p><div class='nums' id='pn'></div><p>Your total: <span class='big' id='psum'></span> <span id='pok'></span></p><button id='pnew'>New puzzle</button> <button id='psolve' class='btn'>Let the computer try every combination</button><p id='pout' class='small'></p><p class='small'>12 numbers have 4,096 possible groups to try. 40 numbers would have 1,099,511,627,776 groups. Checking one group is always a single addition.</p>";
+ var nums,sel,tar;
+ function newP(){nums=[];for(var i=0;i<12;i++)nums.push(3+Math.floor(Math.random()*47));
+  var s=0;nums.forEach(function(x){if(Math.random()<.45)s+=x});if(s===0)s=nums[0];tar=s;sel={};draw();$("pout").textContent=""}
+ function draw(){var b=$("pn");b.innerHTML="";nums.forEach(function(x,i){var e=document.createElement("button");e.textContent=x;if(sel[i])e.className="on";e.onclick=function(){sel[i]=!sel[i];draw()};b.appendChild(e)});
+  var t=0;nums.forEach(function(x,i){if(sel[i])t+=x});$("ptar").textContent=tar;$("psum").textContent=t;$("pok").textContent=t===tar?"Match!":(t>tar?"Too big":"Too small")}
+ $("pnew").onclick=newP;
+ $("psolve").onclick=function(){var tries=0,found=null,N=nums.length;
+  for(var m=1;m<(1<<N);m++){tries++;var t=0;for(var i=0;i<N;i++)if(m&(1<<i))t+=nums[i];if(t===tar){found=m;break}}
+  sel={};if(found!==null){for(var i=0;i<N;i++)if(found&(1<<i))sel[i]=true}draw();
+  $("pout").textContent="The computer tried "+tries+" groups out of 4,095 before it found one. Checking that answer took one addition."}
+ newP()}
+
+function poincarePlay(el){
+ el.innerHTML="<b>Pull the string tight.</b><input type='range' id='pr' min='0' max='100' value='0'><svg viewBox='0 0 520 200' width='100%' role='img' aria-label='A loop on a ball shrinks to a point; a loop around a donut stops at the hole'><g id='ball'></g><g id='donut'></g></svg><p id='pcap' class='small'></p>";
+ function draw(){var t=+$("pr").value/100;
+  var rx=80*(1-t)+2,ry=18*(1-t)+1;
+  $("ball").innerHTML="<circle cx='120' cy='100' r='70' fill='none' stroke='currentColor' stroke-width='2'/><ellipse cx='120' cy='100' rx='"+rx+"' ry='"+ry+"' fill='none' stroke='#c0392b' stroke-width='3'/><text x='120' y='190' text-anchor='middle' font-size='14' fill='currentColor'>Ball: loop shrinks to a dot</text>";
+  var drx=Math.max(78*(1-t),28),dry=Math.max(32*(1-t),12);
+  $("donut").innerHTML="<ellipse cx='390' cy='100' rx='95' ry='55' fill='none' stroke='currentColor' stroke-width='2'/><ellipse cx='390' cy='100' rx='36' ry='14' fill='none' stroke='currentColor' stroke-width='2'/><ellipse cx='390' cy='100' rx='"+drx+"' ry='"+dry+"' fill='none' stroke='#c0392b' stroke-width='3' stroke-dasharray='"+(t>.62?"6 4":"0")+"'/><text x='390' y='190' text-anchor='middle' font-size='14' fill='currentColor'>Donut: loop gets stuck at the hole</text>";
+  $("pcap").textContent=t<.1?"Drag the slider to the right.":(t>.9?"The loop on the ball is a dot. The loop around the donut stopped when it hit the hole.":"Pulling tighter...")}
+ $("pr").oninput=draw;draw()}
+
+function nsPlay(el){
+ el.innerHTML="<b>A picture of swirling water</b> (a drawing of the idea, not a solution of the equations).<canvas id='nc' width='520' height='240' style='width:100%;background:#0b1730;border-radius:10px'></canvas><label>Speed of swirl: <span id='nsv'>5</span></label><input type='range' id='ns1' min='1' max='10' value='5'><label>Thickness (viscosity): <span id='nvv'>3</span></label><input type='range' id='ns2' min='0' max='10' value='3'><p class='small'>Thick fluids (high ν) swirl like honey: the middle moves, and the swirl fades with distance fast. Thin fluids (low ν) keep swirling far out.</p>";
+ var c=$("nc"),x=c.getContext("2d"),P=[],i;
+ for(i=0;i<420;i++)P.push([Math.random()*520,Math.random()*240]);
+ function step(){if(!document.body.contains(c))return;
+  var s=+$("ns1").value,v=+$("ns2").value;$("nsv").textContent=s;$("nvv").textContent=v;
+  x.fillStyle="rgba(11,23,48,.14)";x.fillRect(0,0,520,240);x.fillStyle="#9fd3ff";
+  for(var k=0;k<P.length;k++){var p=P[k],dx=p[0]-260,dy=p[1]-120,r=Math.sqrt(dx*dx+dy*dy)+1;
+   var w=s*.0035/(1+v*r*r/9000)*(40/Math.sqrt(r+20));var a=w*r;
+   p[0]+=-dy/r*a*40+.4;p[1]+=dx/r*a*40;
+   if(p[0]>520||p[0]<0||p[1]<0||p[1]>240){p[0]=Math.random()*520;p[1]=Math.random()*240}
+   x.fillRect(p[0],p[1],1.8,1.8)}
+  requestAnimationFrame(step)}
+ step()}
+
+function bsdPlay(el){
+ el.innerHTML="<b>Make a curve.</b> y² = x³ + ax + b<br><label>a: <span id='bav'>-1</span></label><input type='range' id='ba' min='-6' max='6' value='-1'><label>b: <span id='bbv'>1</span></label><input type='range' id='bb' min='-6' max='6' value='1'><canvas id='bc' width='520' height='260' style='width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px'></canvas><p id='bmsg'></p><p id='bnp' class='small'></p>";
+ var c=$("bc"),x=c.getContext("2d");
+ function draw(){var a=+$("ba").value,b=+$("bb").value;$("bav").textContent=a;$("bbv").textContent=b;
+  var cs=getComputedStyle(document.documentElement);var ink=cs.getPropertyValue("--ink"),mu=cs.getPropertyValue("--line"),ac=cs.getPropertyValue("--accent2");
+  x.clearRect(0,0,520,260);var sx=40,sy=40,ox=260,oy=130;
+  x.strokeStyle=mu;x.lineWidth=1;for(var i=-6;i<=6;i++){x.beginPath();x.moveTo(ox+i*sx,0);x.lineTo(ox+i*sx,260);x.stroke()}for(i=-3;i<=3;i++){x.beginPath();x.moveTo(0,oy+i*sy);x.lineTo(520,oy+i*sy);x.stroke()}
+  x.strokeStyle=ink;x.beginPath();x.moveTo(0,oy);x.lineTo(520,oy);x.moveTo(ox,0);x.lineTo(ox,260);x.stroke();
+  var disc=4*a*a*a+27*b*b;
+  if(disc===0){$("bmsg").innerHTML="<span style='color:var(--bad)'>4a³ + 27b² = 0 here, so the curve has a sharp point. Elliptic curves are not allowed to do that. Move a slider.</span>"}
+  else{$("bmsg").textContent="4a³ + 27b² = "+disc+", so this is a real elliptic curve."}
+  x.strokeStyle=ac;x.lineWidth=2.5;
+  [1,-1].forEach(function(sg){x.beginPath();var st=false;for(var px=-6;px<=6.001;px+=.02){var f=px*px*px+a*px+b;if(f<0){st=false;continue}var py=sg*Math.sqrt(f),X=ox+px*sx,Y=oy-py*sy;if(!st){x.moveTo(X,Y);st=true}else x.lineTo(X,Y)}x.stroke()});
+  x.fillStyle=ink;var ints=[];
+  for(var X=-6;X<=6;X++){var f2=X*X*X+a*X+b;if(f2<0)continue;var r=Math.round(Math.sqrt(f2));if(r*r===f2){[r,-r].forEach(function(Y,j){if(j===1&&r===0)return;ints.push("("+X+", "+Y+")");x.beginPath();x.arc(ox+X*sx,oy-Y*sy,4,0,6.3);x.fill()})}}
+  $("bmsg").innerHTML+="<br>Whole-number points in view: "+(ints.length?ints.join(" "):"none");
+  var out=[];[5,7,11,13].forEach(function(p){var n=0;for(var X=0;X<p;X++)for(var Y=0;Y<p;Y++)if(((Y*Y-(X*X*X+a*X+b))%p+p*3)%p===0)n++;out.push("p="+p+": "+n)});
+  $("bnp").textContent="Counting on a small clock (x and y from 0 to p−1, remainders only): "+out.join("   ")+"  (these are the N_p style counts Birch and Swinnerton-Dyer studied; the real N_p also counts one extra point at infinity)."}
+ $("ba").oninput=draw;$("bb").oninput=draw;draw()}
+
+function hodgePlay(el){
+ el.innerHTML="<b>Build a boat from blocks.</b> <button id='hb' class='btn'>Show the pieces</button><svg viewBox='0 0 520 190' width='100%' role='img' aria-label='A boat made from a rectangle, a triangle and a triangle sail'><g id='hg'></g></svg><p class='small'>Analogy only: the real conjecture is about hidden measurements of shapes defined by equations, not toy boats.</p>";
+ var on=false;
+ function draw(){var g=$("hg"),gap=on?22:0,st="stroke='currentColor' stroke-width='2'";
+  g.innerHTML="<rect x='"+(150-gap)+"' y='"+(110+gap/2)+"' width='220' height='34' fill='#2b5fb8' fill-opacity='.35' "+st+"/>"+
+  "<polygon points='"+(150-gap)+","+(110+gap/2)+" "+(130-gap*1.4)+","+(110+gap/2)+" "+(160-gap)+","+(144+gap/2)+"' fill='#2b5fb8' fill-opacity='.35' "+st+"/>"+
+  "<rect x='258' y='"+(40-gap)+"' width='6' height='70' fill='#b8860b' "+st+"/>"+
+  "<polygon points='"+(266+gap)+","+(42-gap)+" "+(266+gap)+","+(106-gap/3)+" "+(340+gap*1.4)+","+(106-gap/3)+"' fill='#c0392b' fill-opacity='.45' "+st+"/>"+
+  "<polygon points='"+(256-gap)+","+(46-gap)+" "+(256-gap)+","+(106-gap/3)+" "+(206-gap*1.4)+","+(106-gap/3)+"' fill='#2e7d4f' fill-opacity='.45' "+st+"/>";
+  $("hb").textContent=on?"Put the pieces together":"Show the pieces"}
+ $("hb").onclick=function(){on=!on;draw()};draw()}
+
+function ymPlay(el){
+ el.innerHTML="<b>The energy ladder.</b> Tap to add a push. Energy only comes in whole steps, and the first step is not zero.<br><svg viewBox='0 0 320 220' width='100%' style='max-width:340px' role='img' aria-label='Energy ladder with a gap above the floor'><g id='yg'></g></svg><div><button id='yu' class='btn'>Add a push</button> <button id='yd'>Remove a push</button></div><p id='yo' class='big'></p><p class='small'>Analogy only: the real mass gap is about the lowest energy of the quantum Yang–Mills theory. Nobody has proven yet that it is bigger than zero.</p>";
+ var lvl=0;function draw(){var h="";for(var i=0;i<4;i++){var y=190-i*42-(i>0?30:0);
+  h+="<line x1='40' y1='"+y+"' x2='260' y2='"+y+"' stroke='currentColor' stroke-width='"+(i===lvl?5:2)+"'/><text x='270' y='"+(y+4)+"' font-size='13' fill='currentColor'>"+(i===0?"floor (0)":"energy "+i+"Δ")+"</text>"}
+  h+="<line x1='20' y1='190' x2='20' y2='118' stroke='#c0392b' stroke-width='3'/><text x='4' y='150' font-size='13' fill='#c0392b' transform='rotate(-90 12,150)'>gap Δ</text>";
+  var y2=190-lvl*42-(lvl>0?30:0);h+="<circle cx='150' cy='"+(y2-9)+"' r='9' fill='#b8860b'/>";
+  $("yg").innerHTML=h;$("yo").textContent=lvl===0?"On the floor: no energy.":"On step "+lvl+": energy "+lvl+"Δ. Nothing exists between the floor and step 1."}
+ $("yu").onclick=function(){if(lvl<3)lvl++;draw()};$("yd").onclick=function(){if(lvl>0)lvl--;draw()};draw()}
+
+var PL={riemannPlay:riemannPlay,pnpPlay:pnpPlay,poincarePlay:poincarePlay,nsPlay:nsPlay,bsdPlay:bsdPlay,hodgePlay:hodgePlay,ymPlay:ymPlay};
+CH.forEach(function(c){try{PL[c.play]($("pl_"+c.id))}catch(e){$("pl_"+c.id).textContent="This activity did not load. The rest of the chapter still works.";try{console.error(c.id+": "+e.message)}catch(z){}}});
+})();
+</script>
+</body>
+</html>
