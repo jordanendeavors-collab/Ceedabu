@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The 7 Big Math Questions, for Kids (Grade 3 and up) | The Humming of God</title>
-<meta name="description" content="Seven million-dollar math questions, plus a bonus on gravity, taught with RE, Repetitive Emulation: see the big idea three ways, watch it, copy it, do it yourself, then get every drill question right two times. Grade 3 and up. Works offline.">
+<title>Millennium Quest: The 7 Big Math Questions for Kids (Grade 3 and up) | The Humming of God</title>
+<meta name="description" content="Millennium Quest: 8 math worlds for kids grade 3 and up, built on the seven million-dollar Millennium Prize questions plus a bonus on gravity. Learn it, Lab, Practice, Stretch and a Boss round in every world, taught with RE, Repetitive Emulation. Works offline.">
 <style>
 
 :root{--bg:#f7f6f2;--panel:#fff;--ink:#1d2330;--muted:#5b6475;--line:#dcd9d0;--accent:#2b5fb8;--accent2:#c0392b;--accent3:#b8860b;--soft:#eef2fa;--ok:#2e7d4f;--warn:#b8860b;--bad:#b03a2e}
@@ -57,6 +57,95 @@ details{margin:10px 0}summary{cursor:pointer;font-weight:700;color:var(--accent)
 footer{max-width:860px;margin:0 auto;padding:6px 12px 40px;color:var(--muted);font-size:.88rem}
 a{color:var(--accent)}
 @media(max-width:520px){body{font-size:16px}.grid{grid-template-columns:repeat(6,1fr)}}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f1420;--panel:#171e2d;--ink:#e7ebf3;--muted:#9aa4b8;--line:#2a3347;--accent:#6ea2ff;--accent2:#ff7a6b;--accent3:#e6b94a;--soft:#1d2740;--ok:#5fcf8f;--warn:#e6b94a;--bad:#ff7a6b;color-scheme:dark}}
+:root[data-theme=dark]{color-scheme:dark}
+.brand{font-family:Cambria,Georgia,serif;font-weight:700;border:0;background:none;padding:6px 2px;font-size:1.08rem}
+.hr{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.hs{font-weight:700;color:var(--accent3);margin-right:2px;white-space:nowrap}
+.hero h1{font-size:2rem;margin-top:0}
+.lead{font-size:1.08rem}
+.re{background:var(--soft);border-radius:10px;padding:8px 12px}
+#pname{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%;max-width:280px;display:block;margin:4px 0 0}
+.totals{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.totals.four{grid-template-columns:repeat(4,1fr)}
+.totals div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center}
+.totals b{display:block;font-size:1.45rem;color:var(--accent)}
+.totals span{font-size:.8rem;color:var(--muted)}
+.sec{margin:20px 4px 10px}
+.daily{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-left:6px solid var(--accent3)}
+.daily h2{margin:0}.daily p{margin:4px 0 0}
+.worlds{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px;margin-bottom:16px}
+.world{display:flex;flex-direction:column;align-items:flex-start;text-align:left;white-space:normal;border-radius:16px;padding:14px;border:1px solid var(--line);border-top:6px solid var(--wc);background:var(--panel);min-height:160px;gap:3px}
+.world:hover{border-color:var(--wc)}
+.wi{font-size:1.9rem;line-height:1.1}
+.wn{font-weight:700;font-family:Cambria,Georgia,serif;font-size:1.08rem}
+.wr{font-size:.8rem;color:var(--muted)}
+.ws{margin-top:auto;font-weight:700;color:var(--accent3);font-size:.9rem}
+.won{font-size:.78rem;color:var(--ok);font-weight:700}
+.wbar,.pbar{display:block;width:100%;height:7px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:4px}
+.wbar i,.pbar i{display:block;height:100%;background:var(--wc,var(--accent));width:0;transition:width .35s}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.bdg{border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center;font-size:.84rem;background:var(--bg)}
+.bdg .bi{font-size:1.7rem;display:block}
+.bdg.off{opacity:.42;filter:grayscale(1)}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.btnrow.left{justify-content:flex-start}
+.back{margin-bottom:10px}
+.wh{border-top:6px solid var(--wc)}
+.wtop{display:flex;gap:12px;align-items:center}
+.wtop .wi{font-size:2.6rem}
+.wtop h1{margin:0}
+.lvls{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.lvl{display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.lvl .ln{width:36px;height:36px;border-radius:50%;background:var(--wc);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.lvl .lt b{display:block}
+.lvl .lr{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.lvl .ls{color:var(--accent3);font-size:1.1rem;letter-spacing:2px}
+.lvl.locked{opacity:.62}
+.lvl.boss{border:2px solid var(--wc)}
+.lvl button:disabled{cursor:default}
+.lvhead{font-size:.8rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--wc,var(--accent))}
+.q{background:var(--bg);border:2px solid var(--wc,var(--accent));border-radius:14px;padding:14px;margin:10px 0}
+.q .qt{font-size:1.08rem;font-weight:600}
+.q .opts{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.q .opts.nums{flex-direction:row;flex-wrap:wrap}
+.q .opts button{text-align:left;white-space:normal;border-radius:12px;min-height:48px;font-size:1rem}
+.q .opts button.right{background:var(--ok);border-color:var(--ok);color:#fff}
+.q .opts button.wrong{background:var(--bad);border-color:var(--bad);color:#fff}
+.q .opts button:disabled{cursor:default}
+.q .opts button:disabled:not(.right):not(.wrong){opacity:.6}
+.q .res{margin-top:10px;font-weight:600}
+.q .good,.res.good{color:var(--ok)}.q .bad,.res.bad{color:var(--bad)}
+.watchq .opts div{padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+.watchq .opts div.right{border:2px solid var(--ok);font-weight:700;color:var(--ok)}
+.hud{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.9rem;color:var(--muted);align-items:center;margin-top:6px}
+.hud b{color:var(--ink)}
+.clock{height:9px;background:var(--line);border-radius:5px;overflow:hidden;margin:10px 0 0}
+.clock i{display:block;height:100%;background:var(--accent3);width:100%}
+.clock.low i{background:var(--bad)}
+.slow{display:flex;gap:8px;align-items:center;margin:8px 0}
+.slow input{width:22px;height:22px;accent-color:var(--accent)}
+.miss{list-style:none;padding:0;margin:8px 0}
+.miss li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line)}
+.miss .ck{flex:none;width:28px;height:28px;border-radius:8px;border:2px solid var(--wc,var(--accent));display:flex;align-items:center;justify-content:center;font-weight:700}
+.miss li.on .ck{background:var(--ok);border-color:var(--ok);color:#fff}
+.miss li.on .mt{text-decoration:line-through;color:var(--muted)}
+.center{text-align:center}
+.bigstars{font-size:3rem;letter-spacing:6px;color:var(--accent3);margin:6px 0}
+.bigstars i{font-style:normal;display:inline-block;animation:pop .5s both}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.3)}100%{transform:scale(1)}}
+.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,30px);opacity:0;background:var(--panel);color:var(--ink);border:2px solid var(--accent3);border-radius:14px;padding:12px 16px;z-index:20;box-shadow:0 8px 30px rgba(0,0,0,.25);transition:all .35s;max-width:calc(100% - 32px);text-align:center;pointer-events:none}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.danger{background:var(--bad);color:#fff;border-color:var(--bad)}
+.rate-s{color:var(--ok);font-weight:700}.rate-g{color:var(--warn);font-weight:700}.rate-n{color:var(--bad);font-weight:700}
+.rtable th{font-size:.82rem;color:var(--muted)}
+.rtable td:first-child{font-family:inherit;font-size:.95rem;white-space:normal;color:var(--ink);width:auto}
+.rtable td{font-size:.92rem}
+@media(max-width:520px){.totals.four{grid-template-columns:repeat(2,1fr)}.lvl{grid-template-columns:34px 1fr;}.lvl .lr{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center}.hero h1{font-size:1.7rem}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{header,.back,.btnrow,button,footer{display:none!important}.card{border:0}}
+main{padding:12px 16px}header{padding:8px 16px}footer{padding-left:16px;padding-right:16px}
+#snd{min-width:44px;padding:8px 10px}
 
 .re-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0}
 .re-steps div{background:var(--soft);border-radius:10px;padding:8px 10px;font-size:.9rem}
@@ -87,42 +176,9 @@ ol.watch{margin:6px 0 6px 0;padding-left:22px}ol.watch li{margin:3px 0}
 </style>
 </head>
 <body>
-<header>
- <div class="top"><div><b>The 7 Big Math Questions</b> <span class="small">Grade 3 and up</span></div>
- <div><a class="chip" href="millennium.html">Grown-up field guide</a> <button id="theme" aria-label="Switch light and dark">Dark</button></div></div>
- <nav id="nav"></nav>
-</header>
-<main>
-<div class="card">
- <h1>Seven questions worth $1,000,000 each</h1>
- <p>Some math questions are so hard that nobody on Earth knows the answer yet. In 2000, the Clay Mathematics Institute picked seven of them and offered $1,000,000 for each one. <b>One</b> has been solved so far (number 3). Chapter 8 is a bonus on Einstein's gravity. It is not a Clay problem.</p>
- <p><b>How you learn here: RE, Repetitive Emulation.</b> You meet the same big idea again and again, each time a little differently. You watch it done, copy it, then do it on your own. You keep going until it sticks.</p>
- <div class="re-steps">
-  <div><b>1 HEAR IT</b>One big idea, said simply.</div>
-  <div><b>2 SEE IT 3 WAYS</b>Hands, picture, words.</div>
-  <div><b>3 WATCH ME</b>Follow the steps.</div>
-  <div><b>4 COPY ME</b>Same steps, new numbers.</div>
-  <div><b>5 YOUR TURN</b>Same move, new place.</div>
-  <div><b>6 DRILL</b>Get each question right two times.</div>
-  <div><b>7 SAY IT BACK</b>Say the big idea three times.</div>
- </div>
- <p class="small">Then come back tomorrow and run it again. Orange tags mark a kid analogy, which helps you picture the idea. Blue tags mark the real math that mathematicians have to prove.</p>
- <div id="statusrow"></div>
- <p class="small">Status labels are the ones on the Clay Institute website, read on 27 Nov 2026. They can change, so check <a href="https://www.claymath.org/millennium-problems/" target="_blank" rel="noopener">claymath.org</a> before you repeat one.</p>
-</div>
-<div id="chapters"></div>
-<div class="card" id="review">
- <h2>Daily RE review</h2>
- <p>One question from every chapter, mixed up. Get each one right two times. Do it again tomorrow: repeating it on different days is what makes it stick.</p>
- <div class="drill" id="dr_review"></div>
-</div>
-<div class="card">
- <h2>Hear and see more</h2>
- <p>Math Beats Studio turns these same equations into sound and light. Try the Riemann zeros, the heat and wave equations, and the Chladni plate: <a href="https://mathbeatsstudio.com/studio.html" target="_blank" rel="noopener">mathbeatsstudio.com</a>. Those are sonifications, which means a way to listen to numbers. They are music, not proofs.</p>
- <p class="small">There are far more famous problems than these seven. More chapters can be added the same way.</p>
-</div>
-</main>
-<footer>Part of The Humming of God. Works offline. Your stars are saved only on this device. Check the source named in each chapter before you quote it.</footer>
+<header><div class="top"><button id="brand" class="brand" aria-label="Millennium Quest home">🏆 Millennium Quest</button><div class="hr"><span id="hstars" class="hs"></span><a class="chip" href="millennium.html">Guide</a><button id="snd" aria-label="Sound on or off">🔊</button><button id="theme" aria-label="Switch light and dark">Dark</button></div></div></header>
+<main id="app"></main>
+<footer>Part of The Humming of God. Works offline. Stars, badges and the report are saved only on this device.</footer>
 <script>
 (function(){
 function $(i){return document.getElementById(i)}
@@ -131,9 +187,153 @@ function lj(k){try{return JSON.parse(ls(k)||"null")}catch(e){return null}}
 function sj(k,o){try{ls(k,JSON.stringify(o))}catch(e){}}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function today(){var d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
-var th=ls("mk_theme")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
-function applyTheme(){document.documentElement.setAttribute("data-theme",th);$("theme").textContent=th==="dark"?"Light":"Dark"}
-$("theme").onclick=function(){th=th==="dark"?"light":"dark";ls("mk_theme",th);applyTheme()};applyTheme();
+/* ---------- question makers: same skill, new numbers every time ---------- */
+function ri(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function cap(s){s=String(s);return s.charAt(0).toUpperCase()+s.slice(1)}
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
+function isPr(n){if(n<2)return false;for(var d=2;d*d<=n;d++)if(n%d===0)return false;return true}
+function smallF(n){for(var d=2;d*d<=n;d++)if(n%d===0)return d;return n}
+function nextPr(n){n++;while(!isPr(n))n++;return n}
+/* Q: answer plus wrong choices; keeps choices unique, three in all unless told otherwise */
+function Q(q,ans,wrongs,why,n){n=n||3;ans=String(ans);var w=[];
+ wrongs.forEach(function(x){x=String(x);if(x!==ans&&w.indexOf(x)<0&&x!=="NaN"&&x.charAt(0)!=="-")w.push(x)});
+ w=shuffle(w).slice(0,n-1);var ch=shuffle([ans].concat(w));return {q:q,ch:ch,a:ch.indexOf(ans),why:why}}
+/* QF: fixed choices in a fixed order (yes/no and the like) */
+function QF(q,ch,a,why){return {q:q,ch:ch.slice(),a:a,why:why,fixed:true}}
+function near(n,list){return list.map(function(k){return n+k}).filter(function(x){return x>=0})}
+
+var G={
+riemann:{prac:[
+ function(){var n=ri(4,49),p=isPr(n),f=smallF(n);
+  return QF("Is "+n+" prime?",["Prime","Not prime"],p?0:1,p?"Counting by 2, 3, 5 or 7 never lands on "+n+". Only 1 and "+n+" do, so it is prime.":"Counting by "+f+"s lands on "+n+" ("+f+" × "+(n/f)+" = "+n+"), so it is not prime.")},
+ function(){var k=ri(2,9),m=ri(2,9),ans=k*m;
+  var wr=near(ans,[1,-1,2,-2,3,-3]).filter(function(x){return x>0&&x%k!==0});
+  return Q("Count by "+k+"s. Which number do you land on?",ans,wr,k+" × "+m+" = "+ans+", so counting by "+k+"s lands on "+ans+".")},
+ function(){var p=pick([11,13,17,19,23,29,31,37,41,43,47]),cs=shuffle([15,21,25,27,33,35,39,45,49]).slice(0,2);
+  return Q("Which number is prime?",p,cs,cs.map(function(c){var f=smallF(c);return c+" = "+f+" × "+(c/f)}).join(" and ")+", so skip counting lands on them. Nothing but 1 and "+p+" lands on "+p+".")}
+],stretch:[
+ function(){var n=pick([12,18,20,24,28,30,36,40,42,45,48,54,56,60]),fs=[];for(var d=2;d*d<=n;d++)if(n%d===0)fs.push(d);
+  var a=pick(fs),b=n/a,wr=[[a,b+1],[a+1,b],[a,b-1],[a-1,b+1]].filter(function(x){return x[0]>1&&x[1]>1&&x[0]*x[1]!==n}).map(function(x){return x[0]+" × "+x[1]});
+  return Q("Which pair multiplies to make "+n+"?",a+" × "+b,wr,a+" × "+b+" = "+n+". A number with a pair like this is not prime.")},
+ function(){var n=ri(10,60),ans=nextPr(n),wr=[],skip=[];
+  for(var x=n+1;x<ans;x++){wr.push(x);skip.push(x+" ("+smallF(x)+"s land on it)")}
+  for(x=ans+1;wr.length<4;x++)if(!isPr(x))wr.push(x);
+  return Q("What is the next prime number after "+n+"?",ans,wr,(skip.length?"Check in order: "+skip.join(", ")+". ":"")+ans+" is the first one nothing lands on.")},
+ function(){var s=pick([10,20,30,40,50,60,70,80,90]),ps=[];for(var x=s+1;x<s+10;x++)if(isPr(x))ps.push(x);
+  return Q("How many prime numbers are there between "+s+" and "+(s+10)+"?",ps.length,near(ps.length,[1,-1,2]),"They are "+(ps.length?ps.join(", "):"none")+". Count them: "+ps.length+". The primes thin out as numbers get bigger.")}
+]},
+pnp:{prac:[
+ function(){var c=ri(2,9),ans=c*c;
+  return Q("A lock has 2 dials. Each dial has "+c+" choices. How many different codes are there?",ans,[c+c,ans+c,ans-c,c*3],c+" choices on the first dial for each of "+c+" on the second: "+c+" × "+c+" = "+ans+".")},
+ function(){var a=ri(2,9),b=ri(2,9),real=a*b,ok=Math.random()<.5,shown=ok?real:pick([real+a,real-a,real+1,real-1]);
+  return QF("Check this answer: "+a+" × "+b+" = "+shown+". Right or wrong?",["Right","Wrong"],ok?0:1,a+" × "+b+" = "+real+". Checking took one step.")},
+ function(){var d=ri(2,6);
+  return Q("A lock has "+d+" dials. A friend tells you the code. How many tries does it take to check it?",1,[d,fmt(Math.pow(10,d))],"One try. Checking an answer you are given is fast, no matter how many dials.")}
+],stretch:[
+ function(){var c=ri(2,6),ans=c*c*c;
+  return Q("A lock has 3 dials. Each dial has "+c+" choices. How many codes?",ans,[3*c,c*c,ans+c,c+c+c+1],c+" × "+c+" × "+c+" = "+ans+". Every new dial multiplies the work.")},
+ function(){var nums,x,y,T,ok=false;
+  while(!ok){nums=[];while(nums.length<5){var r=ri(1,20);if(nums.indexOf(r)<0)nums.push(r)}
+   var i=ri(0,3),j=ri(i+1,4);x=nums[i];y=nums[j];T=x+y;var cnt=0;
+   for(var p=0;p<5;p++)for(var q=p+1;q<5;q++)if(nums[p]+nums[q]===T)cnt++;ok=cnt===1}
+  var wr=[];for(var p2=0;p2<5;p2++)for(var q2=p2+1;q2<5;q2++)if(nums[p2]+nums[q2]!==T)wr.push(nums[p2]+" and "+nums[q2]);
+  return Q("Cards: "+nums.join(", ")+". Which two cards add up to "+T+"?",x+" and "+y,wr,x+" + "+y+" = "+T+". Checking it was one addition. Finding it meant trying pairs: 5 cards make 10 pairs.")},
+ function(){var d=ri(1,3),now=Math.pow(10,d),ans=now*10;
+  return Q("A lock with "+d+" dial"+(d>1?"s":"")+" (0 to 9) has "+fmt(now)+" codes. Add one more dial. How many codes now?",fmt(ans),[fmt(now+10),fmt(now*2),fmt(ans*10)],"The new dial has 10 choices for every old code: "+fmt(now)+" × 10 = "+fmt(ans)+". Checking one code is still one try.")}
+]},
+poincare:{prac:[
+ function(){var o=pick([["a ball",0],["a coin",0],["a plate",0],["a bowl",0],["a cup with no handle",0],["a ring",1],["a donut",1],["a bagel",1],["a mug with one handle",1],["a straw",1],["a pair of glasses frames with no lenses",2],["a classic twisted pretzel",3]]);
+  return Q("How many holes go all the way through "+o[0]+"?",o[1],[0,1,2,3],o[1]===0?"No tunnel goes through it, so it has 0 holes.":(o[0]==="a straw"?"A straw has 1 hole: one tunnel, in one end and out the other.":"It has "+o[1]+" hole"+(o[1]>1?"s":"")+" you could thread a string through."))},
+ function(){var s=pick([["a ball","anywhere on it",0],["a plate","on the top",0],["a donut","around its hole",1],["a donut","on its side, not around the hole",0],["a coffee mug","around the handle",1],["a bagel","around the hole",1]]);
+  return QF("A rubber band sits on "+s[0]+", "+s[1]+". Can you shrink it to a dot without lifting it off?",["Yes","No"],s[2],s[2]===0?"Nothing is in the way, so the band shrinks to a dot.":"The hole is in the way, like the pole in the Lab. The band gets stuck.")},
+ function(){var s=pick([["triangle",3],["square",4],["rectangle",4],["pentagon",5],["hexagon",6],["octagon",8]]),c=pick(["sides","corners"]);
+  return Q("How many "+c+" does a "+s[0]+" have?",s[1],near(s[1],[1,-1,2]),"A "+s[0]+" has "+s[1]+" sides and "+s[1]+" corners.")}
+],stretch:[
+ function(){var s=pick([["cube",6,12,8],["rectangular box",6,12,8],["square pyramid",5,8,5],["triangular pyramid",4,6,4],["triangular prism",5,9,6]]),k=ri(1,3),nm=["","faces","edges","corners"][k];
+  return Q("How many "+nm+" does a "+s[0]+" have?",s[k],[s[1],s[2],s[3],s[k]+1,s[k]-1],"A "+s[0]+" has "+s[1]+" faces, "+s[2]+" edges and "+s[3]+" corners.")},
+ function(){if(Math.random()<.5)return Q("A shape-stretcher can bend and squish but never cut or glue. Which is the same shape as a donut?","A mug with one handle",["A ball","A plate","A bowl"],"Squish the mug into the handle and you get a donut. Both have one hole.");
+  return Q("A shape-stretcher can bend and squish but never cut or glue. Which is the same shape as a ball?",pick(["A bowl","A plate","A brick"]),["A ring","A donut","A bagel"],"No holes, so it can be squished into a ball. A loop on it always shrinks to a dot.")},
+ function(){var s=pick([["cube",6,12,8],["square pyramid",5,8,5],["triangular pyramid",4,6,4],["triangular prism",5,9,6]]);
+  return Q("A "+s[0]+" has "+s[1]+" faces, "+s[2]+" edges and "+s[3]+" corners. Faces + corners − edges = ?",2,[0,1,3,4],s[1]+" + "+s[3]+" − "+s[2]+" = 2. It comes out 2 for every solid with no hole through it. A solid donut shape gives 0.")}
+]},
+ns:{prac:[
+ function(){var r=ri(2,9),m=ri(2,9),ans=r*m;
+  return Q("A hose pours "+r+" liters of water each minute. How many liters after "+m+" minutes?",ans,[r+m,ans+r,ans-r],r+" liters × "+m+" minutes = "+ans+" liters.")},
+ function(){var a=ri(2,9),b=ri(2,9),ans=a+b;
+  return Q("Two pipes flow into one big pipe. One brings "+a+" liters a minute, the other brings "+b+". Water can't pile up inside. How many liters a minute come out?",ans,[Math.abs(a-b),ans+1,ans-1,a*b],"What goes in must come out: "+a+" + "+b+" = "+ans+". Flow rules start from this idea.")},
+ function(){var t=pick(["honey","pudding","syrup","glue"]),w=pick(["water","juice"]);
+  return Q("You stir a cup of "+t+" and a cup of "+w+", then stop. Which one stops swirling first?",cap(t),[cap(w)],t.charAt(0).toUpperCase()+t.slice(1)+" is thick: it has high viscosity, so it slows a swirl down fast.",2)}
+],stretch:[
+ function(){var r=ri(2,9),m=ri(3,12),T=r*m;
+  return Q("A tank holds "+T+" liters. A hose pours "+r+" liters each minute. How many minutes to fill it?",m,[m+1,m-1,m+2,T-r],T+" ÷ "+r+" = "+m+" minutes.")},
+ function(){var a=ri(2,6),b=ri(2,6),m=ri(2,6),ans=(a+b)*m;
+  return Q("Pipe A pours "+a+" liters a minute and pipe B pours "+b+". Both run for "+m+" minutes. How many liters in all?",ans,[a+b+m,a*m+b,ans+m],"Together they pour "+a+" + "+b+" = "+(a+b)+" a minute. "+(a+b)+" × "+m+" = "+ans+".")},
+ function(){var s=ri(1,6),ans=2*s;
+  return Q("Water moves "+s+" meters each second in a wide pipe. The pipe squeezes down to half the opening. The same water still has to get through. How fast does it go now?",ans+" meters a second",[s+" meters a second",(s+1)+" meters a second",(ans+2)+" meters a second"],"Same water through half the room means twice as fast: 2 × "+s+" = "+ans+". That is why a thumb on a hose makes the water shoot out.")}
+]},
+bsd:{prac:[
+ function(){var x=ri(1,9),y=ri(1,9);if(x===y)y=x%9+1;
+  return Q("Start at (0, 0). Go "+x+" steps right and "+y+" steps up. Which point are you on?","("+x+", "+y+")",["("+y+", "+x+")","("+(x+1)+", "+y+")","("+x+", "+(y+1)+")"],"Right first, then up: ("+x+", "+y+").")},
+ function(){var n=ri(3,8),ps=[];for(var a=0;a<=n;a++)ps.push("("+a+", "+(n-a)+")");
+  return Q("How many points (a, b) with whole numbers make a + b = "+n+"? Zero counts.",n+1,[n,n-1,n+2],"They are "+ps.join(", ")+". That is "+(n+1)+" points.")},
+ function(){var n=ri(4,10),a=ri(0,n),on=Math.random()<.5,b=on?n-a:(n-a)+pick([1,2]);
+  return QF("Is the point ("+a+", "+b+") on the line where x + y = "+n+"?",["Yes","No"],on?0:1,a+" + "+b+" = "+(a+b)+(on?". That matches, so yes.":", not "+n+", so no."))}
+],stretch:[
+ function(){var n=pick([6,8,10,12,15,16,18,20]),ps=[];for(var d=1;d<=n;d++)if(n%d===0)ps.push("("+d+", "+(n/d)+")");
+  return Q("How many whole-number points (x, y) make x × y = "+n+"?",ps.length,near(ps.length,[1,-1,2,-2]),"They are "+ps.join(", ")+". Count them: "+ps.length+".")},
+ function(){var x=ri(0,6),y=2*x+1;
+  return Q("Which point is on the line y = 2 × x + 1?","("+x+", "+y+")",["("+x+", "+(2*x)+")","("+x+", "+(y+1)+")","("+(x+1)+", "+y+")"],"Put x = "+x+" in: 2 × "+x+" + 1 = "+y+". So ("+x+", "+y+").")},
+ function(){var k=pick([1,3,5,7,9]);
+  return Q("On the line y = 2 × x, what is y when x = "+k+"/2?",k,[k+1,2*k,k+2],"2 × "+k+"/2 = "+k+". A point with fraction coordinates, like ("+k+"/2, "+k+"), is the kind of point the Birch and Swinnerton-Dyer question counts, on much harder curves.")}
+]},
+hodge:{prac:[
+ function(){var w=ri(2,9),h=ri(2,9),ans=w*h;
+  return Q("A rectangle is "+w+" squares wide and "+h+" squares tall. How many unit squares cover it?",ans,[w+h,2*(w+h),ans+w],h+" rows of "+w+": "+w+" × "+h+" = "+ans+".")},
+ function(){var a=ri(2,5),b=ri(2,5),c=ri(2,5),d=ri(2,5),ans=a*b+c*d;
+  return Q("Two rectangles join with no overlap. One is "+a+" by "+b+", the other is "+c+" by "+d+". How many unit squares in the whole shape?",ans,[a+b+c+d,ans+1,ans-2],"Build it from the pieces: "+(a*b)+" + "+(c*d)+" = "+ans+".")},
+ function(){var k=ri(2,9),ans=2*k;
+  return Q("Cut a square from corner to corner and you get 2 triangles. How many triangles do "+k+" squares make?",ans,[k,k+2,3*k],k+" × 2 = "+ans+" triangles.")}
+],stretch:[
+ function(){var W=ri(4,9),H=ri(3,8),w=ri(1,W-2),h=ri(1,H-1),ans=W*H-w*h;
+  return Q("A "+W+" by "+H+" rectangle has a "+w+" by "+h+" corner cut off. How many unit squares are left?",ans,[W*H,W*H-w-h,ans+w],W+" × "+H+" = "+(W*H)+". Take away "+w+" × "+h+" = "+(w*h)+". "+(W*H)+" − "+(w*h)+" = "+ans+".")},
+ function(){var w=ri(2,6),h=2*ri(1,3),ans=w*h/2;
+  return Q("A domino covers 2 squares. How many dominoes cover a "+w+" by "+h+" board?",ans,[w*h,w+h,ans+1],w+" × "+h+" = "+(w*h)+" squares. "+(w*h)+" ÷ 2 = "+ans+" dominoes.")},
+ function(){var w=ri(2,9),h=ri(2,9),ans=2*(w+h);
+  return Q("How far is it all the way around a "+w+" by "+h+" rectangle?",ans,[w*h,w+h,2*w+h],w+" + "+h+" + "+w+" + "+h+" = "+ans+".")}
+]},
+ym:{prac:[
+ function(){var g=ri(2,6),s=ri(1,4);if(s===g)s=g+1;var L=[0,g,g+s,g+2*s];
+  return Q("The allowed energy steps are "+L.join(", ")+". How big is the gap from the floor (0) up to the first step?",g,[0,s,g+s,1],"The first step is at "+g+", so the gap is "+g+". Nothing sits between 0 and "+g+".")},
+ function(){var s=ri(2,9),n=ri(2,9),ans=s*n;
+  return Q("Start at 0 on a number line. Each step is "+s+". Where are you after "+n+" steps?",ans,[s+n,ans+s,ans-s],n+" steps of "+s+": "+n+" × "+s+" = "+ans+".")},
+ function(){var s=ri(2,9),k=ri(1,9),on=Math.random()<.5,x=on?s*k:s*k+ri(1,s-1);
+  return QF("Steps go up by "+s+" from 0. Can you stand at "+x+"?",["Yes","No"],on?0:1,on?s+" × "+k+" = "+x+", so "+x+" is a step.":x+" is between "+(s*k)+" and "+(s*k+s)+". There is no step there.")}
+],stretch:[
+ function(){var s=ri(2,9),a=s*ri(0,4),n=ri(2,6),b=a+s*n;
+  return Q("Steps are "+s+" apart. How many steps from "+a+" up to "+b+"?",n,[b-a,n+1,n-1],b+" − "+a+" = "+(b-a)+". "+(b-a)+" ÷ "+s+" = "+n+" steps.")},
+ function(){var L,gaps,ok=false;while(!ok){L=[0];for(var i=0;i<3;i++)L.push(L[L.length-1]+ri(2,9));gaps=[L[1]-L[0],L[2]-L[1],L[3]-L[2]];ok=gaps[0]!==gaps[1]&&gaps[1]!==gaps[2]&&gaps[0]!==gaps[2]}
+  var m=Math.min.apply(null,gaps);
+  return Q("These energy levels are allowed: "+L.join(", ")+". What is the smallest gap between two levels next to each other?",m,gaps.concat([m-1]),"The gaps are "+gaps.join(", ")+". The smallest is "+m+".")},
+ function(){var a=ri(1,10),s=ri(2,9),ans=a+2*s;
+  return Q("Fill the blank in the steps: "+a+", "+(a+s)+", ?, "+(a+3*s),ans,[ans+1,ans-1,a+s+1],"Each step adds "+s+": "+(a+s)+" + "+s+" = "+ans+".")}
+]},
+gr:{prac:[
+ function(){var a=ri(30,80),b=ri(30,80);if(a+b>150)b=150-a;var ans=180-a-b;
+  return Q("On flat paper, the corners of a triangle add to 180°. Two corners are "+a+"° and "+b+"°. What is the third?",ans+"°",[(ans+10)+"°",(ans-10)+"°",(a+b)+"°"],"180 − "+a+" − "+b+" = "+ans+".")},
+ function(){if(Math.random()<.5)return QF("On a flat floor, two friends walk straight ahead, side by side. Do their paths ever meet?",["Yes","No"],1,"On a flat floor, straight paths that start side by side stay the same distance apart.");
+  return QF("On a globe, two friends start on the equator and both walk straight north. Do their paths meet?",["Yes","No"],0,"They meet at the North Pole. The globe is curved, so straight paths come together.")},
+ function(){var p=pick([["a bowling ball","a tennis ball"],["the Sun","the Earth"],["the Earth","the Moon"],["a brick","a sponge"]]);
+  return Q("Which one makes a deeper dip in a stretched sheet, or in space?",cap(p[0]),[cap(p[1])],"Heavier things make a deeper dip, and paths bend toward them.",2)}
+],stretch:[
+ function(){var k=pick([30,45,60,90,120]),ans=180+k;
+  return Q("On a globe, walk from the equator up to the North Pole and back down another line. The two corners on the equator are 90° each. The corner at the pole is "+k+"°. What do all three corners add to?",ans+"°",["180°",(90+k)+"°",(ans+90)+"°"],"90 + 90 + "+k+" = "+ans+". That is more than 180°, which only happens on a curved surface.")},
+ function(){var w=6*ri(2,15),ans=w/6;
+  return Q("On the Moon, things weigh about 1/6 as much as on Earth. A backpack weighs "+w+" pounds on Earth. About how much on the Moon?",ans+" pounds",[(w/2)+" pounds",(w-6)+" pounds",(w/3)+" pounds"],w+" ÷ 6 = "+ans+". The Moon has less mass, so it bends space less.")},
+ function(){var p=pick([["a hammer","a feather"],["a bowling ball","a marble"],["a brick","a paper clip"]]);
+  return QF("With no air at all, you drop "+p[0]+" and "+p[1]+" at the same moment. Which lands first?",["They land together",p[0].charAt(0).toUpperCase()+p[0].slice(1),p[1].charAt(0).toUpperCase()+p[1].slice(1)],0,"Without air pushing back, everything falls the same way. An astronaut dropped a hammer and a feather on the Moon in 1971, and they landed together.")}
+]}
+};
 
 var CH=[
 {id:"riemann",n:1,name:"The Riemann Hypothesis",tag:"Where do the prime numbers hide?",st:["Active","active"],core:"Grade 3 core: multiplication facts and skip counting.",
@@ -296,71 +496,6 @@ gotcha:"The globe walk and the bedsheet are analogies for curved paths only. Rea
 src:"Einstein 1915; Eddington expedition 1919; LIGO first detection announced 11 Feb 2016 (detected 14 Sep 2015)."}
 ];
 
-/* ---------- RE helpers ---------- */
-function mc(el,spec){el.innerHTML="<div>"+spec.q+"</div><div class='opts'></div><div class='res'></div>";
- var o=el.querySelector(".opts"),r=el.querySelector(".res");
- spec.ch.forEach(function(t,i){var b=document.createElement("button");b.textContent=t;b.onclick=function(){
-  if(i===spec.a){r.className="res good";r.textContent="Yes. "+spec.why}else{r.className="res bad";r.textContent="Not yet. Look at the steps again and try another choice."}};o.appendChild(b)})}
-
-/* RE drill: every question must be answered right two times in a row. A miss resets that question and sends it to the back of the line. */
-function drill(el,qs,key,onDone){
- var st=lj(key)||{},queue=[];
- function need(i){return Math.max(0,2-(st[i]||0))}
- function rebuild(){queue=[];qs.forEach(function(q,i){if(need(i)>0)queue.push(i)});shuffle(queue)}
- function dots(){return qs.map(function(q,i){var c=Math.min(2,st[i]||0);return "<span class='dots' title='question "+(i+1)+"'><i class='"+(c>0?"f":"")+"'></i><i class='"+(c>1?"f":"")+"'></i></span>"}).join(" ")}
- function render(){
-  if(!queue.length){el.innerHTML="<div class='prog'>"+dots()+"</div><p class='star'>★ Mastered. Every question right two times.</p><p class='again'>RE works by repeating. Run it again tomorrow.</p><button class='rerun'>Run the drill again</button>";
-   el.querySelector(".rerun").onclick=function(){st={};sj(key,st);rebuild();render()};if(onDone)onDone(true);return}
-  var i=queue[0],q=qs[i],left=queue.length;
-  el.innerHTML="<div class='prog'>Right two times each: "+dots()+"</div><div>"+q.q+"</div><div class='opts'></div><div class='res'></div>";
-  var o=el.querySelector(".opts"),r=el.querySelector(".res"),done=false;
-  var order=shuffle(q.ch.map(function(t,k){return k}));
-  order.forEach(function(k){var b=document.createElement("button");b.textContent=q.ch[k];b.onclick=function(){if(done)return;done=true;
-   queue.shift();
-   if(k===q.a){st[i]=(st[i]||0)+1;r.className="res good";r.textContent=(st[i]>=2?"Yes, two times! ":"Yes. You will see this one again. ")+q.why;if(st[i]<2)queue.splice(Math.min(queue.length,1+Math.floor(Math.random()*2)),0,i)}
-   else{st[i]=0;r.className="res bad";r.textContent="Not yet. The answer is: "+q.ch[q.a]+". "+q.why+" This one comes back later.";queue.push(i)}
-   sj(key,st);ls(key+"_last",today());
-   var nb=document.createElement("button");nb.className="btn";nb.textContent=queue.length?"Next":"Finish";nb.style.marginTop="8px";nb.onclick=render;r.appendChild(document.createElement("br"));r.appendChild(nb);if(onDone)onDone(false)};o.appendChild(b)});
- }
- rebuild();render()}
-
-function sayBack(el,sp,id){
- el.innerHTML="<p>"+sp.pre+" <span class='blank'>?</span> "+sp.post+"</p><div class='opts nums'></div><div class='res'></div>";
- var o=el.querySelector(".opts"),r=el.querySelector(".res");
- sp.ch.forEach(function(t,i){var b=document.createElement("button");b.textContent=t;b.onclick=function(){
-  if(i===sp.a){el.querySelector(".blank").textContent=t;r.innerHTML="<p class='good'>Yes. Now say the whole sentence out loud three times. Tap a circle each time.</p><div class='taps'><button>1</button><button>2</button><button>3</button><span class='small'></span></div>";
-   var n=0;Array.prototype.forEach.call(r.querySelectorAll(".taps button"),function(tb){tb.onclick=function(){if(tb.className==="on")return;tb.className="on";n++;if(n===3){r.querySelector(".taps .small").textContent="Done. Say it again tomorrow.";ls("mk3_say_"+id,today())}}})}
-  else{r.innerHTML="<p class='bad'>Not yet. Read the big idea at the top of the chapter and try again.</p>"}};o.appendChild(b)})}
-
-/* ---------- build page ---------- */
-var nav=$("nav"),host=$("chapters"),sr=$("statusrow");
-var SHORT={gr:"Bonus: Gravity",riemann:"Riemann",pnp:"P vs NP",poincare:"Poincaré",ns:"Navier–Stokes",bsd:"BSD",hodge:"Hodge",ym:"Yang–Mills"};
-function mastered(id){var s=lj("mk3_dr_"+id)||{},c=CH.filter(function(x){return x.id===id})[0];return c.drill.every(function(q,i){return (s[i]||0)>=2})}
-function navStar(id){var a=$("nv_"+id);if(a)a.textContent=(mastered(id)?"★ ":"")+a.getAttribute("data-t")}
-function ago(id){var d=ls("mk3_dr_"+id+"_last");if(!d)return "Not practiced yet on this device.";if(d===today())return "Practiced today. Repeat it again tomorrow.";return "Last practiced "+d+". Time to repeat it."}
-CH.forEach(function(c){
- var a=document.createElement("a");a.className="chip";a.href="#"+c.id;a.id="nv_"+c.id;a.setAttribute("data-t",c.n+" "+SHORT[c.id]);a.textContent=c.n+" "+SHORT[c.id];nav.appendChild(a);
- if(!c.bonus){var p=document.createElement("span");p.className="pill s-"+c.st[1];p.textContent=c.n+". "+SHORT[c.id]+": "+c.st[0];sr.appendChild(p)}
- var s=document.createElement("section");s.className="card";s.id=c.id;
- var h="<h2>"+c.n+". "+c.name+"</h2><div class='small'>"+c.tag+" <span class='pill s-"+c.st[1]+"'>"+(c.bonus?"":"Clay label: ")+c.st[0]+"</span></div>";
- h+="<div class='stage'><span>1 HEAR IT</span>The big idea</div><p class='big-idea'>"+c.idea+"</p>";
- h+="<div class='stage'><span>2 SEE IT 3 WAYS</span>Same idea, three ways</div><div class='ways'><div class='way'><b>With your hands.</b> <span class='label analogy'>KID ANALOGY</span>"+c.hands+"</div><div class='way'><b>In words.</b> "+c.words+"</div></div><p class='picnote'><b>As a picture.</b> Play with it here.</p><div class='play' id='pl_"+c.id+"'></div>";
- h+="<div class='stage'><span>3 WATCH ME</span>Follow the steps</div><ol class='watch'>"+c.watch.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol>";
- h+="<div class='stage'><span>4 COPY ME</span>Same steps, new numbers</div><div class='mc' id='cp_"+c.id+"'></div>";
- h+="<div class='stage'><span>5 YOUR TURN</span>Same move, new place</div><div class='mc' id='tu_"+c.id+"'></div>";
- h+="<div class='stage'><span>6 DRILL</span>Get each question right two times</div><div class='drill' id='dr_"+c.id+"'></div><p class='again' id='ag_"+c.id+"'>"+ago(c.id)+"</p>";
- h+="<div class='stage'><span>7 SAY IT BACK</span>Fill the blank, then say it three times</div><div class='mc' id='sb_"+c.id+"'></div>";
- h+="<details><summary>The real question and the equation (older kids)</summary><p><span class='label real'>REAL MATH</span>"+c.plain+"</p><div class='eq'>"+c.eq+"</div><table>"+c.parts.map(function(x){return "<tr><td>"+x[0]+"</td><td>"+x[1]+"</td></tr>"}).join("")+"</table><p class='small'>"+c.gotcha+"</p><p class='small'>"+c.origin+"</p></details>";
- h+="<p class='small'><b>Core connection:</b> "+c.core+" <b>Source:</b> "+c.src+"</p>";
- s.innerHTML=h;host.appendChild(s);
- mc($("cp_"+c.id),c.copy);mc($("tu_"+c.id),c.turn);sayBack($("sb_"+c.id),c.say,c.id);
- drill($("dr_"+c.id),c.drill,"mk3_dr_"+c.id,function(){navStar(c.id);$("ag_"+c.id).textContent=ago(c.id)});navStar(c.id);
-});
-/* daily mixed review: one question per chapter, new mix each day */
-(function(){var key="mk3_review_"+today(),pick=lj(key+"_pick");
- if(!pick){pick=CH.map(function(c){return Math.floor(Math.random()*c.drill.length)});sj(key+"_pick",pick)}
- var qs=CH.map(function(c,i){var q=c.drill[pick[i]];return {q:"<span class='small'>"+c.n+". "+SHORT[c.id]+"</span><br>"+q.q,ch:q.ch,a:q.a,why:q.why}});
- drill($("dr_review"),qs,key,null)})();
 
 /* ---------- interactives ---------- */
 function isPrime(n){if(n<2)return false;for(var i=2;i*i<=n;i++)if(n%i===0)return false;return true}
@@ -469,8 +604,292 @@ function grPlay(el){
   $("gcap").textContent=k<.05?"Flat surface: straight paths stay the same distance apart.":(k>.9?"Strong curvature: the straight paths meet. No push, only curved space.":"The paths drift together because the surface curves.")}
  $("gr1").oninput=draw;draw()}
 
+/* ---------- Millennium Quest engine ---------- */
+var WD={
+ riemann:{name:"Prime Hunt",icon:"🔢",col:"#d35400",badge:"Prime Hunter"},
+ pnp:{name:"Lock Breaker",icon:"🔐",col:"#8e44ad",badge:"Code Cracker"},
+ poincare:{name:"Loop Land",icon:"🍩",col:"#16a085",badge:"Loop Master"},
+ ns:{name:"Flow River",icon:"🌊",col:"#2980b9",badge:"Flow Rider"},
+ bsd:{name:"Point Map",icon:"📍",col:"#c0392b",badge:"Point Finder"},
+ hodge:{name:"Shape Builder",icon:"🧱",col:"#27ae60",badge:"Master Builder"},
+ ym:{name:"Energy Ladder",icon:"🪜",col:"#b7950b",badge:"Step Climber"},
+ gr:{name:"Space Bend",icon:"🌍",col:"#5d6d7e",badge:"Space Bender"}
+};
+var LV=[
+ {k:"learn",name:"Learn it",sub:"Hear it, see it, watch me, copy me, your turn, say it back."},
+ {k:"lab",name:"Lab",sub:"Play with it. Finish 3 missions."},
+ {k:"prac",name:"Practice",sub:"Grade 3. Each question right two times."},
+ {k:"stretch",name:"Stretch",sub:"Grade 4 and 5. Each question right two times."},
+ {k:"boss",name:"Boss round",sub:"10 mixed questions. Get 7 right to win the badge."}
+];
+var LVN={prac:"Practice",stretch:"Stretch",boss:"Boss"};
+
+/* Lab missions: "ok" ones check the play itself, "q" ones are a question about what you saw */
+var LAB={
+ riemann:[{t:"Strike out the 2s, 3s, 5s and 7s.",ok:function(s){return s.dp[2]&&s.dp[3]&&s.dp[5]&&s.dp[7]}},
+  {t:"Slide the board size all the way to 100.",ok:function(){return +$("rn").value===100}},
+  {t:"Answer the Lab question below.",q:{q:"Board at 100, with the 2s, 3s, 5s and 7s struck out. How many numbers are left standing?",ch:["25","20","30"],a:0,why:"The 25 primes up to 100 are left. Every other number got struck out."}}],
+ pnp:[{t:"Tap numbers until your total matches the target.",ok:function(s){return s.inPn&&$("pok").textContent==="Match!"}},
+  {t:"Let the computer try every combination.",ok:function(s){return !!s.ids.psolve}},
+  {t:"Answer the Lab question below.",q:{q:"12 numbers make 4,096 groups. How many tries does it take to CHECK one group?",ch:["1","12","4,096"],a:0,why:"One addition checks a group. Finding the right group can take thousands of tries."}}],
+ poincare:[{t:"Drag the slider all the way to the right.",ok:function(){return +$("pr").value>=95}},
+  {t:"Answer Lab question 1 below.",q:{q:"Which rope shrank to a dot?",ch:["The rope on bare ground","The rope around the pole"],a:0,why:"Nothing was in its way."}},
+  {t:"Answer Lab question 2 below.",q:{q:"What stopped the other rope?",ch:["The pole","The ground","Nothing did"],a:0,why:"The pole is in the way, like a hole."}}],
+ ns:[{t:"Turn the thickness down to 0, thin like water.",ok:function(){return +$("ns2").value===0}},
+  {t:"Turn the thickness up to 10, thick like honey.",ok:function(){return +$("ns2").value===10}},
+  {t:"Answer the Lab question below.",q:{q:"Which swirl reaches farther out?",ch:["Thin, like water","Thick, like honey"],a:0,why:"Thick fluid slows a swirl down fast. Thin fluid keeps swirling far out."}}],
+ bsd:[{t:"Move both sliders, a and b, to make a new curve.",ok:function(){return +$("ba").value!==-1&&+$("bb").value!==1}},
+  {t:"Find a setting that makes a sharp point. The message turns red. Hint: try a = 0 and b = 0.",ok:function(){var a=+$("ba").value,b=+$("bb").value;return 4*a*a*a+27*b*b===0}},
+  {t:"Answer the Lab question below.",q:{q:"The dots on the curve are points where x and y are both...",ch:["whole numbers","fractions","bigger than 100"],a:0,why:"Each dot is a whole-number point. The real question is about counting points like these."}}],
+ hodge:[{t:"Tap Show the pieces.",ok:function(s){var r=$("hb").textContent==="Put the pieces together";if(r)s.shown=true;return r}},
+  {t:"Answer the Lab question below.",q:{q:"How many pieces make the boat?",ch:["5","3","8"],a:0,why:"Hull, front point, mast and two sails: 5 pieces."}},
+  {t:"Put the pieces back together.",ok:function(s){return s.shown&&$("hb").textContent==="Show the pieces"}}],
+ ym:[{t:"Add a push to climb to step 1.",ok:function(){return $("yo").textContent.indexOf("On step 1")===0}},
+  {t:"Climb to step 3, then come all the way back down to the floor.",ok:function(s){var t=$("yo").textContent;if(t.indexOf("On step 3")===0)s.top=true;return s.top&&t.indexOf("On the floor")===0}},
+  {t:"Answer the Lab question below.",q:{q:"Can the ball stop halfway between the floor and step 1?",ch:["No, there is a gap","Yes, anywhere"],a:0,why:"Energy only comes in whole steps, and the first step is not zero."}}],
+ gr:[{t:"Slide the curvature to about halfway (0.40 to 0.60).",ok:function(){var v=+$("gr1").value;return v>=40&&v<=60}},
+  {t:"Slide it all the way up until the two paths meet.",ok:function(){return +$("gr1").value>=91}},
+  {t:"Answer the Lab question below.",q:{q:"On a flat surface (curvature 0), do the two straight paths meet?",ch:["No, they stay apart","Yes"],a:0,why:"Only a curved surface brings straight paths together."}}]
+};
+
+var BD=CH.map(function(c){return {id:"w_"+c.id,name:WD[c.id].badge,icon:WD[c.id].icon,how:"Beat the "+WD[c.id].name+" boss."}}).concat([
+ {id:"explorer",name:"Explorer",icon:"🧭",how:"Finish Learn it in all 8 worlds."},
+ {id:"lab",name:"Lab Pro",icon:"🔬",how:"Finish all 3 missions in all 8 labs."},
+ {id:"perfect",name:"Perfect Run",icon:"💯",how:"Get every question right the first time in one level."},
+ {id:"combo5",name:"On a Roll",icon:"🔥",how:"Get 5 right in a row."},
+ {id:"combo10",name:"Unstoppable",icon:"⚡",how:"Get 10 right in a row."},
+ {id:"fast",name:"Lightning",icon:"⏱️",how:"Earn 10 speed bonuses in boss rounds."},
+ {id:"daily3",name:"Comeback Kid",icon:"📅",how:"Finish the Daily Mix on 3 different days."},
+ {id:"champ",name:"Millennium Champion",icon:"🏆",how:"Beat all 8 bosses."}]);
+
+/* ---------- saved progress (this device only) ---------- */
+var KEY="mq4",P=lj(KEY)||{};
+(function(){["st","bd","stats","learn","lab","daily","last"].forEach(function(k){if(!P[k]||typeof P[k]!=="object")P[k]={}});
+ ["pts","best","fast","combo"].forEach(function(k){if(typeof P[k]!=="number")P[k]=0});if(typeof P.name!=="string")P.name="";P.muted=!!P.muted})();
+function save(){sj(KEY,P)}
+function stars(w,i){return P.st[w+"."+i]||0}
+function setStars(w,i,s){if(s>stars(w,i))P.st[w+"."+i]=s;P.last[w]=today();save()}
+function unlocked(w,i){return i===0||stars(w,i-1)>=1}
+function worldStars(w){var t=0;for(var i=0;i<5;i++)t+=stars(w,i);return t}
+function totalStars(){var t=0;CH.forEach(function(c){t+=worldStars(c.id)});return t}
+function starStr(n){var s="";for(var i=0;i<3;i++)s+=i<n?"★":"☆";return s}
+function cv(id){return CH.filter(function(c){return c.id===id})[0]}
+function esc(s){return String(s).replace(/[&<>"']/g,function(m){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]})}
+function fixQ(q){var o=shuffle(q.ch.map(function(t,k){return k}));return {q:q.q,ch:o.map(function(k){return q.ch[k]}),a:o.indexOf(q.a),why:q.why}}
+
+/* ---------- sound (made on the spot, no files) ---------- */
+var AC=null;
+function tone(f,d,t,v){if(P.muted)return;try{if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return;AC=new C()}
+ var o=AC.createOscillator(),g=AC.createGain(),s=AC.currentTime+(t||0);o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(v||.14,s);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(g);g.connect(AC.destination);o.start(s);o.stop(s+d+.03)}catch(e){}}
+function sfx(k){if(k==="ok"){tone(660,.12);tone(880,.18,.1)}else if(k==="no"){tone(220,.28)}else if(k==="star"){tone(523,.14);tone(659,.14,.12);tone(784,.14,.24);tone(1047,.32,.36)}else if(k==="badge"){tone(784,.16);tone(988,.16,.13);tone(1175,.4,.26)}}
+
+function toast(h){var t=document.createElement("div");t.className="toast";t.setAttribute("role","status");t.innerHTML=h;document.body.appendChild(t);
+ setTimeout(function(){t.className="toast show"},20);setTimeout(function(){t.className="toast";setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},450)},2800)}
+function award(id){if(P.bd[id])return false;var b=BD.filter(function(x){return x.id===id})[0];if(!b)return false;P.bd[id]=today();save();sfx("badge");toast("<b>"+b.icon+" New badge: "+b.name+"</b><br>"+b.how);return true}
+function answered(w,kind,ok){var k=w+"."+kind,s=P.stats[k]||(P.stats[k]={n:0,c:0});s.n++;
+ if(ok){s.c++;P.pts+=10;P.combo++;if(P.combo>P.best)P.best=P.combo;save();sfx("ok");if(P.combo>=5)award("combo5");if(P.combo>=10)award("combo10")}
+ else{P.combo=0;save();sfx("no")}}
+
+/* ---------- screens ---------- */
+var app=$("app"),TIMER=null;
+function go(fn){if(TIMER){clearInterval(TIMER);TIMER=null}app.innerHTML="";try{window.scrollTo(0,0)}catch(e){}fn();$("hstars").textContent="★ "+totalStars()}
+function back(label){return "<button class='back' id='bk'>← "+label+"</button>"}
+function wireBack(fn){var b=$("bk");if(b)b.onclick=function(){go(fn)}}
+function launch(w,l){go(function(){[learn,lab,function(id){drillLevel(id,"prac")},function(id){drillLevel(id,"stretch")},boss][l](w)})}
+function nextBtn(r,label,fn){var b=document.createElement("button");b.className="btn";b.textContent=label;b.style.marginTop="10px";b.onclick=fn;r.appendChild(document.createElement("br"));r.appendChild(b);try{b.focus({preventScroll:true})}catch(e){}}
+
+/* one question, one try: used by Practice, Stretch, Boss and the Daily Mix */
+function renderQ(el,q,cb){
+ el.innerHTML="<div class='qt'>"+q.q+"</div><div class='opts'></div><div class='res' aria-live='polite'></div>";
+ var o=el.querySelector(".opts"),r=el.querySelector(".res"),bs=[],fin=false;
+ function finish(k){if(fin)return;fin=true;var ok=k===q.a;
+  bs.forEach(function(b,i){b.disabled=true;if(i===q.a)b.className="right";else if(i===k)b.className="wrong"});
+  r.className="res "+(ok?"good":"bad");r.textContent=ok?"Yes! "+q.why:(k<0?"Time's up. ":"Not yet. ")+"The answer is "+q.ch[q.a]+". "+q.why;cb(ok,k)}
+ q.ch.forEach(function(t,i){var b=document.createElement("button");b.textContent=t;b.onclick=function(){finish(i)};o.appendChild(b);bs.push(b)});
+ return {timeout:function(){finish(-1)},res:r}}
+
+/* copy-me question: try until right, and report whether the first try was right */
+function mcT(el,spec,cb){var first=true,got=false;
+ el.innerHTML="<div class='qt'>"+spec.q+"</div><div class='opts'></div><div class='res' aria-live='polite'></div>";
+ var o=el.querySelector(".opts"),r=el.querySelector(".res");
+ spec.ch.forEach(function(t,i){var b=document.createElement("button");b.textContent=t;b.onclick=function(){if(got)return;
+  if(i===spec.a){got=true;b.className="right";r.className="res good";r.textContent="Yes. "+spec.why;sfx("ok");Array.prototype.forEach.call(o.children,function(x){x.disabled=true});cb(first)}
+  else{first=false;b.className="wrong";b.disabled=true;r.className="res bad";r.textContent="Not yet. Look at the steps again and try another choice.";sfx("no")}};o.appendChild(b)})}
+
+function sayT(el,sp,cb){var first=true,got=false;
+ el.innerHTML="<p class='qt'>"+sp.pre+" <span class='blank'>?</span> "+sp.post+"</p><div class='opts nums'></div><div class='res' aria-live='polite'></div>";
+ var o=el.querySelector(".opts"),r=el.querySelector(".res");
+ sp.ch.forEach(function(t,i){var b=document.createElement("button");b.textContent=t;b.onclick=function(){if(got)return;
+  if(i===sp.a){got=true;b.className="right";sfx("ok");el.querySelector(".blank").textContent=t;
+   r.innerHTML="<p class='good'>Yes. Now say the whole sentence out loud three times. Tap a circle each time.</p><div class='taps'><button>1</button><button>2</button><button>3</button></div>";
+   var n=0;Array.prototype.forEach.call(r.querySelectorAll(".taps button"),function(tb){tb.onclick=function(){if(tb.className==="on")return;tb.className="on";n++;tone(440+n*110,.14);if(n===3)cb(first)}})}
+  else{first=false;b.className="wrong";b.disabled=true;sfx("no");r.innerHTML="<p class='bad'>Not yet. Read the big idea at the top and try again.</p>"}};o.appendChild(b)})}
+
+function home(){
+ var nb=Object.keys(P.bd).length,dd=!!P.daily[today()];
+ var h="<section class='card hero'><h1>Millennium Quest</h1><p class='lead'>Seven math questions are worth $1,000,000 each. Only one has been solved. Every one of them is built on math you can do right now.</p>"+
+ "<p class='re'><b>How you learn here: RE, Repetitive Emulation.</b> Watch me, copy me, then do it yourself. Every question has to be right two times.</p>"+
+ "<label class='small' for='pname'>Player name (optional)</label><input id='pname' maxlength='20' autocomplete='off' value='"+esc(P.name)+"'>"+
+ "<div class='totals'><div><b>"+totalStars()+"</b><span>of 120 stars</span></div><div><b>"+nb+"</b><span>of "+BD.length+" badges</span></div><div><b>"+fmt(P.pts)+"</b><span>points</span></div></div></section>";
+ h+="<section class='card daily'><div><h2>"+(dd?"✓ ":"")+"Daily Mix</h2><p class='small'>One question from every world, new numbers every day. Get each right two times.</p></div><button class='btn' id='dgo'>"+(dd?"Play it again":"Play today's mix")+"</button></section>";
+ h+="<h2 class='sec'>Pick a world</h2><div class='worlds'>"+CH.map(function(c){var w=WD[c.id],ws=worldStars(c.id),won=!!P.bd["w_"+c.id];
+  return "<button class='world' data-w='"+c.id+"' style='--wc:"+w.col+"'><span class='wi' aria-hidden='true'>"+w.icon+"</span><span class='wn'>"+(c.bonus?"Bonus: ":c.n+". ")+w.name+"</span><span class='wr'>"+c.name+"</span>"+(won?"<span class='won'>Boss beaten</span>":"")+"<span class='ws'>★ "+ws+" of 15</span><span class='wbar'><i style='width:"+Math.round(ws/15*100)+"%'></i></span></button>"}).join("")+"</div>";
+ h+="<section class='card'><h2>Badges</h2><div class='badges'>"+BD.map(function(b){var g=!!P.bd[b.id];return "<div class='bdg"+(g?"":" off")+"'><span class='bi' aria-hidden='true'>"+b.icon+"</span><b>"+b.name+"</b><br><span class='small'>"+(g?"Won "+P.bd[b.id]:b.how)+"</span></div>"}).join("")+"</div></section>";
+ h+="<section class='card'><h2>For grown-ups</h2><p>The report shows first-try accuracy for every world, so you can see what to practice next.</p><div class='btnrow left'><button class='btn' id='rgo'>Grown-up report</button></div>"+
+ "<details><summary>About the seven questions</summary><p>"+CH.filter(function(c){return !c.bonus}).map(function(c){return "<span class='pill s-"+c.st[1]+"'>"+c.n+". "+WD[c.id].name+": "+c.st[0]+"</span>"}).join(" ")+"</p><p class='small'>Status labels are the ones on the Clay Mathematics Institute website, read on 27 Nov 2026. They can change, so check <a href='https://www.claymath.org/millennium-problems/' target='_blank' rel='noopener'>claymath.org</a> before you repeat one. Space Bend is a bonus world on Einstein's gravity. It is not a Clay problem.</p></details>"+
+ "<p class='small'>Hear the same equations as sound and light at <a href='https://mathbeatsstudio.com/studio.html' target='_blank' rel='noopener'>Math Beats Studio</a>. Those are sonifications, a way to listen to numbers. They are music, not proofs.</p>"+
+ "<div id='rst'><button id='rbtn'>Reset progress</button></div></section>";
+ app.innerHTML=h;
+ $("pname").oninput=function(){P.name=this.value.slice(0,20);save()};
+ $("dgo").onclick=function(){go(dailyMix)};$("rgo").onclick=function(){go(report)};
+ Array.prototype.forEach.call(app.querySelectorAll(".world"),function(b){b.onclick=function(){var id=b.getAttribute("data-w");go(function(){world(id)})}});
+ $("rbtn").onclick=function(){var r=$("rst");r.innerHTML="<p><b>Reset all stars, badges and points on this device?</b> This cannot be undone.</p><button class='danger' id='rsty'>Yes, reset</button> <button id='rstn'>Cancel</button>";
+  $("rstn").onclick=function(){go(home)};$("rsty").onclick=function(){var keep={name:P.name,muted:P.muted};P=keep;["st","bd","stats","learn","lab","daily","last"].forEach(function(k){P[k]={}});P.pts=P.best=P.fast=P.combo=0;save();go(home)}};
+}
+
+function world(id){var c=cv(id),w=WD[id];
+ var h=back("All worlds")+"<section class='card wh' style='--wc:"+w.col+"'><div class='wtop'><span class='wi' aria-hidden='true'>"+w.icon+"</span><div><h1>"+w.name+"</h1><div class='small'>"+(c.bonus?"Bonus world":"Question "+c.n)+": "+c.name+". "+c.tag+"</div></div></div>"+
+ "<p><span class='pill s-"+c.st[1]+"'>"+(c.bonus?"":"Clay label: ")+c.st[0]+"</span> <span class='small'>"+c.core+"</span></p></section><div class='lvls' style='--wc:"+w.col+"'>";
+ LV.forEach(function(l,i){var un=unlocked(id,i),s=stars(id,i);
+  h+="<div class='lvl"+(un?"":" locked")+(i===4?" boss":"")+"'><div class='ln'>"+(i===4?"★":i+1)+"</div><div class='lt'><b>"+l.name+"</b><span class='small'>"+(un?l.sub:"Get 1 star on "+LV[i-1].name+" to open this.")+"</span></div><div class='lr'><span class='ls' aria-label='"+s+" of 3 stars'>"+(un?starStr(s):"🔒")+"</span><button data-l='"+i+"'"+(un?"":" disabled")+(un&&!s?" class='btn'":"")+">"+(un?(s?"Play again":"Play"):"Locked")+"</button></div></div>"});
+ h+="</div><section class='card'><details><summary>The real question and the equation (older kids)</summary><p><span class='label real'>REAL MATH</span>"+c.plain+"</p><div class='eq'>"+c.eq+"</div><table>"+c.parts.map(function(x){return "<tr><td>"+x[0]+"</td><td>"+x[1]+"</td></tr>"}).join("")+"</table><p class='small'>"+c.gotcha+"</p><p class='small'>"+c.origin+"</p><p class='small'><b>Source:</b> "+c.src+"</p></details></section>";
+ app.innerHTML=h;wireBack(home);
+ Array.prototype.forEach.call(app.querySelectorAll(".lvl button"),function(b){b.onclick=function(){launch(id,+b.getAttribute("data-l"))}});
+}
+
+function learn(id){var c=cv(id),w=WD[id],res={};
+ var h=back(w.name)+"<section class='card' style='--wc:"+w.col+"'><div class='lvhead'>Level 1 · Learn it</div><h1>"+w.icon+" "+c.name+"</h1>"+
+ "<div class='stage'><span>1 HEAR IT</span>The big idea</div><p class='big-idea'>"+c.idea+"</p>"+
+ "<div class='stage'><span>2 SEE IT 3 WAYS</span>Same idea, three ways</div><div class='ways'><div class='way'><b>With your hands.</b> <span class='label analogy'>KID ANALOGY</span>"+c.hands+"</div><div class='way'><b>In words.</b> "+c.words+"</div><div class='way'><b>As a picture.</b> You get to play with it in the Lab, the next level.</div></div>"+
+ "<div class='stage'><span>3 WATCH ME</span>Follow the steps</div><ol class='watch'>"+c.watch.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ol>"+
+ "<div class='stage'><span>4 COPY ME</span>Same steps, new numbers</div><div class='q' id='cp'></div>"+
+ "<div class='stage'><span>5 YOUR TURN</span>Same move, new place</div><div class='q' id='tu'></div>"+
+ "<div class='stage'><span>6 SAY IT BACK</span>Fill the blank, then say it three times</div><div class='q' id='sb'></div><div id='lfin'></div></section>";
+ app.innerHTML=h;wireBack(function(){world(id)});
+ function mark(k,f){if(k in res)return;res[k]=f;if(Object.keys(res).length<3)return;
+  var n=(res.cp?1:0)+(res.tu?1:0)+(res.sb?1:0),s=Math.max(1,n);P.learn[id]=today();setStars(id,0,s);
+  if(CH.every(function(x){return P.learn[x.id]}))award("explorer");
+  $("lfin").innerHTML="<div class='btnrow'><button class='btn' id='lgo'>Finish Learn it</button></div>";
+  $("lgo").onclick=function(){go(function(){done({w:id,l:0,s:s,title:"Learn it, done",lines:[n+" of 3 right on the first try."]})})}}
+ mcT($("cp"),c.copy,function(f){mark("cp",f)});mcT($("tu"),c.turn,function(f){mark("tu",f)});sayT($("sb"),c.say,function(f){mark("sb",f)});
+}
+
+function lab(id){var c=cv(id),w=WD[id],ms=LAB[id],got=(P.lab[id]||[0,0,0]).slice(),s={dp:{},ids:{}};
+ app.innerHTML=back(w.name)+"<section class='card' style='--wc:"+w.col+"'><div class='lvhead'>Level 2 · Lab</div><h1>"+w.icon+" "+w.name+" Lab</h1><p>Play with it and finish the 3 missions. Each mission is worth a star. They tick on their own when you do them.</p><ul class='miss' id='ml'></ul><div class='play' id='pl'></div><div id='lq'></div><div class='btnrow'><button class='btn' id='lfin'>Done in the Lab</button></div></section>";
+ wireBack(function(){world(id)});
+ var ml=$("ml"),pl=$("pl"),lq=$("lq");
+ function draw(){ml.innerHTML=ms.map(function(m,i){return "<li class='"+(got[i]?"on":"")+"'><span class='ck'>"+(got[i]?"✓":i+1)+"</span><span class='mt'>"+m.t+"</span></li>"}).join("")}
+ function mark(i){if(got[i])return;got[i]=1;P.lab[id]=got.slice();var n=got[0]+got[1]+got[2];setStars(id,1,n);sfx(n===3?"star":"ok");draw();
+  if(n===3){toast("<b>"+w.icon+" Lab complete!</b><br>All 3 missions done.");if(CH.every(function(x){var g=P.lab[x.id];return g&&g[0]&&g[1]&&g[2]}))award("lab")}}
+ draw();
+ try{PL[c.play](pl)}catch(e){pl.textContent="This activity did not load. The Lab questions below still work.";try{console.error(id+": "+e.message)}catch(z){}}
+ pl.addEventListener("click",function(e){var t=e.target;if(t.id)s.ids[t.id]=true;var p=t.getAttribute&&t.getAttribute("data-p");if(p)s.dp[p]=true;if(t.id==="rrs")s.dp={};s.inPn=!!(t.parentNode&&t.parentNode.id==="pn")},true);
+ function check(){ms.forEach(function(m,i){if(m.ok&&!got[i]){var r=false;try{r=m.ok(s)}catch(x){}if(r)mark(i)}})}
+ pl.addEventListener("click",check);pl.addEventListener("input",check);pl.addEventListener("change",check);
+ ms.forEach(function(m,i){if(!m.q)return;var d=document.createElement("div");d.className="q";lq.appendChild(d);mcT(d,m.q,function(){mark(i)})});
+ $("lfin").onclick=function(){var n=got[0]+got[1]+got[2];if(!n){go(function(){world(id)});return}
+  go(function(){done({w:id,l:1,s:n,title:"Lab: "+n+" of 3 missions",lines:[n<3?"Come back and finish the rest for more stars.":"Every mission done."]})})};
+}
+
+function drillLevel(id,kind){var c=cv(id),w=WD[id],L=kind==="prac"?2:3,gens=G[id][kind],fixed=kind==="prac"?c.drill.slice(0,2):c.drill.slice(2,4);
+ var slots=gens.map(function(g){return {g:g,n:0}}).concat(fixed.map(function(q){return {f:q,n:0}})),queue=[],N=0,C=0;
+ var head=back(w.name)+"<section class='card' style='--wc:"+w.col+"'><div class='lvhead'>Level "+(L+1)+" · "+LV[L].name+"</div><h1>"+w.icon+" "+w.name+"</h1>";
+ function wb(){wireBack(function(){world(id)})}
+ var g0=pick(gens),ex=g0();
+ app.innerHTML=head+"<div class='stage'><span>WATCH ME</span>Here is how one goes</div><div class='q watchq'><div class='qt'>"+ex.q+"</div><div class='opts'>"+ex.ch.map(function(t,i){return "<div class='"+(i===ex.a?"right":"")+"'>"+(i===ex.a?"✓ ":"")+esc(t)+"</div>"}).join("")+"</div><p class='res good'>"+ex.why+"</p></div><div class='btnrow'><button class='btn' id='tocopy'>Copy me: same kind, new numbers</button></div></section>";
+ wb();
+ $("tocopy").onclick=function(){var cq=g0();app.innerHTML=head+"<div class='stage'><span>COPY ME</span>Same steps, new numbers</div><div class='q' id='cq'></div><div id='cgo'></div></section>";wb();
+  mcT($("cq"),cq,function(){$("cgo").innerHTML="<div class='btnrow'><button class='btn' id='start'>Your turn: get each one right two times</button></div>";$("start").onclick=run})};
+ function run(){queue=slots.map(function(s,i){return i});shuffle(queue);
+  app.innerHTML=head+"<div class='stage'><span>YOUR TURN</span>"+slots.length+" kinds of question, each right two times</div><div class='hud'><span id='dots'></span><span>Points <b id='pts'></b> · Streak <b id='cmb'></b></span></div><div class='pbar'><i id='pb'></i></div><div class='q' id='dq'></div></section>";wb();ask()}
+ function hud(){$("dots").innerHTML=slots.map(function(s){var k=Math.min(2,s.n);return "<span class='dots'><i class='"+(k>0?"f":"")+"'></i><i class='"+(k>1?"f":"")+"'></i></span>"}).join(" ");
+  var t=0;slots.forEach(function(s){t+=Math.min(2,s.n)});$("pb").style.width=Math.round(100*t/(slots.length*2))+"%";$("pts").textContent=fmt(P.pts);$("cmb").textContent=P.combo}
+ function ask(){hud();if(!queue.length){finish();return}var i=queue[0],sl=slots[i],q=sl.g?sl.g():fixQ(sl.f);
+  var x=renderQ($("dq"),q,function(ok){queue.shift();N++;
+   if(ok){C++;sl.n++;if(sl.n<2)queue.splice(Math.min(queue.length,1+Math.floor(Math.random()*2)),0,i)}else{sl.n=0;queue.push(i)}
+   answered(id,kind,ok);hud();
+   x.res.appendChild(document.createTextNode(ok?(sl.n>=2?" That kind is done: right two times.":" One like this comes again with new numbers."):" One like this comes back later."));
+   nextBtn(x.res,queue.length?"Next":"Finish",ask)})}
+ function finish(){var acc=N?C/N:0,s=acc>=.9?3:acc>=.75?2:1;if(N&&C===N)award("perfect");setStars(id,L,s);
+  go(function(){done({w:id,l:L,s:s,title:LV[L].name+", done",lines:["First-try accuracy: "+Math.round(acc*100)+"% ("+C+" of "+N+" answers).","Every kind of question right two times. That is RE."]})})}
+}
+
+function boss(id){var c=cv(id),w=WD[id],slow=false;
+ var head=back(w.name)+"<section class='card' style='--wc:"+w.col+"'><div class='lvhead'>Level 5 · Boss round</div><h1>"+w.icon+" "+w.name+" Boss</h1>";
+ app.innerHTML=head+"<p>10 questions mixed from everything in "+w.name+". Get <b>7 right</b> to beat the boss and win the <b>"+w.badge+"</b> badge.</p><p>The clock gives you 20 seconds a question. Answer right in 8 seconds for a +5 speed bonus.</p><label class='slow'><input type='checkbox' id='slow'> Take it slow: no clock, no speed bonus</label><div class='btnrow'><button class='btn' id='bgo'>Start the boss round</button></div></section>";
+ wireBack(function(){world(id)});
+ $("bgo").onclick=function(){slow=$("slow").checked;start()};
+ function start(){var gs=G[id].prac.concat(G[id].stretch),list=gs.concat([pick(gs),pick(gs)]);
+  shuffle(c.drill.slice()).slice(0,2).forEach(function(d){list.push(function(){return fixQ(d)})});shuffle(list);
+  var i=0,R=0,fast=0;
+  app.innerHTML=head+"<div class='hud'><span>Question <b id='bn'>1</b> of 10</span><span>Right <b id='bright'>0</b> · Points <b id='pts'></b></span></div><div class='clock' id='clk'"+(slow?" hidden":"")+"><i id='cl'></i></div><div class='q' id='bq'></div></section>";
+  wireBack(function(){world(id)});ask();
+  function ask(){if(i>=10){end();return}$("bn").textContent=i+1;$("bright").textContent=R;$("pts").textContent=fmt(P.pts);var q=list[i](),t0=Date.now();
+   var x=renderQ($("bq"),q,function(ok){if(TIMER){clearInterval(TIMER);TIMER=null}var el=Date.now()-t0,msg="";i++;answered(id,"boss",ok);
+    if(ok){R++;if(!slow&&el<8000){P.pts+=5;P.fast++;fast++;save();msg=" +5 speed bonus!";if(P.fast>=10)award("fast")}}
+    $("bright").textContent=R;$("pts").textContent=fmt(P.pts);if(msg)x.res.appendChild(document.createTextNode(msg));nextBtn(x.res,i<10?"Next":"See how you did",ask)});
+   if(!slow){var cl=$("cl"),ck=$("clk");cl.style.width="100%";ck.className="clock";
+    TIMER=setInterval(function(){var el=Date.now()-t0,p=Math.max(0,1-el/20000);cl.style.width=(p*100)+"%";if(el>15000)ck.className="clock low";if(el>=20000){clearInterval(TIMER);TIMER=null;x.timeout()}},100)}}
+  function end(){var s=R===10?3:R>=8?2:R>=7?1:0;
+   if(s){setStars(id,4,s);award("w_"+id);if(CH.every(function(x){return P.bd["w_"+x.id]}))award("champ");if(R===10)award("perfect")}else{P.last[id]=today();save()}
+   go(function(){done({w:id,l:4,s:s,title:s?"Boss beaten!":"Not this time",lines:[R+" of 10 right."+(slow?"":" Speed bonuses: "+fast+"."),s?"You won the "+w.badge+" badge.":"You need 7 right to win. Run Practice and Stretch again, then come back."]})})}
+ }
+}
+
+function dailyMix(){var key=today(),slots=CH.map(function(c){return {w:c.id,n:0}}),queue=slots.map(function(s,i){return i}),N=0,C=0;shuffle(queue);
+ app.innerHTML=back("Home")+"<section class='card'><div class='lvhead'>Daily Mix</div><h1>One from every world</h1><p class='small'>New numbers every time. Get each one right two times.</p><div class='hud'><span id='dots'></span><span>Points <b id='pts'></b> · Streak <b id='cmb'></b></span></div><div class='pbar'><i id='pb'></i></div><div class='q' id='dq'></div></section>";
+ wireBack(home);
+ function hud(){$("dots").innerHTML=slots.map(function(s){var k=Math.min(2,s.n);return "<span class='dots' title='"+WD[s.w].name+"'><i class='"+(k>0?"f":"")+"'></i><i class='"+(k>1?"f":"")+"'></i></span>"}).join(" ");
+  var t=0;slots.forEach(function(s){t+=Math.min(2,s.n)});$("pb").style.width=Math.round(100*t/(slots.length*2))+"%";$("pts").textContent=fmt(P.pts);$("cmb").textContent=P.combo}
+ function ask(){hud();if(!queue.length){finish();return}var i=queue[0],sl=slots[i],q=pick(G[sl.w].prac)();
+  q.q="<span class='small'>"+WD[sl.w].icon+" "+WD[sl.w].name+"</span><br>"+q.q;$("dq").style.setProperty("--wc",WD[sl.w].col);
+  var x=renderQ($("dq"),q,function(ok){queue.shift();N++;if(ok){C++;sl.n++;if(sl.n<2)queue.splice(Math.min(queue.length,2+Math.floor(Math.random()*3)),0,i)}else{sl.n=0;queue.push(i)}
+   answered(sl.w,"daily",ok);hud();nextBtn(x.res,queue.length?"Next":"Finish",ask)})}
+ function finish(){P.daily[key]=1;P.pts+=20;save();if(Object.keys(P.daily).length>=3)award("daily3");
+  go(function(){done({title:"Daily Mix, done",s:null,lines:["First-try accuracy: "+(N?Math.round(100*C/N):0)+"% ("+C+" of "+N+" answers). +20 points.","Days you have finished the mix: "+Object.keys(P.daily).length+"."]})})}
+ ask();
+}
+
+function rate(n,c){if(n<5)return ["Not enough yet",""];var p=100*c/n;return p>=85?["Strong","rate-s"]:p>=60?["Growing","rate-g"]:["Needs practice","rate-n"]}
+function report(){var rows="",weak=null,weakP=101,nextUp=null;
+ CH.forEach(function(c){var w=WD[c.id],n=0,cc=0,parts=[];
+  ["prac","stretch","boss","daily"].forEach(function(k){var s=P.stats[c.id+"."+k];if(s&&s.n){n+=s.n;cc+=s.c;if(LVN[k])parts.push(LVN[k]+" "+Math.round(100*s.c/s.n)+"%")}});
+  var r=rate(n,cc);if(n>=5&&100*cc/n<weakP){weakP=100*cc/n;weak=w.name}
+  if(!nextUp){for(var i=0;i<5;i++)if(!stars(c.id,i)){nextUp=w.name+", "+LV[i].name;break}}
+  rows+="<tr><td>"+w.icon+" <b>"+w.name+"</b><br><span class='small'>"+(parts.join(" · ")||"No questions yet")+(P.last[c.id]?". Last played "+P.last[c.id]:"")+"</span></td><td>"+worldStars(c.id)+"/15</td><td>"+(n?Math.round(100*cc/n)+"%":"–")+"</td><td class='"+r[1]+"'>"+r[0]+"</td></tr>"});
+ var tip=weak&&weakP<60?"Spend time on "+weak+": run Practice, then Stretch.":(nextUp?"Next up: "+nextUp+".":"Every level has a star. Go for 3 stars everywhere and keep up the Daily Mix.");
+ var got=BD.filter(function(b){return P.bd[b.id]});
+ app.innerHTML=back("Home")+"<section class='card'><div class='lvhead'>Grown-up report</div><h1>"+(P.name?esc(P.name)+"'s progress":"Progress")+"</h1>"+
+ "<div class='totals four'><div><b>"+totalStars()+"</b><span>of 120 stars</span></div><div><b>"+got.length+"</b><span>badges</span></div><div><b>"+P.best+"</b><span>best streak</span></div><div><b>"+Object.keys(P.daily).length+"</b><span>Daily Mix days</span></div></div>"+
+ "<p class='re'><b>What to do next:</b> "+tip+"</p>"+
+ "<table class='rtable'><tr><th>World</th><th>Stars</th><th>First try</th><th>Rating</th></tr>"+rows+"</table>"+
+ "<p class='small'>First-try accuracy counts each answer once, right or wrong. A rating shows after 5 answers: Strong is 85% and up, Growing is 60 to 84%, Needs practice is under 60%. Everything is saved only on this device.</p>"+
+ (got.length?"<p><b>Badges won:</b> "+got.map(function(b){return b.icon+" "+b.name}).join(", ")+"</p>":"")+
+ "<div class='btnrow left'><button id='prt'>Print this report</button></div></section>";
+ wireBack(home);$("prt").onclick=function(){try{window.print()}catch(e){}};
+}
+
+function done(o){var w=o.w?WD[o.w]:null,st="";
+ if(o.s!=null)for(var i=0;i<3;i++)st+="<i style='animation-delay:"+(i*.2)+"s'>"+(i<o.s?"★":"☆")+"</i>";
+ app.innerHTML="<section class='card center' style='--wc:"+(w?w.col:"var(--accent)")+"'>"+(w?"<div class='lvhead'>"+w.icon+" "+w.name+" · "+LV[o.l].name+"</div>":"")+"<h1>"+o.title+"</h1>"+(st?"<div class='bigstars' aria-label='"+o.s+" of 3 stars'>"+st+"</div>":"")+
+ o.lines.map(function(x){return "<p>"+x+"</p>"}).join("")+"<p class='small'>RE works by repeating. Come back tomorrow and run it again.</p><div class='btnrow' id='dbtn'></div></section>";
+ var bb=$("dbtn");function add(label,cls,fn){var b=document.createElement("button");b.textContent=label;if(cls)b.className=cls;b.onclick=fn;bb.appendChild(b)}
+ if(w){if(o.l<4&&unlocked(o.w,o.l+1))add("Next: "+LV[o.l+1].name,"btn",function(){launch(o.w,o.l+1)});
+  add("Play again",o.l<4&&unlocked(o.w,o.l+1)?"":"btn",function(){launch(o.w,o.l)});add("Back to "+w.name,"",function(){go(function(){world(o.w)})})}
+ else{add("Home","btn",function(){go(home)});add("Grown-up report","",function(){go(report)})}
+ if(o.s>0)sfx("star");
+}
+
+/* ---------- header ---------- */
+var th=ls("mk_theme")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+function applyTheme(){document.documentElement.setAttribute("data-theme",th);$("theme").textContent=th==="dark"?"Light":"Dark"}
+$("theme").onclick=function(){th=th==="dark"?"light":"dark";ls("mk_theme",th);applyTheme()};applyTheme();
+function sndLabel(){var b=$("snd");b.textContent=P.muted?"🔇":"🔊";b.setAttribute("aria-label",P.muted?"Sound is off. Turn it on":"Sound is on. Turn it off");b.title=P.muted?"Sound off":"Sound on"}
+$("snd").onclick=function(){P.muted=!P.muted;save();sndLabel();tone(660,.12)};sndLabel();
+$("brand").onclick=function(){go(home)};
 var PL={grPlay:grPlay,riemannPlay:riemannPlay,pnpPlay:pnpPlay,poincarePlay:poincarePlay,nsPlay:nsPlay,bsdPlay:bsdPlay,hodgePlay:hodgePlay,ymPlay:ymPlay};
-CH.forEach(function(c){try{PL[c.play]($("pl_"+c.id))}catch(e){$("pl_"+c.id).textContent="This activity did not load. The rest of the chapter still works.";try{console.error(c.id+": "+e.message)}catch(z){}}});
+go(home);
+
 })();
 </script>
 </body>
