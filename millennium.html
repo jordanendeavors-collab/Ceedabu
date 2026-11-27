@@ -104,11 +104,11 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
     <div class="tw"><table>
       <tr><th>Problem</th><th>Field</th><th>Status</th><th>The ask, in one line</th><th>Sound / light link</th></tr>
       <tr><td><b>Riemann</b></td><td>Number theory</td><td><span class="pill claimed">Proof certified in Lean · Clay: Active</span></td><td>Do all the zeta zeros sit on one line?</td><td>Zeros act like frequencies; primes are their "chord"</td></tr>
-      <tr><td><b>P vs NP</b></td><td>Computer science</td><td><span class="pill open">Open</span></td><td>Is finding an answer as easy as checking it?</td><td>Indirect: the logic of search vs. checking</td></tr>
+      <tr><td><b>P vs NP</b></td><td>Computer science</td><td><span class="pill open">Unsolved · Clay</span></td><td>Is finding an answer as easy as checking it?</td><td>Indirect: the logic of search vs. checking</td></tr>
       <tr><td><b>Navier–Stokes</b></td><td>Fluid physics</td><td><span class="pill claimed">Open · Clay: Active</span></td><td>Can smooth flowing water ever "break" the equations?</td><td>Air and water flow; sound is filtered out of this version</td></tr>
-      <tr><td><b>Yang–Mills</b></td><td>Quantum physics</td><td><span class="pill open">Open</span></td><td>Why is the strong force short-range while light reaches forever?</td><td>Light is the massless case</td></tr>
-      <tr><td><b>Hodge</b></td><td>Geometry</td><td><span class="pill open">Open</span></td><td>Which shapes can be built from simple equations?</td><td>"Harmonic" forms, the same math as a vibrating drum</td></tr>
-      <tr><td><b>Birch–Swinnerton-Dyer</b></td><td>Number theory</td><td><span class="pill open">Open</span></td><td>Does one function predict how many solutions a curve has?</td><td>Its function is a cousin of zeta (same "music")</td></tr>
+      <tr><td><b>Yang–Mills</b></td><td>Quantum physics</td><td><span class="pill open">Unsolved · Clay</span></td><td>Why is the strong force short-range while light reaches forever?</td><td>Light is the massless case</td></tr>
+      <tr><td><b>Hodge</b></td><td>Geometry</td><td><span class="pill open">Unsolved · Clay</span></td><td>Which shapes can be built from simple equations?</td><td>"Harmonic" forms, the same math as a vibrating drum</td></tr>
+      <tr><td><b>Birch–Swinnerton-Dyer</b></td><td>Number theory</td><td><span class="pill open">Unsolved · Clay</span></td><td>Does one function predict how many solutions a curve has?</td><td>Its function is a cousin of zeta (same "music")</td></tr>
       <tr><td><b>Poincaré</b></td><td>Topology</td><td><span class="pill solved">Solved 2003</span></td><td>Is every loop-shrinkable 3D space really a sphere?</td><td>Solved by letting shape smooth out like heat</td></tr>
     </table></div>
     <p class="cap">Tap a problem above. Each tab has a live graph you can move: drag the sliders.</p>
@@ -344,7 +344,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
 <!-- P vs NP -->
 <section class="section" id="pnp">
   <div class="card">
-    <h2>P vs NP <span class="pill open">Open</span></h2>
+    <h2>P vs NP <span class="pill open">Unsolved · Clay</span></h2>
     <p class="ask">If a computer can <i>check</i> an answer fast, can it always <i>find</i> one fast?</p>
     <div class="eq">P &nbsp;⊆&nbsp; NP &nbsp;&nbsp;&nbsp; Question: P = NP ?
       <small>P = problems you can solve in polynomial time (n², n³…). NP = problems where you can check a proposed answer in polynomial time.</small></div>
@@ -408,7 +408,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
 <!-- YANG MILLS -->
 <section class="section" id="ym">
   <div class="card">
-    <h2>Yang–Mills &amp; the Mass Gap <span class="pill open">Open</span></h2>
+    <h2>Yang–Mills &amp; the Mass Gap <span class="pill open">Unsolved · Clay</span></h2>
     <p class="ask">The theory behind the forces of nature works brilliantly in experiments, but nobody has built it rigorously in math. Prove it exists, and prove its lightest particle has mass greater than zero (the "gap").</p>
     <div class="eq">ℒ = −¼ F<sup>a</sup><sub>μν</sub> F<sup>aμν</sup>, &nbsp;&nbsp; F = dA + A∧A
       <small>Electromagnetism (light) is the simple version without the A∧A term. In the strong force, that extra term makes the force carriers (gluons) interact with each other.</small></div>
@@ -439,7 +439,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
 <!-- HODGE -->
 <section class="section" id="hodge">
   <div class="card">
-    <h2>Hodge Conjecture <span class="pill open">Open</span></h2>
+    <h2>Hodge Conjecture <span class="pill open">Unsolved · Clay</span></h2>
     <p class="ask">Complicated high-dimensional shapes have "holes" of different types. Can every hole of a certain special kind be built from pieces cut out by simple polynomial equations?</p>
     <div class="eq">Hdg<sup>k</sup>(X) = H<sup>2k</sup>(X,ℚ) ∩ H<sup>k,k</sup>(X) &nbsp; is spanned by algebraic cycles
       <small>Plain version: the "special" holes (Hodge classes) are exactly the ones you can build from shapes defined by equations (algebraic cycles), using rational amounts.</small></div>
@@ -470,7 +470,7 @@ footer{max-width:980px;margin:0 auto;padding:10px 14px 30px;color:var(--muted);f
 <!-- BSD -->
 <section class="section" id="bsd">
   <div class="card">
-    <h2>Birch–Swinnerton-Dyer <span class="pill open">Open</span></h2>
+    <h2>Birch–Swinnerton-Dyer <span class="pill open">Unsolved · Clay</span></h2>
     <p class="ask">Take a curve like y² = x³ + ax + b. Does it have finitely or infinitely many points with fraction coordinates? BSD says a zeta-like function tells you, just by how it behaves at one spot.</p>
     <div class="eq">rank E(ℚ) = ord<sub>s=1</sub> L(E, s), &nbsp;&nbsp; L(E,s) ≈ ∏<sub>p</sub> (1 − a<sub>p</sub>p<sup>−s</sup> + p<sup>1−2s</sup>)<sup>−1</sup>
       <small>Rank = how many independent "seed" points generate all the rational points. L(E, s) is built prime by prime, just like zeta.</small></div>
