@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Constellation Sound Lab</title>
+<link rel="icon" href="/favicon.png" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://4in7hld8hum.com/stars.html">
+<style>
+/* VOICE: wonder, held to an engineer's precision — every number traceable
+   IDEA: an observatory chart that can tilt from sky view to depth view and play each star
+   PICTURE: the night-sky canvas, stars colored by temperature, morphing into a distance chart
+   COLOUR and TYPE: page in plain white/ink (or night), sky always deep, one red-orange signal accent; system fonts, offline
+   LAYOUT: sky canvas dominant left, star readout right; arrival table below; stacks on phones */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0f1115);--ink:light-dark(#111418,#eef0f3);--mute:light-dark(#59616c,#9aa3ae);--line:light-dark(#e2e5e9,#272b32);--card:light-dark(#f4f5f7,#171a20);--acc:#e0501f}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:clip}
+.band{padding:clamp(20px,3.5vw,48px) max(4vw,16px);max-width:1320px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px}
+h1{font:700 clamp(30px,4.4vw,48px)/1.05 Georgia,"Times New Roman",serif;margin:0;text-wrap:balance}
+.sub{color:var(--mute);margin:6px 0 0;max-width:62ch}
+h2{font:700 22px/1.2 Georgia,serif;margin:0 0 10px}
+button{font:inherit;font-size:15px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button.go{background:var(--acc);border-color:var(--acc);color:#fff}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:thin}
+.chips button{flex:none}
+.main{display:grid;gap:18px;margin-top:10px}
+@media(min-width:900px){.main{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr)}}
+.fig{position:relative;min-height:clamp(340px,58vh,620px);border-radius:16px;overflow:hidden;background:radial-gradient(120% 90% at 50% 20%,#14203a 0%,#070b14 70%)}
+.fig>canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:manipulation;cursor:pointer}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.seg{display:flex;gap:0}.seg button{border-radius:0}.seg button:first-child{border-radius:10px 0 0 10px}.seg button:last-child{border-radius:0 10px 10px 0}
+.status{min-height:26px;margin-top:8px;color:var(--mute);font-size:15px}
+.status b{color:var(--acc)}
+.note{border-left:3px solid var(--acc);padding:4px 0 4px 12px;margin:0 0 14px;color:var(--ink)}
+.panel{background:var(--card);border-radius:16px;padding:18px 18px 8px}
+.panel h3{font:700 26px/1.1 Georgia,serif;margin:0}
+.panel .of{color:var(--mute);margin:2px 0 12px}
+dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:7px 14px;margin:0 0 12px}
+dt{color:var(--mute);font-size:14px}dd{margin:0;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-1px;margin-right:6px;box-shadow:0 0 8px currentColor}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left}
+th{font-size:14px;color:var(--mute);font-weight:600}
+td.n{text-align:right;white-space:nowrap}
+tr.hit td{background:color-mix(in srgb,var(--acc) 14%,transparent)}
+.how{display:grid;gap:18px}
+@media(min-width:800px){.how{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.how p{margin:0;color:var(--mute)}.how h4{margin:0 0 4px;font-size:17px}
+footer{color:var(--mute);font-size:14px}
+@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;color:var(--mute)}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<div class="band">
+  <header>
+    <div>
+      <h1>Constellation Sound Lab</h1>
+      <p class="sub">Every star rings. Tap one to hear its oscillations sped up into earshot, then tilt to depth view and watch the "shape" fall apart.</p>
+    </div>
+    <button id="theme" type="button" aria-label="Toggle light or dark theme">Dark</button>
+  </header>
+  <div class="chips" id="chips" role="tablist" aria-label="Constellations"></div>
+
+  <div class="main">
+    <section>
+      <div class="fig"><canvas id="sky" aria-label="Star chart. Tap a star to select it."></canvas></div>
+      <div class="ctl">
+        <div class="seg" role="group" aria-label="View">
+          <button id="vSky" type="button" class="on">Sky view</button>
+          <button id="vDepth" type="button">Depth view</button>
+        </div>
+        <button id="pStar" type="button" class="go">Play star</button>
+        <button id="pChord" type="button">Chord</button>
+        <button id="pArr" type="button">Light arrival</button>
+        <button id="pSun" type="button">The Sun</button>
+        <button id="pStop" type="button">Stop</button>
+      </div>
+      <div class="status" id="status" aria-live="polite"></div>
+    </section>
+    <aside>
+      <p class="note" id="cnote"></p>
+      <div class="panel" id="panel"></div>
+    </aside>
+  </div>
+</div>
+
+<div class="band">
+  <h2>When each star's light left</h2>
+  <p class="sub" style="margin:0 0 12px">Oldest light first. This is the order "Light arrival" plays: one picture in the sky, many timestamps.</p>
+  <table class="stack" id="tbl"><thead><tr><th>Star</th><th>Distance</th><th>Light left</th><th>Real ring period</th><th>Heard at</th><th>Real group</th></tr></thead><tbody></tbody></table>
+</div>
+
+<div class="band">
+  <h2>How the sound is made</h2>
+  <div class="how">
+    <div><h4>Stars are AM transmitters</h4><p>Pressure waves bounce around inside a star. The surface swells and dims slightly in rhythm, so the starlight is a carrier modulated by the star's own acoustics. Kepler and TESS measured this on thousands of stars.</p></div>
+    <div><h4>Physics sets the pitch</h4><p>Peak ring frequency scales with surface gravity over the square root of temperature (ν<sub>max</sub>), and mode spacing scales with mean density (Δν). Both are calibrated on the Sun: 3,090 μHz and 135 μHz.</p></div>
+    <div><h4>Then it's shifted up</h4><p>Real periods run from minutes to months, so every star is sped up by millions to trillions of times. Pitch spread is log-compressed into five octaves. Each star's own mode spacing is kept, and so is its rank: higher means denser.</p></div>
+  </div>
+</div>
+<div class="band"><footer>Star distances, temperatures, radii and masses are rounded published values. Several (Deneb, Alnilam, Betelgeuse) are still debated. Works offline.<br><a href="/" style="color:inherit">Back to The Humming of God</a> · <a href="millennium.html" style="color:inherit">Millennium Problems</a> · <a href="https://mathbeatsstudio.com" style="color:inherit">Math Beats Studio</a></footer></div>
+
+<script>
+{
+const C=[
+{id:'orion',name:'Orion',note:'The belt stars sit 1,200–2,000 ly out in the Orion OB1 association. Bellatrix, the "shoulder", is a foreground star at ~250 ly.',
+ s:[['Betelgeuse',5.919,7.41,548,3600,764,16.5,.5,0],['Rigel',5.242,-8.20,860,12100,78.9,21,.13,0],['Bellatrix',5.419,6.35,250,22000,5.75,7.7,1.64,0],['Mintaka',5.533,-.30,1200,29500,16.5,24,2.23,1],['Alnilam',5.604,-1.20,2000,27500,42,40,1.69,1],['Alnitak',5.679,-1.94,1260,29500,20,33,1.77,1],['Saiph',5.796,-9.67,650,26500,22,15.5,2.09,0]],
+ l:[[0,2],[0,5],[2,3],[3,4],[4,5],[3,1],[5,6]]},
+{id:'ursa-major',name:'Big Dipper',note:'The five middle stars really travel together (the Ursa Major Moving Group). Dubhe and Alkaid are passers-by heading other ways, so over tens of thousands of years the Dipper bends out of shape.',
+ s:[['Dubhe',11.062,61.75,123,4660,30,4.25,1.79,0],['Merak',11.031,56.38,79.7,9377,3.0,2.7,2.37,1],['Phecda',11.897,53.69,83,9355,3.0,2.6,2.44,1],['Megrez',12.257,57.03,58.4,9480,1.4,1.6,3.31,1],['Alioth',12.900,55.96,82.6,9020,4.1,2.9,1.77,1],['Mizar',13.399,54.93,82.9,9000,2.4,2.2,2.23,1],['Alkaid',13.792,49.31,104,15540,3.4,6.1,1.86,0]],
+ l:[[0,1],[1,2],[2,3],[3,0],[3,4],[4,5],[5,6]]},
+{id:'cassiopeia',name:'Cassiopeia',note:'There\'s no physical group here. Distances run from ~55 ly (Caph) to ~550 ly (Navi). The W is pure perspective.',
+ s:[['Caph',.153,59.15,54.7,6700,3.5,1.9,2.27,0],['Schedar',.675,56.54,228,4530,42,4.5,2.24,0],['Navi',.945,60.72,550,25000,10,13,2.47,0],['Ruchbah',1.430,60.24,99.4,8400,3.9,2.5,2.68,0],['Segin',1.906,63.67,410,15200,6,6.5,3.37,0]],
+ l:[[0,1],[1,2],[2,3],[3,4]]},
+{id:'scorpius',name:'Scorpius',note:'Antares and the claw stars belong to Upper Scorpius, a young star-forming association ~450–550 ly out. The tail mixes near and far stars.',
+ s:[['Antares',16.490,-26.43,550,3660,680,12,1.06,1],['Acrab',16.091,-19.81,400,28000,6.3,15,2.62,1],['Dschubba',16.006,-22.62,440,27400,6.7,13,2.29,1],['Pi Sco',15.981,-26.11,590,25000,5,10.9,2.89,1],['Tau Sco',16.598,-28.22,470,31400,6.5,15,2.82,1],['Larawag',16.836,-34.29,63.7,4560,12.6,1.24,2.29,0],['Eta Sco',17.203,-43.24,73,6800,2.0,1.6,3.32,0],['Sargas',17.622,-43.00,300,6300,26,5.7,1.86,0],['Girtab',17.708,-39.03,480,23400,7,17,2.39,0],['Shaula',17.560,-37.10,570,25000,8.8,14.5,1.62,0]],
+ l:[[1,2],[2,3],[2,0],[0,4],[4,5],[5,6],[6,7],[7,8],[8,9]]},
+{id:'cygnus',name:'Cygnus',note:'Deneb\'s distance is still debated (roughly 1,400–2,600 ly). Albireo, the swan\'s beak, is a gold-and-blue double star in any small telescope.',
+ s:[['Deneb',20.690,45.28,2600,8500,200,19,1.25,0],['Sadr',20.370,40.26,1800,5800,150,12,2.23,0],['Albireo',19.512,27.96,430,4400,69,5,3.05,0],['Fawaris',19.750,45.13,165,10000,3.9,2.9,2.87,0],['Aljanah',20.770,33.97,72.7,4710,10.8,2,2.48,0]],
+ l:[[0,1],[1,2],[3,1],[1,4]]},
+{id:'lyra',name:'Lyra',note:'Vega is one of the closest bright stars at 25 ly. The rest of the harp is 6 to 38 times farther away.',
+ s:[['Vega',18.616,38.78,25,9600,2.6,2.1,.03,0],['Zeta Lyr',18.746,37.61,152,8000,2.5,2.1,4.36,0],['Delta2 Lyr',18.908,36.90,740,3600,130,5,4.3,0],['Sulafat',18.982,32.69,620,9900,15,5,3.26,0],['Sheliak',18.835,33.36,960,13300,15,3,3.5,0]],
+ l:[[0,1],[1,2],[2,3],[3,4],[4,1]]}
+].map(c=>({...c,s:c.s.map(a=>({n:a[0],ra:a[1],dec:a[2],d:a[3],t:a[4],r:a[5],m:a[6],mag:a[7],g:!!a[8],c:c.name}))}));
+const SUN={n:'The Sun',c:'Reference',d:1.58e-5,t:5772,r:1,m:1,mag:-1,g:false};
+const $=q=>document.querySelector(q);
+const esc=v=>String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let cur=0,sel=null,view=0,target=0,playing=new Set(),actx=null,master=null,nodes=[],timers=[],pos=[],W=0,H=0,maxD=1;
+
+const numax=s=>3090*(s.m/(s.r*s.r))/Math.sqrt(s.t/5777);
+const dnu=s=>135*Math.sqrt(s.m/(s.r**3));
+const pitch=nu=>{const x=Math.min(1,Math.max(0,(Math.log10(nu)+1.5)/5.1));return 55*Math.pow(2,x*5)};
+const per=sec=>sec<5400?(sec/60).toFixed(1)+' min':sec<172800?(sec/3600).toFixed(1)+' hours':Math.round(sec/86400).toLocaleString()+' days';
+const big=x=>x>=1e12?(x/1e12).toFixed(1)+' trillion×':x>=1e9?(x/1e9).toFixed(1)+' billion×':x>=1e6?(x/1e6).toFixed(1)+' million×':Math.round(x).toLocaleString()+'×';
+const yr=d=>{if(d<.001)return '8.3 min ago';const y=Math.round(2026-d);return y>0?'AD '+y:(1-y)+' BC'};
+const dist=d=>d<.001?'8.3 light-min':'~'+Math.round(d).toLocaleString()+' ly';
+const tcol=t=>t<3900?'#ffad66':t<5300?'#ffd09a':t<6200?'#fff0d6':t<7600?'#f7f6ff':t<10500?'#cfdcff':'#9fb6ff';
+const fit=s=>s.t<7000?'Good (convective star)':'Rough (hot star)';
+
+/* theme */
+const root=document.documentElement,tb=$('#theme');
+const isDark=()=>root.dataset.theme==='dark'||(!root.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches);
+try{const t=localStorage.getItem('csl-theme');if(t)root.dataset.theme=t}catch(e){}
+const syncTheme=()=>tb.textContent=isDark()?'Light':'Dark';
+tb.onclick=()=>{root.dataset.theme=isDark()?'light':'dark';try{localStorage.setItem('csl-theme',root.dataset.theme)}catch(e){}syncTheme()};
+syncTheme();
+
+/* chips */
+const chips=$('#chips');
+chips.innerHTML=C.map((c,i)=>`<button type="button" role="tab" data-i="${i}">${esc(c.name)}</button>`).join('');
+chips.onclick=e=>{const b=e.target.closest('button');if(b)pick(+b.dataset.i,true)};
+
+/* canvas */
+const cv=$('#sky'),ctx=cv.getContext('2d');
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const bg=Array.from({length:240},()=>[rnd(),rnd(),rnd()]);
+function size(){const r=cv.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);layout()}
+function layout(){
+  const c=C[cur],ra0=c.s.reduce((a,s)=>a+s.ra,0)/c.s.length,dec0=c.s.reduce((a,s)=>a+s.dec,0)/c.s.length,k=Math.cos(dec0*Math.PI/180);
+  const p=c.s.map(s=>({x:-(s.ra-ra0)*15*k,y:s.dec-dec0}));
+  const xs=p.map(q=>q.x),ys=p.map(q=>q.y),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
+  const pad=Math.max(44,W*.1),sc=Math.min((W-2*pad)/((x1-x0)||1),(H-2*pad)/((y1-y0)||1)),scx=(W-2*pad)/((x1-x0)||1);
+  maxD=Math.max(...c.s.map(s=>s.d))*1.1;const top=34,bot=H-46;
+  pos=p.map((q,i)=>({sx:W/2+(q.x-(x0+x1)/2)*sc,sy:H/2-(q.y-(y0+y1)/2)*sc,dx:W/2+(q.x-(x0+x1)/2)*scx,dy:bot-(c.s[i].d/maxD)*(bot-top)}));
+}
+const step=m=>[10,25,50,100,250,500,1000,2000].find(v=>m/v<=5)||1000;
+function draw(now){
+  view+=RM?(target-view):(target-view)*.12;
+  const e=view*view*(3-2*view),c=C[cur];
+  ctx.clearRect(0,0,W,H);
+  for(const [x,y,b] of bg){ctx.fillStyle=`rgba(220,230,255,${(.15+b*.45)*(1-e*.7)})`;ctx.fillRect(x*W,y*H,b>.85?1.6:1,b>.85?1.6:1)}
+  if(e>.02){
+    const st=step(maxD),top=34,bot=H-46;ctx.font='13px system-ui,sans-serif';ctx.textAlign='left';
+    for(let v=st;v<maxD;v+=st){const y=bot-(v/maxD)*(bot-top);ctx.strokeStyle=`rgba(150,170,210,${.25*e})`;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();ctx.fillStyle=`rgba(170,190,225,${.9*e})`;ctx.fillText(v.toLocaleString()+' ly',8,y-5)}
+    ctx.strokeStyle=`rgba(224,80,31,${.8*e})`;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,bot);ctx.lineTo(W,bot);ctx.stroke();ctx.lineWidth=1;
+    ctx.fillStyle=`rgba(255,200,180,${e})`;ctx.fillText('Earth: you are here',8,bot+20);
+  }
+  const P=pos.map(p=>({x:p.sx+(p.dx-p.sx)*e,y:p.sy+(p.dy-p.sy)*e}));
+  ctx.strokeStyle='rgba(160,185,230,.42)';ctx.lineWidth=1.2;
+  for(const [a,b] of c.l){ctx.beginPath();ctx.moveTo(P[a].x,P[a].y);ctx.lineTo(P[b].x,P[b].y);ctx.stroke()}
+  c.s.forEach((s,i)=>{
+    const {x,y}=P[i],r=Math.max(2.4,7.2-s.mag*1.35),col=tcol(s.t);
+    const g=ctx.createRadialGradient(x,y,0,x,y,r*3.2);g.addColorStop(0,col);g.addColorStop(.3,col+'88');g.addColorStop(1,col+'00');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r*3.2,0,7);ctx.fill();
+    ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x,y,r*.55,0,7);ctx.fill();
+    if(playing.has(s)){const pr=r*2.2+6+Math.sin(now/140)*3;ctx.strokeStyle='#e0501f';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,pr,0,7);ctx.stroke();ctx.lineWidth=1}
+    else if(sel===s){ctx.strokeStyle='rgba(224,80,31,.9)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r*2+6,0,7);ctx.stroke();ctx.lineWidth=1}
+    ctx.font=(sel===s?'600 ':'')+'13px system-ui,sans-serif';
+    const lab=e>.5?`${s.n} · ${yr(s.d)}`:s.n,tw=ctx.measureText(lab).width,right=x+r+10+tw<W-6;
+    ctx.textAlign=right?'left':'right';ctx.fillStyle='rgba(235,240,255,.92)';ctx.fillText(lab,right?x+r+10:x-r-10,y+4);
+  });
+  requestAnimationFrame(draw);
+}
+cv.addEventListener('pointerdown',ev=>{
+  const r=cv.getBoundingClientRect(),mx=ev.clientX-r.left,my=ev.clientY-r.top,e=view*view*(3-2*view);
+  let best=null,bd=30;pos.forEach((p,i)=>{const x=p.sx+(p.dx-p.sx)*e,y=p.sy+(p.dy-p.sy)*e,d=Math.hypot(mx-x,my-y);if(d<bd){bd=d;best=i}});
+  if(best!==null){select(C[cur].s[best]);playStar(sel)}
+});
+new ResizeObserver(size).observe(cv);
+
+/* panel + table */
+function select(s){sel=s;
+  const nu=numax(s),f=pitch(nu),sec=1/(nu*1e-6);
+  $('#panel').innerHTML=`<h3><span class="dot" style="color:${tcol(s.t)};background:${tcol(s.t)}"></span>${esc(s.n)}</h3><p class="of">${esc(s.c)}</p>
+  <dl><dt>Distance</dt><dd>${dist(s.d)}</dd><dt>Light you see left</dt><dd>${yr(s.d)}</dd>
+  <dt>Surface temp</dt><dd>${s.t.toLocaleString()} K</dd><dt>Radius</dt><dd>${s.r.toLocaleString()} × Sun</dd><dt>Mass</dt><dd>${s.m} × Sun</dd>
+  <dt>Real ring period</dt><dd>${per(sec)}</dd><dt>Peak frequency</dt><dd>${nu<1?nu.toFixed(3):nu<100?nu.toFixed(1):Math.round(nu).toLocaleString()} μHz</dd>
+  <dt>Sped up by</dt><dd>${big(f/(nu*1e-6))}</dd><dt>Heard at</dt><dd>${Math.round(f)} Hz</dd>
+  <dt>Model fit</dt><dd>${fit(s)}</dd><dt>Real physical group</dt><dd>${s.g?'Yes':'No'}</dd></dl>`;
+  document.querySelectorAll('#tbl tr').forEach(tr=>tr.classList.toggle('hit',tr.dataset.n===s.n));
+}
+function table(){
+  const rows=[...C[cur].s].sort((a,b)=>b.d-a.d);
+  $('#tbl tbody').innerHTML=rows.map(s=>{const nu=numax(s);return `<tr data-n="${esc(s.n)}"><td>${esc(s.n)}</td><td class="n">${dist(s.d)}</td><td class="n">${yr(s.d)}</td><td class="n">${per(1/(nu*1e-6))}</td><td class="n">${Math.round(pitch(nu))} Hz</td><td>${s.g?'Yes':'No'}</td></tr>`}).join('');
+}
+function pick(i,push){
+  stopAll();cur=i;layout();table();$('#cnote').textContent=C[i].note;
+  [...chips.children].forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-selected',j===i)});
+  select([...C[i].s].sort((a,b)=>a.mag-b.mag)[0]);
+  if(push)history.replaceState(null,'','#'+C[i].id);
+}
+
+/* audio */
+const st=h=>$('#status').innerHTML=h;
+function ac(){
+  if(!actx){const A=window.AudioContext||window.webkitAudioContext;if(!A){st('This browser has no Web Audio.');return null}
+    actx=new A();const comp=actx.createDynamicsCompressor();master=actx.createGain();master.gain.value=.55;master.connect(comp);comp.connect(actx.destination)}
+  if(actx.state==='suspended')actx.resume().catch(()=>{});return actx;
+}
+function voice(s,t0,dur,lvl){
+  const nu=numax(s),ratio=Math.min(.3,dnu(s)/nu),f0=pitch(nu);
+  for(let k=-3;k<=3;k++){
+    const f=f0*(1+k*ratio);if(f<28)continue;
+    const amp=Math.exp(-(k*k)/5)*lvl,o=actx.createOscillator(),g=actx.createGain();
+    o.frequency.value=f;g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(amp*.7,t0+.25);
+    for(let t=t0+.4;t<t0+dur;t+=.22)g.gain.linearRampToValueAtTime(amp*(.35+Math.random()*.65),t);
+    g.gain.linearRampToValueAtTime(0,t0+dur+.4);
+    o.connect(g);g.connect(master);o.start(t0);o.stop(t0+dur+.5);nodes.push(o);
+  }
+}
+function stopAll(){nodes.forEach(o=>{try{o.stop()}catch(e){}});nodes=[];timers.forEach(clearTimeout);timers=[];playing.clear();st('')}
+const later=(ms,fn)=>timers.push(setTimeout(fn,ms));
+function playStar(s){
+  stopAll();if(!ac())return;voice(s,actx.currentTime+.05,4,.2);playing.add(s);
+  st(`Now playing <b>${esc(s.n)}</b>. Its real ring period is ${per(1/(numax(s)*1e-6))}.`);
+  later(4500,()=>{playing.clear();st('')});
+}
+$('#pStar').onclick=()=>sel&&playStar(sel);
+$('#pSun').onclick=()=>{select(SUN);playStar(SUN)};
+$('#pChord').onclick=()=>{
+  stopAll();if(!ac())return;const ss=C[cur].s,t0=actx.currentTime+.05;
+  ss.forEach(s=>{voice(s,t0,6,.2/Math.sqrt(ss.length));playing.add(s)});
+  st(`Chord: all of <b>${esc(C[cur].name)}</b> at once. That's the sound the shape would make if the stars were neighbours, which they mostly aren't.`);
+  later(6600,()=>{playing.clear();st('')});
+};
+$('#pArr').onclick=()=>{
+  stopAll();if(!ac())return;const ss=[...C[cur].s].sort((a,b)=>b.d-a.d),t0=actx.currentTime+.05,gap=1.5;
+  ss.forEach((s,i)=>{voice(s,t0+i*gap,1.9,.2);later(i*gap*1000,()=>{playing.clear();playing.add(s);select(s);st(`Light from <b>${esc(s.n)}</b> left ${yr(s.d)}. It is arriving now.`)})});
+  later(ss.length*gap*1000+600,()=>{playing.clear();st('Every one of those signals landed on your eye at the same instant.')});
+};
+$('#pStop').onclick=stopAll;
+const setView=v=>{target=v;$('#vSky').classList.toggle('on',!v);$('#vDepth').classList.toggle('on',!!v)};
+$('#vSky').onclick=()=>setView(0);$('#vDepth').onclick=()=>setView(1);
+
+const fromHash=()=>{const i=C.findIndex(c=>c.id===location.hash.slice(1));return i<0?0:i};
+addEventListener('hashchange',()=>pick(fromHash(),false));
+size();pick(fromHash(),false);requestAnimationFrame(draw);
+}
+</script>
+</body>
+</html>
