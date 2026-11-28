@@ -54,6 +54,16 @@ tr.hit td{background:color-mix(in srgb,var(--acc) 14%,transparent)}
 .how p{margin:0;color:var(--mute)}.how h4{margin:0 0 4px;font-size:17px}
 footer{color:var(--mute);font-size:14px}
 @media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;color:var(--mute)}}
+.wgrid{display:grid;gap:20px;align-items:start}
+@media(min-width:900px){.wgrid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}}
+.wheel{background:radial-gradient(100% 100% at 50% 50%,#14203a 0%,#070b14 72%);border-radius:16px;padding:8px}
+.wheel svg{display:block;width:100%;height:auto}
+.yr{font:700 clamp(36px,6vw,52px)/1 Georgia,serif;font-variant-numeric:tabular-nums}
+.eq{margin:6px 0 14px;color:var(--mute)}.eq b{color:var(--ink)}
+input[type=range]{width:100%;height:44px;accent-color:var(--acc)}
+.wl{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.wl li{display:flex;justify-content:space-between;gap:10px;background:var(--card);border-radius:10px;padding:10px 12px}
+.wl small{color:var(--mute);display:block}.wl .off{font-variant-numeric:tabular-nums;white-space:nowrap;align-self:center}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 </style>
 <script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
@@ -96,6 +106,28 @@ footer{color:var(--mute);font-size:14px}
   <h2>When each star's light left</h2>
   <p class="sub" style="margin:0 0 12px">Oldest light first. This is the order "Light arrival" plays: one picture in the sky, many timestamps.</p>
   <table class="stack" id="tbl"><thead><tr><th>Star</th><th>Distance</th><th>Light left</th><th>Real ring period</th><th>Heard at</th><th>Real group</th></tr></thead><tbody></tbody></table>
+</div>
+
+<div class="band" id="watchers">
+  <h2>The Four Watchers</h2>
+  <p class="sub" style="margin:0 0 14px">Around 3000 BC, four bright stars sat close to the equinoxes and solstices: the ox, the lion, the eagle and the man of Ezekiel 1:10, if you follow the old tradition. Earth's slow wobble has turned the sky about 70° since. Drag the years and watch the cross drift off the stars.</p>
+  <div class="wgrid">
+    <div class="wheel"><svg id="wsvg" viewBox="0 0 600 600" role="img" aria-label="Ecliptic wheel showing the four royal stars against the equinox and solstice cross"></svg></div>
+    <div>
+      <div class="yr" id="wyr">3000 BC</div>
+      <p class="eq" id="weq"></p>
+      <label for="wslide" class="eq" style="display:block;margin:0">Year</label>
+      <input type="range" id="wslide" min="-3999" max="2026" step="25" value="-2999">
+      <div class="ctl">
+        <button type="button" id="w3000">3000 BC</button>
+        <button type="button" id="wnow">Today</button>
+        <button type="button" id="wdrift">Play the drift</button>
+        <button type="button" id="wchord" class="go">Four Watchers chord</button>
+      </div>
+      <ul class="wl" id="wlist"></ul>
+      <p class="eq" style="margin-top:14px">Outer ring: the real constellations, fixed to the stars, so they turn. Inner ring: the astrological signs, fixed to the equinox, so they stay put. Today the spring equinox sits in Pisces, not Aries. Matching the four creatures to these stars is a later tradition; Ezekiel names the faces, not the stars.</p>
+    </div>
+  </div>
 </div>
 
 <div class="band">
@@ -271,6 +303,47 @@ $('#pStop').onclick=stopAll;
 const setView=v=>{target=v;$('#vSky').classList.toggle('on',!v);$('#vDepth').classList.toggle('on',!!v)};
 $('#vSky').onclick=()=>setView(0);$('#vDepth').onclick=()=>setView(1);
 
+/* four watchers */
+const W4=[{n:'Aldebaran',cr:'Ox',c:'Taurus',l:69.79,d:65,t:3900,r:45,m:1.16,mag:.86,g:false},{n:'Regulus',cr:'Lion',c:'Leo',l:149.83,d:79,t:12460,r:4.35,m:3.8,mag:1.4,g:false},{n:'Antares',cr:'Eagle',c:'Scorpius',l:249.76,d:550,t:3660,r:680,m:12,mag:1.06,g:true},{n:'Fomalhaut',cr:'Man',c:'Piscis Austrinus, below Aquarius',l:333.87,d:25,t:8590,r:1.84,m:1.92,mag:1.16,g:false}];
+const CON=[['Pisces',352,29],['Aries',29,53.5],['Taurus',53.5,90.1],['Gemini',90.1,118],['Cancer',118,138],['Leo',138,174],['Virgo',174,218],['Libra',218,241],['Sco',241,248],['Oph',248,266],['Sagittarius',266,300],['Capricornus',300,328],['Aquarius',328,352]];
+const SIG=['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+const CARD=[[0,'Spring equinox'],[90,'Summer solstice'],[180,'Autumn equinox'],[270,'Winter solstice']];
+const shift=Y=>(Y-2000)*50.29/3600,n360=x=>((x%360)+360)%360,offc=L=>((L+45)%90+90)%90-45;
+const P=(lam,r)=>{const a=(-90-lam)*Math.PI/180;return [300+r*Math.cos(a),300+r*Math.sin(a)]};
+const ytxt=Y=>Y<=0?(1-Y)+' BC':'AD '+Y;
+let wY=-2999,wAnim=0;
+function wheel(){
+  const p=shift(wY),R1=284,R2=250,R3=216,RS=196;let o='';
+  const ring=(r1,r2,f)=>`<path d="M300 ${300-r1}A${r1} ${r1} 0 1 1 299.9 ${300-r1}ZM300 ${300-r2}A${r2} ${r2} 0 1 0 300.1 ${300-r2}Z" fill="${f}" fill-rule="evenodd"/>`;
+  o+=ring(R1,R2,'rgba(201,162,39,.10)')+ring(R2,R3,'rgba(160,185,230,.08)');
+  CON.forEach(([nm,a,b])=>{const s=a+p,[x1,y1]=P(s,R1),[x2,y2]=P(s,R2);o+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="rgba(201,162,39,.55)"/>`;
+    const span=n360(b-a),mid=a+span/2+p,[tx,ty]=P(mid,(R1+R2)/2);o+=`<text x="${tx}" y="${ty+4}" text-anchor="middle" font-size="13" fill="#e8d48a">${span<20?nm:nm}</text>`});
+  SIG.forEach((nm,i)=>{const [x1,y1]=P(i*30,R2),[x2,y2]=P(i*30,R3);o+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="rgba(160,185,230,.4)"/>`;const [tx,ty]=P(i*30+15,(R2+R3)/2);o+=`<text x="${tx}" y="${ty+4}" text-anchor="middle" font-size="12" fill="rgba(205,215,240,.8)">${nm}</text>`});
+  o+=`<circle cx="300" cy="300" r="${RS}" fill="none" stroke="rgba(160,185,230,.18)" stroke-dasharray="2 5"/>`;
+  CARD.forEach(([l,nm])=>{const [x,y]=P(l,R3);o+=`<line x1="300" y1="300" x2="${x}" y2="${y}" stroke="rgba(205,215,240,.35)" stroke-dasharray="6 6"/>`;const [tx,ty]=P(l,72),v=l%180===0;o+=`<text x="${v?tx+8:tx}" y="${v?ty+4:ty+20}" text-anchor="${v?'start':'middle'}" font-size="13" fill="rgba(205,215,240,.75)">${nm}</text>`});
+  const S=W4.map(w=>P(w.l+p,RS));
+  [[0,2],[1,3]].forEach(([a,b])=>o+=`<line x1="${S[a][0]}" y1="${S[a][1]}" x2="${S[b][0]}" y2="${S[b][1]}" stroke="#e0501f" stroke-width="2.5" opacity=".9"/>`);
+  W4.forEach((w,i)=>{const [x,y]=S[i],col=tcol(w.t),hot=playing.has(w);o+=`<circle cx="${x}" cy="${y}" r="16" fill="${col}" opacity=".25"/><circle cx="${x}" cy="${y}" r="6" fill="#fff"/>`;
+    if(hot)o+=`<circle cx="${x}" cy="${y}" r="22" fill="none" stroke="#e0501f" stroke-width="2"/>`;
+    const [tx,ty]=P(w.l+p+9,RS-34);o+=`<text x="${tx}" y="${ty}" text-anchor="middle" font-size="14" font-weight="600" fill="#fff">${w.cr}</text><text x="${tx}" y="${ty+16}" text-anchor="middle" font-size="12" fill="rgba(220,228,245,.85)">${w.n}</text>`});
+  o+=`<circle cx="300" cy="300" r="4" fill="#e0501f"/>`;
+  $('#wsvg').innerHTML=o;
+  const L=n360(-p),con=(CON.find(([,a,b])=>a<b?L>=a&&L<b:L>=a||L<b)||['Pisces'])[0].replace('Sco','Scorpius').replace('Oph','Ophiuchus');
+  const offs=W4.map(w=>{const v=offc(n360(w.l+p));return Math.abs(v)<.05?0:v}),mean=offs.reduce((a,b)=>a+Math.abs(b),0)/4;
+  $('#wyr').textContent=ytxt(wY);
+  $('#weq').innerHTML=`Spring equinox sits in <b>${esc(con)}</b>. The star cross is <b>${mean.toFixed(1)}°</b> off the seasons on average.`;
+  $('#wlist').innerHTML=W4.map((w,i)=>`<li><span><b>${w.cr}</b> · ${esc(w.n)}<small>${esc(w.c)}</small></span><span class="off">${offs[i]>=0?'+':''}${offs[i].toFixed(1)}°</span></li>`).join('');
+}
+const wset=Y=>{wY=Y;$('#wslide').value=Y;wheel()};
+$('#wslide').oninput=e=>{cancelAnimationFrame(wAnim);wY=+e.target.value;wheel()};
+$('#w3000').onclick=()=>{cancelAnimationFrame(wAnim);wset(-2999)};
+$('#wnow').onclick=()=>{cancelAnimationFrame(wAnim);wset(2026)};
+$('#wdrift').onclick=()=>{cancelAnimationFrame(wAnim);if(RM){wset(2026);return}const t0=performance.now(),dur=14000;
+  const tick=t=>{const k=Math.min(1,(t-t0)/dur);wY=Math.round(-3999+k*6025);$('#wslide').value=wY;wheel();if(k<1)wAnim=requestAnimationFrame(tick)};wAnim=requestAnimationFrame(tick)};
+$('#wchord').onclick=()=>{stopAll();if(!ac())return;const t0=actx.currentTime+.05;W4.forEach(w=>{voice(w,t0,7,.1);playing.add(w)});wheel();
+  st('The Four Watchers together: <b>Antares</b> and <b>Aldebaran</b> are the deep giants, <b>Regulus</b> and <b>Fomalhaut</b> ring high.');
+  later(7600,()=>{playing.clear();wheel();st('')})};
+wheel();
 const fromHash=()=>{const i=C.findIndex(c=>c.id===location.hash.slice(1));return i<0?0:i};
 addEventListener('hashchange',()=>pick(fromHash(),false));
 size();pick(fromHash(),false);requestAnimationFrame(draw);
